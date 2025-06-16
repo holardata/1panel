@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=jcroql
+version: 2
+
+before:
+  hooks:
+    # - export NODE_OPTIONS="--max-old-space-size=8192"
+    # - make build_web
+    - chmod +x ./ci/script.sh
+    - ./ci/script.sh
+    - sed -i 's@ORIGINAL_VERSION=.*@ORIGINAL_VERSION=v{{ .Version }}@g' 1pctl
+    - go mod tidy
+    
+builds:
+  - main: ./cmd/server/main.go
+    binary: 1panel
+    flags:
+      - -tags=xpack
+      - -trimpath
+    ldflags:
+      - -w -s
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarm:
+      - 7
+    goarch:
+      - amd64
+      - arm64
+      - arm
+      - ppc64le
+      - s390x
+
+archives:
+  - formats: [ 'tar.gz' ]
+    name_template: "1panel-v{{ .Version }}-{{ .Os }}-{{ .Arch }}{{- if .Arm }}v{{ .Arm }}{{ end }}"
+    wrap_in_directory: true
+    files:
+      - 1pctl
+      - 1panel.service
+      - install.sh
+      - GeoIP.mmdb
+      - lang/*
+
+checksum:
+  name_template: 'checksums.txt'
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"

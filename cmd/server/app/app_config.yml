@@ -1,0 +1,13 @@
+additionalProperties:
+  key:    # The application's key, limited to English, used to create a folder in Linux
+  name:   # Application name
+  tags:
+    - Tool # Application tags, multiple tags are allowed. Refer to the tag list below
+  shortDescZh:  # Application description in Chinese, no more than 30 characters
+  shortDescEn:  # Application description in English
+  type: tool  # Application type, different from application category, only one is allowed. Refer to the type list below
+  crossVersionUpdate:   # Whether cross-major-version upgrades are supported
+  limit:  # Application installation limit, 0 means no limit
+  website:  # Official website address
+  github:  # GitHub address
+  document:  # Documentation address

@@ -363,9 +363,9 @@ const hasHour = (item: any) => {
     return item.specType !== 'perHour' && item.specType !== 'perNMinute' && item.specType !== 'perNSecond';
 };
 
-const toUpload = () => {
-    licenseRef.value.acceptParams();
-};
+// const toUpload = () => {
+//     licenseRef.value.acceptParams();
+// };
 
 const changeSpecType = () => {
     let item = dialogData.value.rowData!.specObj;

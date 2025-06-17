@@ -21,9 +21,9 @@
 <script setup lang="ts" name="login">
 import LoginForm from './components/login-form.vue';
 import { ref, onMounted } from 'vue';
-import { GlobalStore } from '@/store';
+// import { GlobalStore } from '@/store';
 
-const gStore = GlobalStore();
+// const gStore = GlobalStore();
 const loading = ref();
 
 const screenWidth = ref(null);

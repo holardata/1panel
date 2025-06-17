@@ -3,7 +3,7 @@
         <div v-if="mfaShow">
             <div class="login-form">
                 <el-form @submit.prevent>
-                    <div class="login-title">{{ $t('commons.login.mfaTitle') }}</div>
+                    <!-- <div class="login-title">{{ $t('commons.login.mfaTitle') }}</div> -->
                     <el-form-item class="no-border">
                         <el-input
                             size="default"

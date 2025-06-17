@@ -379,9 +379,9 @@
                         </el-form-item>
                         <el-form-item v-if="dialogData.rowData!.hasAlert && !isProductPro">
                             <span>{{ $t('alert.licenseHelper') }}</span>
-                            <el-button link type="primary" @click="toUpload">
+                            <!-- <el-button link type="primary" @click="toUpload">
                                 {{ $t('license.levelUpPro') }}
-                            </el-button>
+                            </el-button> -->
                         </el-form-item>
                     </div>
 
@@ -872,9 +872,9 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     });
 };
 
-const toUpload = () => {
-    licenseRef.value.acceptParams();
-};
+// const toUpload = () => {
+//     licenseRef.value.acceptParams();
+// };
 
 defineExpose({
     acceptParams,

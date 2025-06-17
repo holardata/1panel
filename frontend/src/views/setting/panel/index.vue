@@ -189,7 +189,7 @@
                         <span class="input-help">{{ $t('setting.developerModeHelper') }}</span>
                     </el-form-item>
 
-                    <el-form-item :label="$t('setting.advancedMenuHide')">
+                    <!-- <el-form-item :label="$t('setting.advancedMenuHide')">
                         <el-input disabled v-model="form.proHideMenus">
                             <template #append>
                                 <el-button v-show="!show" @click="onChangeHideMenus" icon="Setting">
@@ -197,7 +197,7 @@
                                 </el-button>
                             </template>
                         </el-input>
-                    </el-form-item>
+                    </el-form-item> -->
                 </el-form>
             </template>
         </LayoutContent>
@@ -291,7 +291,7 @@ const form = reactive({
     ipWhiteList: '',
     apiKeyValidityTime: 120,
 
-    proHideMenus: ref(i18n.t('setting.unSetting')),
+    // proHideMenus: ref(i18n.t('setting.unSetting')),
     hideMenuList: '',
 });
 
@@ -309,14 +309,14 @@ const themeColorRef = ref();
 const apiInterfaceRef = ref();
 const unset = ref(i18n.t('setting.unSetting'));
 
-interface Node {
-    id: string;
-    title: string;
-    path?: string;
-    label: string;
-    isCheck: boolean;
-    children?: Node[];
-}
+// interface Node {
+//     id: string;
+//     title: string;
+//     path?: string;
+//     label: string;
+//     isCheck: boolean;
+//     children?: Node[];
+// }
 
 const languageOptions = ref([
     { value: 'zh', label: '中文(简体)' },
@@ -348,7 +348,7 @@ const search = async () => {
     form.complexityVerification = res.data.complexityVerification;
     form.defaultNetwork = res.data.defaultNetwork;
     form.defaultNetworkVal = res.data.defaultNetwork === 'all' ? i18n.t('commons.table.all') : res.data.defaultNetwork;
-    form.proHideMenus = res.data.xpackHideMenu;
+    // form.proHideMenus = res.data.xpackHideMenu;
     form.hideMenuList = res.data.xpackHideMenu;
     form.developerMode = res.data.developerMode;
 
@@ -364,9 +364,9 @@ const search = async () => {
     form.ipWhiteList = res.data.ipWhiteList;
     form.apiKeyValidityTime = res.data.apiKeyValidityTime;
 
-    const json: Node = JSON.parse(res.data.xpackHideMenu);
-    const checkedTitles = getCheckedTitles(json);
-    form.proHideMenus = checkedTitles.toString();
+    // const json: Node = JSON.parse(res.data.xpackHideMenu);
+    // const checkedTitles = getCheckedTitles(json);
+    // form.proHideMenus = checkedTitles.toString();
     if (isProductPro.value) {
         const xpackRes = await getXpackSetting();
         if (xpackRes) {
@@ -383,29 +383,29 @@ const search = async () => {
     }
 };
 
-function extractTitles(node: Node, result: string[]): void {
-    if (!node.isCheck && !node.children) {
-        result.push(i18n.t(node.title));
-    }
-    if (node.children) {
-        for (const childNode of node.children) {
-            extractTitles(childNode, result);
-        }
-    }
-}
+// function extractTitles(node: Node, result: string[]): void {
+//     if (!node.isCheck && !node.children) {
+//         result.push(i18n.t(node.title));
+//     }
+//     if (node.children) {
+//         for (const childNode of node.children) {
+//             extractTitles(childNode, result);
+//         }
+//     }
+// }
 
-function getCheckedTitles(json: Node): string[] {
-    let result: string[] = [];
-    extractTitles(json, result);
-    if (result.length === 0) {
-        result.push(i18n.t('setting.unSetting'));
-    }
-    if (result.length === json.children.length) {
-        result = [];
-        result.push(i18n.t('setting.hideALL'));
-    }
-    return result;
-}
+// function getCheckedTitles(json: Node): string[] {
+//     let result: string[] = [];
+//     extractTitles(json, result);
+//     if (result.length === 0) {
+//         result.push(i18n.t('setting.unSetting'));
+//     }
+//     if (result.length === json.children.length) {
+//         result = [];
+//         result.push(i18n.t('setting.hideALL'));
+//     }
+//     return result;
+// }
 
 const onChangePassword = () => {
     passwordRef.value.acceptParams({ complexityVerification: form.complexityVerification });
@@ -475,9 +475,9 @@ const onChangeNetwork = () => {
     networkRef.value.acceptParams({ defaultNetwork: form.defaultNetwork });
 };
 
-const onChangeHideMenus = () => {
-    hideMenuRef.value.acceptParams({ menuList: form.hideMenuList });
-};
+// const onChangeHideMenus = () => {
+//     hideMenuRef.value.acceptParams({ menuList: form.hideMenuList });
+// };
 
 const onChangeThemeColor = () => {
     const themeColor: ThemeColor = JSON.parse(globalStore.themeConfig.themeColor);

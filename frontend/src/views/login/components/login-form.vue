@@ -144,7 +144,7 @@
                 </el-form>
                 <div class="demo">
                     <span v-if="isDemo">
-                        {{ $t('commons.login.username') }}:demo {{ $t('commons.login.password') }}:1panel
+                        {{ $t('commons.login.username') }}:demo {{ $t('commons.login.password') }}:Holar
                     </span>
                 </div>
             </div>

@@ -10,9 +10,9 @@
         >
             <template #route-button>
                 <div class="router-button" v-if="!isProductPro">
-                    <el-button link type="primary" @click="toUpload">
+                    <!-- <el-button link type="primary" @click="toUpload">
                         {{ $t('license.levelUpPro') }}
-                    </el-button>
+                    </el-button> -->
                 </div>
             </template>
         </RouterButton>
@@ -643,9 +643,9 @@ const onBlur = () => {
     isActive.value = false;
 };
 
-const toUpload = () => {
-    licenseRef.value.acceptParams();
-};
+// const toUpload = () => {
+//     licenseRef.value.acceptParams();
+// };
 
 onMounted(() => {
     isProductPro.value = globalStore.isProductPro;

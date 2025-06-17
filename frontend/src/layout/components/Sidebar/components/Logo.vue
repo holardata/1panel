@@ -7,7 +7,8 @@
                 style="cursor: pointer"
                 alt="logo"
             />
-            <MenuLogo v-else />
+            <!-- <MenuLogo v-else /> -->
+            <img :src="MenuLogo" v-else />
         </template>
         <template v-else>
             <img
@@ -17,6 +18,7 @@
                 alt="logo"
             />
             <PrimaryLogo v-else />
+            <!-- <img :src="PrimaryLogo" alt="" /> -->
         </template>
     </div>
 </template>
@@ -25,7 +27,7 @@
 import router from '@/routers';
 import { GlobalStore } from '@/store';
 import PrimaryLogo from '@/assets/images/1panel-logo.svg?component';
-import MenuLogo from '@/assets/images/1panel-menu-logo.svg?component';
+import MenuLogo from '@/assets/images/1panel-menu-logo.png';
 
 defineProps<{ isCollapse: boolean }>();
 

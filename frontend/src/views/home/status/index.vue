@@ -193,9 +193,11 @@
                     </template>
                 </el-popover>
                 <el-tooltip :content="item.productName" v-if="item.productName.length > 25">
-                    <span class="input-help">{{ item.productName.substring(0, 22) }}...</span>
+                    <!-- <span class="input-help">{{ item.productName.substring(0, 22) }}...</span> -->
+                    <span class="input-help">holar(gpu)</span>
                 </el-tooltip>
-                <span class="input-help" v-else>{{ item.productName }}</span>
+                <!-- <span class="input-help" v-else>{{ item.productName }}</span> -->
+                <span class="input-help" v-else>holar(gpu)</span>
             </el-col>
         </template>
         <template v-for="(item, index) of currentInfo.xpuData" :key="index">

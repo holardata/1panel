@@ -86,7 +86,7 @@
                             />
                         </el-form-item>
                         <el-form-item :label="$t('setting.backupDir')" prop="backupPath">
-                            <el-input clearable v-model.trim="cosData.rowData!.backupPath" placeholder="/1panel" />
+                            <el-input clearable v-model.trim="cosData.rowData!.backupPath" placeholder="/Holar" />
                         </el-form-item>
                     </el-col>
                 </el-row>

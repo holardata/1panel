@@ -128,9 +128,9 @@
                     <div v-if="globalStore.isIntl">
                         <el-form-item v-if="(dialogData.rowData!.hasSpec) && !isProductPro">
                             <span>{{ $t('toolbox.clam.alertHelper') }}</span>
-                            <el-button link type="primary" @click="toUpload">
+                            <!-- <el-button link type="primary" @click="toUpload">
                                 {{ $t('license.levelUpPro') }}
-                            </el-button>
+                            </el-button> -->
                         </el-form-item>
                     </div>
                     <div v-if="!globalStore.isIntl">
@@ -142,9 +142,9 @@
                             v-if="(dialogData.rowData!.hasAlert || dialogData.rowData!.hasSpec) && !isProductPro"
                         >
                             <span>{{ $t('toolbox.clam.alertHelper') }}</span>
-                            <el-button link type="primary" @click="toUpload">
+                            <!-- <el-button link type="primary" @click="toUpload">
                                 {{ $t('license.levelUpPro') }}
-                            </el-button>
+                            </el-button> -->
                         </el-form-item>
                         <el-form-item
                             prop="alertCount"

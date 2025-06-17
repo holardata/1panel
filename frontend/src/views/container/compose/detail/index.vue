@@ -6,7 +6,7 @@
                     <div>
                         <el-tag effect="dark" type="success">{{ composeName }}</el-tag>
                     </div>
-                    <div v-if="createdBy === '1Panel'" style="margin-left: 50px">
+                    <div v-if="createdBy === 'Holar'" style="margin-left: 50px">
                         <el-button link type="primary" @click="onComposeOperate('up')">
                             {{ $t('container.start') }}
                         </el-button>

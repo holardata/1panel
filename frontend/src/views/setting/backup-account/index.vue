@@ -35,14 +35,14 @@
                     <template #title>
                         <span>
                             {{ $t('setting.backupAlert') }}
-                            <el-link
+                            <!-- <el-link
                                 class="ml-1 text-xs"
                                 type="primary"
                                 target="_blank"
                                 :href="globalStore.docsUrl + '/user_manual/settings/#3'"
                             >
                                 {{ $t('commons.button.helpDoc') }}
-                            </el-link>
+                            </el-link> -->
                         </span>
                     </template>
                 </el-alert>
@@ -486,9 +486,9 @@ import { Backup } from '@/api/interface/backup';
 import { ElForm } from 'element-plus';
 import i18n from '@/lang';
 import { MsgSuccess } from '@/utils/message';
-import { GlobalStore } from '@/store';
+// import { GlobalStore } from '@/store';
 
-const globalStore = GlobalStore();
+// const globalStore = GlobalStore();
 
 const data = ref();
 const opRef = ref();

@@ -28,11 +28,11 @@
                                 v-model="content"
                             />
                         </el-form-item>
-                        <div v-if="createdBy === '1Panel'">
+                        <div v-if="createdBy === 'Holar'">
                             <el-form-item
                                 :label="$t('container.env')"
                                 prop="environmentStr"
-                                v-if="createdBy === '1Panel'"
+                                v-if="createdBy === 'Holar'"
                             >
                                 <el-input
                                     type="textarea"
@@ -130,7 +130,7 @@ interface DialogProps {
 }
 
 const loadHeight = () => {
-    return createdBy.value === '1Panel' ? '300px' : '200px';
+    return createdBy.value === 'Holar' ? '300px' : '200px';
 };
 const acceptParams = (props: DialogProps): void => {
     composeVisible.value = true;

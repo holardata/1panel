@@ -5,9 +5,9 @@
                 <el-alert type="info" :closable="false">
                     <template #title>
                         {{ $t('toolbox.clam.clamHelper') }}
-                        <el-link class="ml-1 text-xs" @click="toDoc()" type="primary">
+                        <!-- <el-link class="ml-1 text-xs" @click="toDoc()" type="primary">
                             {{ $t('commons.button.helpDoc') }}
-                        </el-link>
+                        </el-link> -->
                     </template>
                 </el-alert>
             </template>
@@ -256,9 +256,9 @@ const getStatus = (status: any) => {
 const toFolder = (folder: string) => {
     router.push({ path: '/hosts/files', query: { path: folder } });
 };
-const toDoc = async () => {
-    window.open(docsUrl.value + '/user_manual/toolbox/clam/', '_blank', 'noopener,noreferrer');
-};
+// const toDoc = async () => {
+//     window.open(docsUrl.value + '/user_manual/toolbox/clam/', '_blank', 'noopener,noreferrer');
+// };
 
 const onChange = async (row: any) => {
     await updateClam(row);

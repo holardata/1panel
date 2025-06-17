@@ -9,7 +9,7 @@ BUILD_PATH = $(BASE_PATH)/build
 WEB_PATH=$(BASE_PATH)/frontend
 SERVER_PATH=$(BASE_PATH)/backend
 MAIN= $(BASE_PATH)/cmd/server/main.go
-APP_NAME=1panel
+APP_NAME=Holar
 ASSERT_PATH= $(BASE_PATH)/cmd/server/web/assets
 
 clean_assets:

@@ -1,12 +1,20 @@
+<!--
+ * @Author: liwenjie lwj@holardata.com
+ * @Date: 2025-06-16 18:19:16
+ * @LastEditors: liwenjie lwj@holardata.com
+ * @LastEditTime: 2025-06-16 19:33:28
+ * @FilePath: /1Panel/frontend/src/layout/components/AppFooter.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
     <div class="footer" :style="{ height: mobile ? '108px' : '48px' }">
         <div class="flex w-full flex-col gap-4 md:justify-between md:flex-row">
             <div class="flex flex-wrap gap-4">
                 <a v-if="!globalStore.isIntl" href="https://fit2cloud.com/" target="_blank">
-                    Copyright © 2014-{{ year }} {{ $t('commons.fit2cloud') }}
+                    Copyright © 2019-{{ year }} 海纳数聚
                 </a>
                 <a v-if="globalStore.isIntl" href="https://1panel.pro/" target="_blank">
-                    Copyright © {{ year }} {{ $t('commons.lingxia') }}
+                    Copyright © {{ year }} 海纳数聚
                 </a>
             </div>
             <div class="flex flex-row gap-2 md:flex-col lg:flex-row">

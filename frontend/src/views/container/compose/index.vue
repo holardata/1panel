@@ -52,7 +52,7 @@
                         <template #default="{ row }">
                             <span v-if="row.createdBy === ''">{{ $t('container.local') }}</span>
                             <span v-if="row.createdBy === 'Apps'">{{ $t('container.apps') }}</span>
-                            <span v-if="row.createdBy === '1Panel'">1Panel</span>
+                            <span v-if="row.createdBy === 'Holar'">Holar</span>
                         </template>
                     </el-table-column>
                     <el-table-column :label="$t('container.composeDirectory')" min-width="100" fix>
@@ -229,7 +229,7 @@ const buttons = [
             onDelete(row);
         },
         disabled: (row: any) => {
-            return row.createdBy !== '1Panel';
+            return row.createdBy !== 'Holar';
         },
     },
 ];

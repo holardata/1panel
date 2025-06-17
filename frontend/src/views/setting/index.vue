@@ -2,7 +2,7 @@
  * @Author: liwenjie lwj@holardata.com
  * @Date: 2025-06-16 18:19:16
  * @LastEditors: liwenjie lwj@holardata.com
- * @LastEditTime: 2025-06-17 19:26:46
+ * @LastEditTime: 2025-06-17 20:16:12
  * @FilePath: /1Panel/frontend/src/views/setting/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -23,10 +23,10 @@ const buttons = [
         label: i18n.global.t('setting.panel'),
         path: '/settings/panel',
     },
-    {
-        label: i18n.global.t('setting.safe'),
-        path: '/settings/safe',
-    },
+    // {
+    //     label: i18n.global.t('setting.safe'),
+    //     path: '/settings/safe',
+    // },
     {
         label: i18n.global.t('setting.backupAccount', 2),
         path: '/settings/backupaccount',

@@ -195,7 +195,8 @@ const loading = ref();
 const selects = ref<any>([]);
 
 const globalStore = GlobalStore();
-const { isProductPro, docsUrl } = storeToRefs(globalStore);
+// const { isProductPro, docsUrl } = storeToRefs(globalStore);
+const { isProductPro } = storeToRefs(globalStore);
 const data = ref();
 const paginationConfig = reactive({
     cacheSizeKey: 'clam-page-size',

@@ -62,7 +62,7 @@
                                         </el-button>
                                     </template>
                                 </el-input>
-                                <div class="flex">
+                                <!-- <div class="flex">
                                     <span>
                                         {{ $t('container.mirrorsHelper') }} {{ $t('container.mirrorsHelper2') }}
                                         <el-link
@@ -74,7 +74,7 @@
                                             {{ $t('firewall.quickJump') }}
                                         </el-link>
                                     </span>
-                                </div>
+                                </div> -->
                             </el-form-item>
                             <el-form-item :label="$t('container.registries')" prop="registries">
                                 <div style="width: 100%" v-if="form.registries">
@@ -435,9 +435,9 @@ const save = async (key: string, value: string) => {
         });
 };
 
-const toDoc = () => {
-    window.open(globalStore.docsUrl + '/user_manual/containers/setting/', '_blank', 'noopener,noreferrer');
-};
+// const toDoc = () => {
+//     window.open(globalStore.docsUrl + '/user_manual/containers/setting/', '_blank', 'noopener,noreferrer');
+// };
 
 const onOperator = async (operation: string) => {
     ElMessageBox.confirm(

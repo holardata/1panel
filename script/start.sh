@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# 1panel.service 和 start.sh 都放到 /opt/1panel/ 目录下
 PROJ_NAME="1panel"
 
 TARGET_DIR="/lib/systemd/system"

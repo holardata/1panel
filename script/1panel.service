@@ -1,0 +1,17 @@
+[Unit]
+Description=1panel
+After=network.target
+Wants=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/1panel
+ExecStop=/bin/kill -s QUIT
+RestartSec=5
+Restart=always
+#StartLimitInterval=600
+#User=bdcp
+#Group=bdcp
+
+[Install]
+WantedBy=multi-user.target
+

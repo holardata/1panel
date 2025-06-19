@@ -17,7 +17,7 @@
             </template>
         </RouterButton>
 
-        <el-alert
+        <!-- <el-alert
             v-if="!isSafety && globalStore.showEntranceWarn"
             style="margin-top: 20px"
             type="warning"
@@ -36,7 +36,7 @@
                     </el-link>
                 </span>
             </template>
-        </el-alert>
+        </el-alert> -->
 
         <el-row :gutter="20" style="margin-top: 20px">
             <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
@@ -618,9 +618,9 @@ const loadData = async () => {
     }
 };
 
-const hideEntrance = () => {
-    globalStore.setShowEntranceWarn(false);
-};
+// const hideEntrance = () => {
+//     globalStore.setShowEntranceWarn(false);
+// };
 
 const loadUpgradeStatus = async () => {
     const res = await loadUpgradeInfo();

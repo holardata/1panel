@@ -20,6 +20,7 @@ if [ "$1" = "stop" ]; then
 fi
 
 if [ -f "$SOURCE_BIN" ]; then
+    rm -rf /usr/local/bin/$PROJ_NAME && \
     mv "$SOURCE_BIN" /usr/local/bin/ && \
     chmod +x /usr/local/bin/$PROJ_NAME
     if [ $? -eq 0 ]; then

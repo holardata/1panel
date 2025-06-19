@@ -49,7 +49,7 @@ ErrFileParseApp: 'Failed to parse {{.name}} file {{.err}}'
 ErrAppDirNull: 'version folder does not exist'
 LocalAppErr: "App {{.name}} sync failed! {{.err}}"
 ErrContainerName: "ContainerName is already exist"
-ErrAppSystemRestart: "1Panel restart causes the task to terminate"
+ErrAppSystemRestart: "Holar restart causes the task to terminate"
 ErrCreateHttpClient: "Failed to create HTTP request {{.err}}"
 ErrHttpReqTimeOut: "Request timed out {{.err}}"
 ErrHttpReqFailed: "Request failed {{.err}}"
@@ -60,7 +60,7 @@ ErrContainerNotFound: '{{ .name }} container does not exist'
 ErrContainerMsg: '{{ .name }} container is abnormal, please check the log on the container page for details'
 ErrAppBackup: '{{ .name }} application backup failed err {{.err}}'
 ErrImagePull: '{{ .name }} image pull failed err {{.err}}'
-ErrVersionTooLow: 'The current 1Panel version is too low for updating the app store, please upgrade the version'
+ErrVersionTooLow: 'The current Holar version is too low for updating the app store, please upgrade the version'
 ErrAppNameExist: 'App name is already exist'
 AppStoreIsSyncing: 'The App Store is syncing, please try again later'
 ErrGetCompose: "Failed to obtain docker-compose.yml file! {{ .detail }}"
@@ -239,18 +239,18 @@ ListenIPv4: "Listen on IPv4"
 ListenIPv6: "Listen on IPv6"
 ListenChangeSuccessful: "Switch successful! Now listening on {{ .value }}"
 ResetCommands: "Reset system info"
-ResetMFA: "Cancel 1Panel two-factor authentication"
-ResetHttps: "Cancel 1Panel https login"
-ResetEntrance: "Cancel 1Panel secure entrance"
-ResetIPs: "Cancel 1Panel authorized ip restrictions"
-ResetDomain: "Cancel 1Panel domain binding"
-RestoreCommands: "Rollback 1Panel service and data"
+ResetMFA: "Cancel Holar two-factor authentication"
+ResetHttps: "Cancel Holar https login"
+ResetEntrance: "Cancel Holar secure entrance"
+ResetIPs: "Cancel Holar authorized ip restrictions"
+ResetDomain: "Cancel Holar domain binding"
+RestoreCommands: "Rollback Holar service and data"
 RestoreNoSuchFile: "No files available for rollback"
-RestoreStep1: "(1/5) Starting rollback of 1Panel service and data from {{ .name }} directory..."
-RestoreStep2: "(2/5) 1Panel binary rollback successful"
-RestoreStep3: "(3/5) 1Panel script rollback successful"
-RestoreStep4: "(4/5) 1Panel service rollback successful"
-RestoreStep5: "(5/5) 1Panel data rollback successful"
+RestoreStep1: "(1/5) Starting rollback of Holar service and data from {{ .name }} directory..."
+RestoreStep2: "(2/5) Holar binary rollback successful"
+RestoreStep3: "(3/5) Holar script rollback successful"
+RestoreStep4: "(4/5) Holar service rollback successful"
+RestoreStep5: "(5/5) Holar data rollback successful"
 RestoreSuccessful: "Rollback successful! Restarting service, please wait..."
 UpdateCommands: "Update panel info"
 UpdateUser: "Update panel user"

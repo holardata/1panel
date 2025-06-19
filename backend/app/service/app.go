@@ -5,13 +5,14 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
 	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 
 	"github.com/1Panel-dev/1Panel/backend/app/dto"
 	"github.com/1Panel-dev/1Panel/backend/app/dto/request"
@@ -752,10 +753,10 @@ func (a AppService) GetAppUpdate() (*response.AppUpdateRes, error) {
 	if err != nil {
 		return res, err
 	}
-	if list.Extra.Version != "" && setting.SystemVersion != list.Extra.Version && !common.CompareVersion(setting.SystemVersion, list.Extra.Version) {
-		global.LOG.Errorf("The current version is too low to synchronize with the App Store. The minimum required version is %s", list.Extra.Version)
-		return nil, buserr.New("ErrVersionTooLow")
-	}
+	// if list.Extra.Version != "" && setting.SystemVersion != list.Extra.Version && !common.CompareVersion(setting.SystemVersion, list.Extra.Version) {
+	// 	global.LOG.Errorf("The current version is too low to synchronize with the App Store. The minimum required version is %s", list.Extra.Version)
+	// 	return nil, buserr.New("ErrVersionTooLow")
+	// }
 	res.AppList = list
 	return res, nil
 }

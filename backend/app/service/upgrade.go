@@ -1,7 +1,6 @@
 package service
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -33,51 +32,53 @@ func NewIUpgradeService() IUpgradeService {
 
 func (u *UpgradeService) SearchUpgrade() (*dto.UpgradeInfo, error) {
 	var upgrade dto.UpgradeInfo
-	currentVersion, err := settingRepo.Get(settingRepo.WithByKey("SystemVersion"))
-	if err != nil {
-		return nil, err
-	}
-	DeveloperMode, err := settingRepo.Get(settingRepo.WithByKey("DeveloperMode"))
-	if err != nil {
-		return nil, err
-	}
-
-	upgrade.TestVersion, upgrade.NewVersion, upgrade.LatestVersion = u.loadVersionByMode(DeveloperMode.Value, currentVersion.Value)
-	var itemVersion string
-	if len(upgrade.LatestVersion) != 0 {
-		itemVersion = upgrade.LatestVersion
-	}
-	if len(upgrade.NewVersion) != 0 {
-		itemVersion = upgrade.NewVersion
-	}
-	if (global.CONF.System.Mode == "dev" || DeveloperMode.Value == "enable") && len(upgrade.TestVersion) != 0 {
-		itemVersion = upgrade.TestVersion
-	}
-	if len(itemVersion) == 0 {
-		return &upgrade, nil
-	}
-	mode := global.CONF.System.Mode
-	if strings.Contains(itemVersion, "beta") {
-		mode = "beta"
-	}
-	notes, err := u.loadReleaseNotes(fmt.Sprintf("%s/%s/%s/release/1panel-%s-release-notes", global.CONF.System.RepoUrl, mode, itemVersion, itemVersion))
-	if err != nil {
-		return nil, fmt.Errorf("load releases-notes of version %s failed, err: %v", itemVersion, err)
-	}
-	upgrade.ReleaseNote = notes
 	return &upgrade, nil
+	// currentVersion, err := settingRepo.Get(settingRepo.WithByKey("SystemVersion"))
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// DeveloperMode, err := settingRepo.Get(settingRepo.WithByKey("DeveloperMode"))
+	// if err != nil {
+	// 	return nil, err
+	// }
+
+	// upgrade.TestVersion, upgrade.NewVersion, upgrade.LatestVersion = u.loadVersionByMode(DeveloperMode.Value, currentVersion.Value)
+	// var itemVersion string
+	// if len(upgrade.LatestVersion) != 0 {
+	// 	itemVersion = upgrade.LatestVersion
+	// }
+	// if len(upgrade.NewVersion) != 0 {
+	// 	itemVersion = upgrade.NewVersion
+	// }
+	// if (global.CONF.System.Mode == "dev" || DeveloperMode.Value == "enable") && len(upgrade.TestVersion) != 0 {
+	// 	itemVersion = upgrade.TestVersion
+	// }
+	// if len(itemVersion) == 0 {
+	// 	return &upgrade, nil
+	// }
+	// mode := global.CONF.System.Mode
+	// if strings.Contains(itemVersion, "beta") {
+	// 	mode = "beta"
+	// }
+	// notes, err := u.loadReleaseNotes(fmt.Sprintf("%s/%s/%s/release/1panel-%s-release-notes", global.CONF.System.RepoUrl, mode, itemVersion, itemVersion))
+	// if err != nil {
+	// 	return nil, fmt.Errorf("load releases-notes of version %s failed, err: %v", itemVersion, err)
+	// }
+	// upgrade.ReleaseNote = notes
+	// return &upgrade, nil
 }
 
 func (u *UpgradeService) LoadNotes(req dto.Upgrade) (string, error) {
-	mode := global.CONF.System.Mode
-	if strings.Contains(req.Version, "beta") {
-		mode = "beta"
-	}
-	notes, err := u.loadReleaseNotes(fmt.Sprintf("%s/%s/%s/release/1panel-%s-release-notes", global.CONF.System.RepoUrl, mode, req.Version, req.Version))
-	if err != nil {
-		return "", fmt.Errorf("load releases-notes of version %s failed, err: %v", req.Version, err)
-	}
-	return notes, nil
+	// mode := global.CONF.System.Mode
+	// if strings.Contains(req.Version, "beta") {
+	// 	mode = "beta"
+	// }
+	// notes, err := u.loadReleaseNotes(fmt.Sprintf("%s/%s/%s/release/1panel-%s-release-notes", global.CONF.System.RepoUrl, mode, req.Version, req.Version))
+	// if err != nil {
+	// 	return "", fmt.Errorf("load releases-notes of version %s failed, err: %v", req.Version, err)
+	// }
+	// return notes, nil
+	return "", nil
 }
 
 func (u *UpgradeService) Upgrade(req dto.Upgrade) error {
@@ -265,49 +266,49 @@ func (u *UpgradeService) loadVersionByMode(developer, currentVersion string) (st
 }
 
 func (u *UpgradeService) loadVersion(isLatest bool, currentVersion, mode string) string {
-	path := fmt.Sprintf("%s/%s/latest", global.CONF.System.RepoUrl, mode)
-	if !isLatest {
-		path = fmt.Sprintf("%s/%s/latest.current", global.CONF.System.RepoUrl, mode)
-	}
-	_, latestVersionRes, err := httpUtil.HandleGet(path, http.MethodGet, constant.TimeOut20s)
-	if err != nil {
-		global.LOG.Errorf("load latest version from oss failed, err: %v", err)
-		return ""
-	}
-	version := string(latestVersionRes)
-	if strings.Contains(version, "<") {
-		global.LOG.Errorf("load latest version from oss failed, err: %v", version)
-		return ""
-	}
-	if isLatest {
-		return u.checkVersion(version, currentVersion)
-	}
+	// path := fmt.Sprintf("%s/%s/latest", global.CONF.System.RepoUrl, mode)
+	// if !isLatest {
+	// 	path = fmt.Sprintf("%s/%s/latest.current", global.CONF.System.RepoUrl, mode)
+	// }
+	// _, latestVersionRes, err := httpUtil.HandleGet(path, http.MethodGet, constant.TimeOut20s)
+	// if err != nil {
+	// 	global.LOG.Errorf("load latest version from oss failed, err: %v", err)
+	// 	return ""
+	// }
+	// version := string(latestVersionRes)
+	// if strings.Contains(version, "<") {
+	// 	global.LOG.Errorf("load latest version from oss failed, err: %v", version)
+	// 	return ""
+	// }
+	// if isLatest {
+	// 	return u.checkVersion(version, currentVersion)
+	// }
 
-	versionMap := make(map[string]string)
-	if err := json.Unmarshal(latestVersionRes, &versionMap); err != nil {
-		global.LOG.Errorf("load latest version from oss failed (error unmarshal), err: %v", err)
-		return ""
-	}
+	// versionMap := make(map[string]string)
+	// if err := json.Unmarshal(latestVersionRes, &versionMap); err != nil {
+	// 	global.LOG.Errorf("load latest version from oss failed (error unmarshal), err: %v", err)
+	// 	return ""
+	// }
 
-	versionPart := strings.Split(currentVersion, ".")
-	if len(versionPart) < 3 {
-		global.LOG.Errorf("current version is error format: %s", currentVersion)
-		return ""
-	}
-	num, _ := strconv.Atoi(versionPart[1])
-	if num == 0 {
-		global.LOG.Errorf("current version is error format: %s", currentVersion)
-		return ""
-	}
-	if num >= 10 {
-		if version, ok := versionMap[currentVersion[0:5]]; ok {
-			return u.checkVersion(version, currentVersion)
-		}
-		return ""
-	}
-	if version, ok := versionMap[currentVersion[0:4]]; ok {
-		return u.checkVersion(version, currentVersion)
-	}
+	// versionPart := strings.Split(currentVersion, ".")
+	// if len(versionPart) < 3 {
+	// 	global.LOG.Errorf("current version is error format: %s", currentVersion)
+	// 	return ""
+	// }
+	// num, _ := strconv.Atoi(versionPart[1])
+	// if num == 0 {
+	// 	global.LOG.Errorf("current version is error format: %s", currentVersion)
+	// 	return ""
+	// }
+	// if num >= 10 {
+	// 	if version, ok := versionMap[currentVersion[0:5]]; ok {
+	// 		return u.checkVersion(version, currentVersion)
+	// 	}
+	// 	return ""
+	// }
+	// if version, ok := versionMap[currentVersion[0:4]]; ok {
+	// 	return u.checkVersion(version, currentVersion)
+	// }
 	return ""
 }
 

@@ -4,6 +4,8 @@ system:
   mode: stable
   repo_url: https://resource.1panel.pro
   app_repo: https://apps-assets.fit2cloud.com
+  # https://apps-assets.fit2cloud.com/stable/1panel.json.zip
+  # https://apps-assets.fit2cloud.com/stable/1panel.json.version.txt
   is_demo: false
   is_intl: true
   port: 9999

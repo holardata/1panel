@@ -1,7 +1,7 @@
 #!/bin/bash
 # 部署说明: 
 # 1. 把 conf目录下的 app.yaml 放到 /opt/1panel/conf 目录下
-# 2. 二进制 1panel, 1panel.service 和 start.sh 都放到 /opt/1panel/ 目录下
+# 2. 二进制 1panel, 1panel.service, update_localapp.sh 和 start.sh 都放到 /opt/1panel/ 目录下
 PROJ_NAME="1panel"
 
 TARGET_DIR="/lib/systemd/system"

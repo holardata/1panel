@@ -6,6 +6,9 @@
 *.dylib
 build/
 
+deploy/1panel/1panel
+deploy/*.tar.gz
+
 # Mac
 .DS_Store
 */.DS_Store

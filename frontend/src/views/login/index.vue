@@ -56,6 +56,8 @@ onMounted(() => {
         radial-gradient(109.58% 109.58% at 31.53% -36.58%, rgba(0, 94, 235, 0.3) 0%, rgba(0, 94, 235, 0) 100%)
             /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
         rgba(0, 57, 142, 0.05);
+    background-repeat: no-repeat;
+    background-size: 100% 100% !important;
 
     .login-wrapper {
         padding-top: 8%;

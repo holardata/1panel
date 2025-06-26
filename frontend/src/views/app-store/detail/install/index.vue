@@ -196,7 +196,7 @@ const initData = () => ({
     memoryLimit: 0,
     memoryUnit: 'M',
     containerName: '',
-    allowPort: false,
+    allowPort: true,
     editCompose: false,
     dockerCompose: '',
     version: '',

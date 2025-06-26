@@ -412,7 +412,7 @@ const website = ref({
         memoryLimit: 0,
         memoryUnit: 'MB',
         containerName: '',
-        allowPort: false,
+        allowPort: true,
     },
     IPV6: false,
     enableFtp: false,

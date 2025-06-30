@@ -294,3 +294,6 @@ ErrSsePath: "SSE path is duplicated"
 ErrVerifyToken: 'Token verification error, please reset and scan again.'
 ErrInvalidToken: 'Invalid token, please reset and scan again.'
 ErrExpiredToken: 'Token has expired, please reset and scan again.'
+
+#container
+ErrForbidDelContainer: 'System container cannot be deleted'

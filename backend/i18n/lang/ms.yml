@@ -293,3 +293,6 @@ ErrSsePath: "Laluan SSE bertindan"
 ErrVerifyToken: 'Ralat pengesahan token, sila tetapkan semula dan imbas semula.'
 ErrInvalidToken: 'Token tidak sah, sila tetapkan semula dan imbas semula.'
 ErrExpiredToken: 'Token telah tamat tempoh, sila tetapkan semula dan imbas semula.'
+
+#container
+ErrForbidDelContainer: 'Tidak diizinkan untuk menghapus kontainer sistem'

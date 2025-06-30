@@ -292,3 +292,6 @@ ErrSsePath: "SSE パスが重複しています"
 ErrVerifyToken: 'トークンの検証エラーです。リセット後、再度QRコードをスキャンしてください。'
 ErrInvalidToken: '無効なトークンです。リセット後、再度QRコードをスキャンしてください。'
 ErrExpiredToken: 'トークンの有効期限が切れました。リセット後、再度QRコードをスキャンしてください。'
+
+#container
+ErrForbidDelContainer: 'システムコンテナは削除できません'

@@ -189,3 +189,8 @@ var (
 	ErrInvalidToken = "ErrInvalidToken"
 	ErrExpiredToken = "ErrExpiredToken"
 )
+
+// container
+var (
+	ErrForbidDelContainer = "ErrForbidDelContainer"
+)

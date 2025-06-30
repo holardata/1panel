@@ -294,3 +294,6 @@ ErrSsePath: "SSE 路径重复"
 ErrVerifyToken: '令牌验证错误，请重置后再次扫码'
 ErrInvalidToken: '无效的令牌，请重置后再次扫码'
 ErrExpiredToken: '令牌过期，请重置后再次扫码'
+
+#container
+ErrForbidDelContainer: '系统预置容器禁止删除'

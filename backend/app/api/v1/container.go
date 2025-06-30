@@ -1,7 +1,10 @@
 package v1
 
 import (
+	"os"
+	"slices"
 	"strconv"
+	"strings"
 
 	"github.com/1Panel-dev/1Panel/backend/app/api/v1/helper"
 	"github.com/1Panel-dev/1Panel/backend/app/dto"
@@ -367,6 +370,8 @@ func (b *BaseApi) ContainerCommit(c *gin.Context) {
 	helper.SuccessWithData(c, nil)
 }
 
+var mustApps = []string{"mysql", "pg", "redis", "mongo", "minio", "one-api", "deepdoc"}
+
 // @Tags Container
 // @Summary Operate Container
 // @Accept json
@@ -381,6 +386,23 @@ func (b *BaseApi) ContainerOperation(c *gin.Context) {
 	if err := helper.CheckBindAndValidate(&req, c); err != nil {
 		return
 	}
+
+	// zhuzhiwu add 20250630 begin
+	if req.Operation == constant.ContainerOpRemove {
+		apps := mustApps
+		content, err := os.ReadFile("/opt/1panel/resource/apps/local/holar_must_apps.txt")
+		if err == nil {
+			apps = strings.Split(strings.TrimSpace(string(content)), ",")
+		}
+
+		for _, targetApp := range req.Names {
+			if slices.Contains(apps, targetApp) {
+				helper.ErrorWithDetail(c, constant.CodeErrBadRequest, constant.ErrForbidDelContainer, nil)
+				return
+			}
+		}
+	}
+	// zhuzhiwu add 20250630 end
 
 	if err := containerService.ContainerOperation(req); err != nil {
 		helper.ErrorWithDetail(c, constant.CodeErrInternalServer, constant.ErrTypeInternalServer, err)

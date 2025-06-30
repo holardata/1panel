@@ -291,3 +291,6 @@ ErrSsePath: "Caminho SSE duplicado"
 ErrVerifyToken: 'Erro de verificação do token, por favor, reinicie e escaneie novamente.'
 ErrInvalidToken: 'Token inválido, por favor, reinicie e escaneie novamente.'
 ErrExpiredToken: 'O token expirou, por favor, reinicie e escaneie novamente.'
+
+#container
+ErrForbidDelContainer: 'Proibido excluir contêiner do sistema'

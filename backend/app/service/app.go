@@ -975,6 +975,16 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 	if err = tagRepo.DeleteAll(ctx); err != nil {
 		return
 	}
+	// zhuzhiwu add 20250702 begin
+	// 先插入自定义官方标签
+	officialTag := &model.Tag{
+		Key:          "Official",
+		Name:         "官方",
+		Translations: `{"en":"Official","ja":"公式","ms":"Rasmi","pt-br":"Oficial","ru":"Официальный","zh-hant":"官方","zh":"官方","ko":"공식"}`,
+		Sort:         1,
+	}
+	tags = append([]*model.Tag{officialTag}, tags...)
+	// zhuzhiwu add 20250702 end
 	if len(tags) > 0 {
 		if err = tagRepo.BatchCreate(ctx, tags); err != nil {
 			return

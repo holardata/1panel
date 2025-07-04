@@ -832,6 +832,7 @@ func copyData(app model.App, appDetail model.AppDetail, appInstall *model.AppIns
 		appKey = strings.TrimPrefix(app.Key, "local")
 		installAppDir = path.Join(constant.LocalAppInstallDir, appKey)
 	}
+	global.LOG.Infof("appResourceDir: %s, appKey: %s, installAppDir: %s", appResourceDir, appKey, installAppDir)
 	resourceDir := path.Join(appResourceDir, appKey, appDetail.Version)
 
 	if !fileOp.Stat(installAppDir) {
@@ -853,6 +854,7 @@ func copyData(app model.App, appDetail model.AppDetail, appInstall *model.AppIns
 		return
 	}
 	envPath := path.Join(appDir, ".env")
+	global.LOG.Infof("envPath: %s", envPath)
 
 	envParams := make(map[string]string, len(req.Params))
 	handleMap(req.Params, envParams)
@@ -862,6 +864,7 @@ func copyData(app model.App, appDetail model.AppDetail, appInstall *model.AppIns
 	if err := fileOp.WriteFile(appInstall.GetComposePath(), strings.NewReader(appInstall.DockerCompose), 0755); err != nil {
 		return err
 	}
+	global.LOG.Infof("composePath: %s", appInstall.GetComposePath())
 	return
 }
 
@@ -877,6 +880,7 @@ func runScript(appInstall *model.AppInstall, operate string) error {
 		scriptPath = path.Join(workDir, "scripts", "uninstall.sh")
 	}
 	if !files.NewFileOp().Stat(scriptPath) {
+		global.LOG.Warnf("script %s not exist", scriptPath)
 		return nil
 	}
 	out, err := cmd.ExecScript(scriptPath, workDir)
@@ -927,13 +931,16 @@ func upApp(appInstall *model.AppInstall, pullImages bool) {
 			projectName := strings.ToLower(appInstall.Name)
 			envByte, err := files.NewFileOp().GetContent(appInstall.GetEnvPath())
 			if err != nil {
+				global.LOG.Errorf("get env file %s error, %v", appInstall.GetEnvPath(), err)
 				return err
 			}
 			images, err := composeV2.GetDockerComposeImages(projectName, envByte, []byte(appInstall.DockerCompose))
 			if err != nil {
+				global.LOG.Errorf("get docker compose images error, %v", err)
 				return err
 			}
 			for _, image := range images {
+				global.LOG.Infof("docker pull %s", image)
 				if out, err = cmd.ExecWithTimeOut("docker pull "+image, 60*time.Minute); err != nil {
 					if out != "" {
 						if strings.Contains(out, "no such host") {
@@ -950,12 +957,14 @@ func upApp(appInstall *model.AppInstall, pullImages bool) {
 						}
 					}
 					appInstall.Message = errMsg + out
+					global.LOG.Infof("pull image %s, out %s, err %v", image, out, err)
 					return err
 				}
 			}
 		}
 
 		out, err = compose.Up(appInstall.GetComposePath())
+		global.LOG.Infof("docker-compose -f %s up -d, stdout %s, err %v", appInstall.GetComposePath(), out, err)
 		if err != nil {
 			if out != "" {
 				appInstall.Message = errMsg + out
@@ -965,6 +974,7 @@ func upApp(appInstall *model.AppInstall, pullImages bool) {
 		return
 	}
 	if err := upProject(appInstall); err != nil {
+		global.LOG.Errorf("up project %s error, %v", appInstall.Name, err)
 		appInstall.Status = constant.UpErr
 	} else {
 		appInstall.Status = constant.Running
@@ -973,6 +983,7 @@ func upApp(appInstall *model.AppInstall, pullImages bool) {
 	if exist.ID > 0 {
 		containerNames, err := getContainerNames(*appInstall)
 		if err != nil {
+			global.LOG.Errorf("get container names error, %v", err)
 			return
 		}
 		if len(containerNames) > 0 {

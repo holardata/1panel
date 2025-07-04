@@ -307,6 +307,7 @@ func (a AppService) GetIgnoredApp() ([]response.IgnoredApp, error) {
 	return res, nil
 }
 
+/* 安装app */
 func (a AppService) Install(ctx context.Context, req request.AppInstallCreate) (appInstall *model.AppInstall, err error) {
 	if err = docker.CreateDefaultDockerNetwork(); err != nil {
 		err = buserr.WithDetail(constant.Err1PanelNetworkFailed, err.Error(), nil)
@@ -473,9 +474,11 @@ func (a AppService) Install(ctx context.Context, req request.AppInstallCreate) (
 			}
 		}()
 		if err = copyData(app, appDetail, appInstall, req); err != nil {
+			global.LOG.Errorf("copy data error %v", err)
 			return
 		}
 		if err = runScript(appInstall, "init"); err != nil {
+			global.LOG.Errorf("run init script error %v", err)
 			return
 		}
 		upApp(appInstall, req.PullImage)

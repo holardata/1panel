@@ -165,7 +165,7 @@
                 </span>
             </el-col>
         </template>
-        <template v-for="(item, index) of currentInfo.gpuData" :key="index">
+        <!-- <template v-for="(item, index) of currentInfo.gpuData" :key="index">
             <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6" align="center" v-if="isShow('gpu', index)">
                 <el-popover placement="bottom" :width="250" trigger="hover" v-if="chartsOption[`gpu${index}`]">
                     <div class="grid grid-cols-1 gap-1">
@@ -193,13 +193,13 @@
                     </template>
                 </el-popover>
                 <el-tooltip :content="item.productName" v-if="item.productName.length > 25">
-                    <!-- <span class="input-help">{{ item.productName.substring(0, 22) }}...</span> -->
+                    <span class="input-help">{{ item.productName.substring(0, 22) }}...</span>
                     <span class="input-help">holar(gpu)</span>
                 </el-tooltip>
-                <!-- <span class="input-help" v-else>{{ item.productName }}</span> -->
+                <span class="input-help" v-else>{{ item.productName }}</span>
                 <span class="input-help" v-else>holar(gpu)</span>
             </el-col>
-        </template>
+        </template> -->
         <template v-for="(item, index) of currentInfo.xpuData" :key="index">
             <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6" align="center" v-if="isShow('xpu', index)">
                 <el-popover placement="bottom" :width="250" trigger="hover" v-if="chartsOption[`xpu${index}`]">

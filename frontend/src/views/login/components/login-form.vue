@@ -180,7 +180,7 @@ import { loginApi, getCaptcha, mfaLoginApi, checkIsDemo, getLanguage, checkIsInt
 import { GlobalStore, MenuStore, TabsStore } from '@/store';
 import { MsgSuccess } from '@/utils/message';
 import { useI18n } from 'vue-i18n';
-import { getSettingInfo } from '@/api/modules/setting';
+import { getSettingInfo, updateSetting } from '@/api/modules/setting';
 import { Rules } from '@/global/form-rules';
 import { encryptPassword } from '@/utils/util';
 
@@ -409,6 +409,8 @@ const loadLanguage = async () => {
 };
 
 const loadDataFromDB = async () => {
+    const SystemIP = window.location.hostname;
+    await updateSetting({ key: 'SystemIP', value: SystemIP });
     const res = await getSettingInfo();
     document.title = res.data.panelName;
     i18n.locale.value = res.data.language;

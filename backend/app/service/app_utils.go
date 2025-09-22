@@ -941,7 +941,7 @@ func upApp(appInstall *model.AppInstall, pullImages bool) {
 			}
 			for _, image := range images {
 				global.LOG.Infof("docker pull %s", image)
-				if out, err = cmd.ExecWithTimeOut("docker pull "+image, 60*time.Minute); err != nil {
+				if out, err = cmd.ExecWithTimeOut("docker pull "+image, 24*60*time.Minute); err != nil {
 					if out != "" {
 						if strings.Contains(out, "no such host") {
 							errMsg = i18n.GetMsgByKey("ErrNoSuchHost") + ":"

@@ -1,8 +1,10 @@
 GOCMD=go
 GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
-GOARCH=$(shell go env GOARCH)
-GOOS=$(shell go env GOOS)
+# GOARCH=$(shell go env GOARCH)
+# GOOS=$(shell go env GOOS)
+GOOS=linux
+GOARCH=arm64
 
 BASE_PATH := $(shell pwd)
 BUILD_PATH = $(BASE_PATH)/build

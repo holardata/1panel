@@ -19,17 +19,19 @@ var versionCmd = &cobra.Command{
 	Use: "version",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		i18n.UseI18nForCmd(language)
-		if !isRoot() {
-			fmt.Println(i18n.GetMsgWithMapForCmd("SudoHelper", map[string]interface{}{"cmd": "sudo 1pctl version"}))
-			return nil
-		}
-		db, err := loadDBConn()
-		if err != nil {
-			return err
-		}
-		version := getSettingByKey(db, "SystemVersion")
+		// if !isRoot() {
+		// 	fmt.Println(i18n.GetMsgWithMapForCmd("SudoHelper", map[string]interface{}{"cmd": "sudo 1pctl version"}))
+		// 	return nil
+		// }
+		// db, err := loadDBConn()
+		// if err != nil {
+		// 	return err
+		// }
+		// version := getSettingByKey(db, "SystemVersion")
 
-		fmt.Println(i18n.GetMsgByKeyForCmd("SystemVersion") + version)
+		// fmt.Println(i18n.GetMsgByKeyForCmd("SystemVersion") + version)
+		fmt.Println(i18n.GetMsgByKeyForCmd("SystemVersion") + "2025.0922.1428")
+
 		config := configs.ServerConfig{}
 		if err := yaml.Unmarshal(conf.AppYaml, &config); err != nil {
 			return fmt.Errorf("unmarshal conf.App.Yaml failed, err: %v", err)

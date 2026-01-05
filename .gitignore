@@ -51,3 +51,8 @@ quick_start.sh
 cmd/server/fileList.txt
 .fileList.txt
 1Panel.code-workspace
+cmd/app-downloader/bin/stable/
+cmd/app-downloader/bin*.zip
+cmd/app-downloader/bin*.tar.gz
+cmd/app-downloader/1panel.json
+cmd/app-downloader/1panel.json.zip

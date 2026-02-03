@@ -205,7 +205,23 @@ func downloadFile(url, filepath string) error {
 		Timeout: 30 * time.Second,
 	}
 
-	resp, err := client.Get(url)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return err
+	}
+
+	// 模拟浏览器 User-Agent 和其他 Header
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+	req.Header.Set("sec-ch-ua", `"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"`)
+	req.Header.Set("sec-ch-ua-mobile", "?0")
+	req.Header.Set("sec-ch-ua-platform", `"macOS"`)
+	req.Header.Set("Sec-Fetch-Dest", "empty")
+	req.Header.Set("Sec-Fetch-Mode", "cors")
+	req.Header.Set("Sec-Fetch-Site", "same-origin")
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("Accept-Language", "zh-CN,zh;q=0.9,en;q=0.8")
+
+	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}

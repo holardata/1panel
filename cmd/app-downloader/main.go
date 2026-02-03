@@ -45,6 +45,14 @@ type AppConfigVersion struct {
 
 var ()
 
+func fileExistsAndNotEmpty(filepath string) bool {
+	info, err := os.Stat(filepath)
+	if err != nil {
+		return false
+	}
+	return !info.IsDir() && info.Size() > 0
+}
+
 func main() {
 	appRepo := flag.String("repo", "https://apps-assets.fit2cloud.com", "App Store Repository URL")
 	mode := flag.String("mode", "stable", "Mode (stable/dev)")
@@ -159,22 +167,31 @@ func main() {
 				config.AppRepo, config.Mode, appKey, verName, tarballName)
 			tarballFile := filepath.Join(targetDir, tarballName)
 
-			fmt.Printf("  Downloading package for %s %s...\n", appKey, verName)
-			if err := downloadWithRetry(tarballURL, tarballFile, config.Retry, config.Interval); err != nil {
-				fmt.Printf("  ⚠️ Failed to download %s: %v\n", tarballURL, err)
+			if fileExistsAndNotEmpty(tarballFile) {
+				fmt.Printf("  ✓ Skipped %s (already exists)\n", tarballName)
 			} else {
-				fmt.Printf("  ✓ Saved to %s\n", tarballFile)
+				fmt.Printf("  Downloading package for %s %s...\n", appKey, verName)
+				if err := downloadWithRetry(tarballURL, tarballFile, config.Retry, config.Interval); err != nil {
+					fmt.Printf("  ⚠️ Failed to download %s: %v\n", tarballURL, err)
+				} else {
+					fmt.Printf("  ✓ Saved to %s\n", tarballFile)
+				}
 			}
 
 			// 2. Download docker-compose.yml
 			composeURL := fmt.Sprintf("%s/%s/1panel/%s/%s/docker-compose.yml",
 				config.AppRepo, config.Mode, appKey, verName)
 			targetFile := filepath.Join(targetDir, "docker-compose.yml")
-			fmt.Printf("  Downloading compose for %s %s...\n", appKey, verName)
-			if err := downloadWithRetry(composeURL, targetFile, config.Retry, config.Interval); err != nil {
-				fmt.Printf("  ⚠️ Failed to download %s: %v\n", composeURL, err)
+
+			if fileExistsAndNotEmpty(targetFile) {
+				fmt.Printf("  ✓ Skipped docker-compose.yml (already exists)\n")
 			} else {
-				fmt.Printf("  ✓ Saved to %s\n", targetFile)
+				fmt.Printf("  Downloading compose for %s %s...\n", appKey, verName)
+				if err := downloadWithRetry(composeURL, targetFile, config.Retry, config.Interval); err != nil {
+					fmt.Printf("  ⚠️ Failed to download %s: %v\n", composeURL, err)
+				} else {
+					fmt.Printf("  ✓ Saved to %s\n", targetFile)
+				}
 			}
 		}
 	}
@@ -211,10 +228,10 @@ func downloadFile(url, filepath string) error {
 	}
 
 	// 模拟浏览器 User-Agent 和其他 Header
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-	req.Header.Set("sec-ch-ua", `"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"`)
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36")
+	req.Header.Set("sec-ch-ua", `"Not_A Brand";v="8", "Chromium";v="144", "Google Chrome";v="144"`)
 	req.Header.Set("sec-ch-ua-mobile", "?0")
-	req.Header.Set("sec-ch-ua-platform", `"macOS"`)
+	req.Header.Set("sec-ch-ua-platform", `"Windows"`)
 	req.Header.Set("Sec-Fetch-Dest", "empty")
 	req.Header.Set("Sec-Fetch-Mode", "cors")
 	req.Header.Set("Sec-Fetch-Site", "same-origin")
@@ -231,14 +248,30 @@ func downloadFile(url, filepath string) error {
 		return fmt.Errorf("bad status: %s", resp.Status)
 	}
 
-	out, err := os.Create(filepath)
+	// 使用临时文件下载，避免下载失败产生脏文件
+	tmpFile := filepath + ".tmp"
+	out, err := os.Create(tmpFile)
 	if err != nil {
 		return err
 	}
+
+	// 确保在函数退出时关闭文件，但在重命名之前我们需要显式关闭它
+	// 这里的 defer 主要是为了处理异常情况下的关闭
 	defer out.Close()
 
 	_, err = io.Copy(out, resp.Body)
-	return err
+	if err != nil {
+		// 下载失败，关闭并删除临时文件
+		out.Close()
+		os.Remove(tmpFile)
+		return err
+	}
+
+	// 显式关闭文件以确保所有数据写入磁盘
+	out.Close()
+
+	// 下载成功，重命名为正式文件
+	return os.Rename(tmpFile, filepath)
 }
 
 func unzipFile(src, dest string) error {

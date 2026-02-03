@@ -140,11 +140,15 @@ func main() {
 				fmt.Printf("  Error creating directory %s: %v\n", iconDir, err)
 			} else {
 				iconFile := filepath.Join(iconDir, iconName)
-				fmt.Printf("  Downloading icon for %s...\n", appKey)
-				if err := downloadWithRetry(iconURL, iconFile, config.Retry, config.Interval); err != nil {
-					fmt.Printf("  ⚠️ Failed to download icon %s: %v\n", iconURL, err)
+				if fileExistsAndNotEmpty(iconFile) {
+					fmt.Printf("  ✓ Skipped icon for %s (already exists)\n", appKey)
 				} else {
-					fmt.Printf("  ✓ Saved icon to %s\n", iconFile)
+					fmt.Printf("  Downloading icon for %s...\n", appKey)
+					if err := downloadWithRetry(iconURL, iconFile, config.Retry, config.Interval); err != nil {
+						fmt.Printf("  ⚠️ Failed to download icon %s: %v\n", iconURL, err)
+					} else {
+						fmt.Printf("  ✓ Saved icon to %s\n", iconFile)
+					}
 				}
 			}
 		}

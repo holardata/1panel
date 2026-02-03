@@ -56,8 +56,8 @@ func fileExistsAndNotEmpty(filepath string) bool {
 func main() {
 	appRepo := flag.String("repo", "https://apps-assets.fit2cloud.com", "App Store Repository URL")
 	mode := flag.String("mode", "stable", "Mode (stable/dev)")
-	retry := flag.Int("retry", 3, "Number of retries for download")
-	interval := flag.Int("interval", 0, "Interval between downloads in milliseconds")
+	retry := flag.Int("retry", 10, "Number of retries for download")
+	interval := flag.Int("interval", 5000, "Interval between downloads in milliseconds")
 	flag.Parse()
 
 	config := Config{
@@ -79,7 +79,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("Starting download from %s [%s]\n", config.AppRepo, config.Mode)
+	fmt.Printf("Starting download from %s [%s] (retry=%d, interval=%dms)\n", config.AppRepo, config.Mode, config.Retry, config.Interval)
 	fmt.Printf("Download directory: %s\n", downloadDir)
 
 	// 1. Download version.txt

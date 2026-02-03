@@ -14,8 +14,10 @@ import (
 
 // Config holds configuration parameters
 type Config struct {
-	AppRepo string
-	Mode    string
+	AppRepo  string
+	Mode     string
+	Retry    int
+	Interval int
 }
 
 // AppList matches the structure of 1panel.json
@@ -46,11 +48,15 @@ var ()
 func main() {
 	appRepo := flag.String("repo", "https://apps-assets.fit2cloud.com", "App Store Repository URL")
 	mode := flag.String("mode", "stable", "Mode (stable/dev)")
+	retry := flag.Int("retry", 3, "Number of retries for download")
+	interval := flag.Int("interval", 0, "Interval between downloads in milliseconds")
 	flag.Parse()
 
 	config := Config{
-		AppRepo: *appRepo,
-		Mode:    *mode,
+		AppRepo:  *appRepo,
+		Mode:     *mode,
+		Retry:    *retry,
+		Interval: *interval,
 	}
 
 	workDir, err := os.Getwd()
@@ -71,7 +77,7 @@ func main() {
 	// 1. Download version.txt
 	versionURL := fmt.Sprintf("%s/%s/1panel.json.version.txt", config.AppRepo, config.Mode)
 	versionFile := filepath.Join(downloadDir, "1panel.json.version.txt")
-	if err := downloadFile(versionURL, versionFile); err != nil {
+	if err := downloadWithRetry(versionURL, versionFile, config.Retry, config.Interval); err != nil {
 		fmt.Printf("Error downloading version.txt: %v\n", err)
 		os.Exit(1)
 	}
@@ -80,7 +86,7 @@ func main() {
 	// 2. Download 1panel.json.zip
 	zipURL := fmt.Sprintf("%s/%s/1panel.json.zip", config.AppRepo, config.Mode)
 	zipFile := filepath.Join(downloadDir, "1panel.json.zip")
-	if err := downloadFile(zipURL, zipFile); err != nil {
+	if err := downloadWithRetry(zipURL, zipFile, config.Retry, config.Interval); err != nil {
 		fmt.Printf("Error downloading 1panel.json.zip: %v\n", err)
 		os.Exit(1)
 	}
@@ -127,7 +133,7 @@ func main() {
 			} else {
 				iconFile := filepath.Join(iconDir, iconName)
 				fmt.Printf("  Downloading icon for %s...\n", appKey)
-				if err := downloadFile(iconURL, iconFile); err != nil {
+				if err := downloadWithRetry(iconURL, iconFile, config.Retry, config.Interval); err != nil {
 					fmt.Printf("  ⚠️ Failed to download icon %s: %v\n", iconURL, err)
 				} else {
 					fmt.Printf("  ✓ Saved icon to %s\n", iconFile)
@@ -154,7 +160,7 @@ func main() {
 			tarballFile := filepath.Join(targetDir, tarballName)
 
 			fmt.Printf("  Downloading package for %s %s...\n", appKey, verName)
-			if err := downloadFile(tarballURL, tarballFile); err != nil {
+			if err := downloadWithRetry(tarballURL, tarballFile, config.Retry, config.Interval); err != nil {
 				fmt.Printf("  ⚠️ Failed to download %s: %v\n", tarballURL, err)
 			} else {
 				fmt.Printf("  ✓ Saved to %s\n", tarballFile)
@@ -165,7 +171,7 @@ func main() {
 				config.AppRepo, config.Mode, appKey, verName)
 			targetFile := filepath.Join(targetDir, "docker-compose.yml")
 			fmt.Printf("  Downloading compose for %s %s...\n", appKey, verName)
-			if err := downloadFile(composeURL, targetFile); err != nil {
+			if err := downloadWithRetry(composeURL, targetFile, config.Retry, config.Interval); err != nil {
 				fmt.Printf("  ⚠️ Failed to download %s: %v\n", composeURL, err)
 			} else {
 				fmt.Printf("  ✓ Saved to %s\n", targetFile)
@@ -173,6 +179,25 @@ func main() {
 		}
 	}
 	fmt.Println("\nAll operations completed.")
+}
+
+func downloadWithRetry(url, filepath string, retry, interval int) error {
+	if interval > 0 {
+		time.Sleep(time.Duration(interval) * time.Millisecond)
+	}
+
+	var err error
+	for i := 0; i <= retry; i++ {
+		if i > 0 {
+			fmt.Printf("  ⚠️ Download failed: %v. Retrying (%d/%d)...\n", err, i, retry)
+			time.Sleep(time.Second*2 + time.Duration(interval)*2*time.Millisecond)
+		}
+
+		if err = downloadFile(url, filepath); err == nil {
+			return nil
+		}
+	}
+	return fmt.Errorf("failed after %d retries: %v", retry, err)
 }
 
 func downloadFile(url, filepath string) error {

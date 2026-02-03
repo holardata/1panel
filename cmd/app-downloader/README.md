@@ -30,6 +30,8 @@ Artifacts will be placed in the `bin/` directory.
 
 - `-repo`: App Store Repository URL (Default: `https://apps-assets.fit2cloud.com`)
 - `-mode`: Mode, `stable` or `dev` (Default: `stable`)
+- `-retry`: Number of retries for download (Default: `3`)
+- `-interval`: Interval between downloads in milliseconds (Default: `0`)
 
 ### Example
 
@@ -39,4 +41,7 @@ Artifacts will be placed in the `bin/` directory.
 
 # Custom repo and mode
 ./bin/app-downloader-darwin-arm64 -repo "https://apps-assets.fit2cloud.com" -mode "dev"
+
+# With retry and interval
+./bin/app-downloader-darwin-arm64 -retry 5 -interval 500
 ```

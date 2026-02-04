@@ -4,7 +4,6 @@
 *.dll
 *.so
 *.dylib
-build/
 
 deploy/1panel/1panel
 deploy/*.tar.gz

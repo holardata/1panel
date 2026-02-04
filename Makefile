@@ -39,4 +39,4 @@ build_all: build_frontend build_backend_on_linux
 
 build_on_local: clean_assets build_frontend build_backend_on_darwin upx_bin
 
-build_on_arm64: clean_assets build_frontend build_backend_on_arm64
+build_on_arm64: clean_assets build_frontend build_backend_on_arm64 upx_bin

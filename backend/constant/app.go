@@ -16,7 +16,8 @@ const (
 	UpErr       = "UpErr"
 	SyncFailed  = "SyncFailed"
 
-	ContainerPrefix = "1Panel-"
+	ContainerPrefix = ""
+	//ContainerPrefix = "1Panel-"
 
 	AppNormal   = "Normal"
 	AppTakeDown = "TakeDown"

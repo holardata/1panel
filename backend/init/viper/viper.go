@@ -105,6 +105,8 @@ func Init() {
 	global.CONF.System.Language = language
 	global.CONF.System.ChangeUserInfo = loadChangeInfo()
 	global.CONF.System.LicenseVerify = os.Getenv("LXWARE_LICENSE_VERIFY")
+	// 朱智武 代码写死 应用商店列表域名 2026-02-04
+	global.CONF.System.AppRepo = "https://docker.holardata.com"
 	global.Viper = v
 }
 

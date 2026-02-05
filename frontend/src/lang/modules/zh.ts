@@ -1449,7 +1449,7 @@ const message = {
         duplicatePassword: '新密码不能与原始密码一致，请重新输入！',
         diskClean: '缓存清理',
         developerMode: '预览体验计划',
-        developerModeHelper: '获取 1Panel 的预览版本，以分享有关新功能和更新的反馈',
+        developerModeHelper: '获取预览版本，以分享有关新功能和更新的反馈',
 
         thirdParty: '第三方账号',
         addBackupAccount: '添加 {0}',

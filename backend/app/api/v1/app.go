@@ -38,6 +38,9 @@ func (b *BaseApi) SearchApp(c *gin.Context) {
 // @Router /apps/sync [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"应用商店同步","formatEN":"App store synchronization"}
 func (b *BaseApi) SyncApp(c *gin.Context) {
+	if err := appService.GitPullLocalApps(); err != nil {
+		global.LOG.Errorf("Git pull local apps failed: %v", err)
+	}
 	go appService.SyncAppListFromLocal()
 	res, err := appService.GetAppUpdate()
 	if err != nil {

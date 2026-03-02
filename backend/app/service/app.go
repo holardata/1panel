@@ -7,10 +7,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/gin-gonic/gin"
 
@@ -35,6 +37,8 @@ import (
 type AppService struct {
 }
 
+var updateLocalAppsLock sync.Mutex
+
 type IAppService interface {
 	PageApp(ctx *gin.Context, req request.AppSearch) (interface{}, error)
 	GetAppTags(ctx *gin.Context) ([]response.TagDTO, error)
@@ -46,6 +50,7 @@ type IAppService interface {
 	GetAppDetailByID(id uint) (*response.AppDetailDTO, error)
 	SyncAppListFromLocal()
 	GetIgnoredApp() ([]response.IgnoredApp, error)
+	GitPullLocalApps() error
 }
 
 func NewIAppService() IAppService {
@@ -485,6 +490,25 @@ func (a AppService) Install(ctx context.Context, req request.AppInstallCreate) (
 	}()
 	go updateToolApp(appInstall)
 	return
+}
+
+func (a AppService) GitPullLocalApps() error {
+	if !updateLocalAppsLock.TryLock() {
+		return fmt.Errorf("another update is in progress")
+	}
+	defer updateLocalAppsLock.Unlock()
+
+	scriptPath := filepath.Join(constant.DataDir, "update_localapp.sh")
+	if _, err := os.Stat(scriptPath); os.IsNotExist(err) {
+		return fmt.Errorf("script not found: %s", scriptPath)
+	}
+
+	cmd := exec.Command("bash", scriptPath)
+	if output, err := cmd.CombinedOutput(); err != nil {
+		return fmt.Errorf("execute script failed: %s, output: %s", err, string(output))
+	}
+
+	return nil
 }
 
 func (a AppService) SyncAppListFromLocal() {

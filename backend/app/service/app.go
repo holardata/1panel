@@ -493,6 +493,7 @@ func (a AppService) Install(ctx context.Context, req request.AppInstallCreate) (
 }
 
 func (a AppService) GitPullLocalApps() error {
+	global.LOG.Infof("Starting pull local application synchronization ...")
 	if !updateLocalAppsLock.TryLock() {
 		return fmt.Errorf("another update is in progress")
 	}
@@ -507,6 +508,7 @@ func (a AppService) GitPullLocalApps() error {
 	if output, err := cmd.CombinedOutput(); err != nil {
 		return fmt.Errorf("execute script failed: %s, output: %s", err, string(output))
 	}
+	global.LOG.Infof("Pull local application synchronization completed")
 
 	return nil
 }

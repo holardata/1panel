@@ -862,6 +862,8 @@ func updateInstallInfoInDB(appKey, appName, param string, value interface{}) err
 	}
 
 	ComposeFile := fmt.Sprintf("%s/%s/%s/docker-compose.yml", constant.AppInstallDir, appKey, appInstall.Name)
+	ComposeFile = env.GetCustomComposeFilePath(ComposeFile) // 获取自定义 compose 文件路径 zhuzhiwu 20260304
+
 	stdout, err := compose.Down(ComposeFile)
 	if err != nil {
 		return errors.New(stdout)

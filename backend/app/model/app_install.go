@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/1Panel-dev/1Panel/backend/constant"
+	"github.com/1Panel-dev/1Panel/backend/utils/env"
 )
 
 type AppInstall struct {
@@ -30,8 +31,11 @@ func (i *AppInstall) GetPath() string {
 	return path.Join(i.GetAppPath(), i.Name)
 }
 
+// zhuzhiwu 20260304 获取自定义 compose 文件路径
 func (i *AppInstall) GetComposePath() string {
-	return path.Join(i.GetAppPath(), i.Name, "docker-compose.yml")
+	//return path.Join(i.GetAppPath(), i.Name, "docker-compose.yml")
+	defaultComposePath := path.Join(i.GetAppPath(), i.Name, "docker-compose.yml")
+	return env.GetCustomComposeFilePath(defaultComposePath)
 }
 
 func (i *AppInstall) GetEnvPath() string {

@@ -140,7 +140,7 @@ func ExecScript(scriptPath, workDir string) (string, error) {
 	go func() {
 		done <- cmd.Wait()
 	}()
-	after := time.After(60 * time.Minute)
+	after := time.After(24 * time.Hour)
 	select {
 	case <-after:
 		_ = cmd.Process.Kill()

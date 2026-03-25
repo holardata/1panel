@@ -71,6 +71,12 @@ func (c Client) ListContainersByName(names []string) ([]types.Container, error) 
 		return nil, err
 	}
 	for _, con := range containers {
+		if len(con.Names) == 0 {
+			continue
+		}
+		if con.Names[0] == "" {
+			continue
+		}
 		if _, ok := namesMap[con.Names[0]]; ok {
 			res = append(res, con)
 		}
@@ -86,7 +92,17 @@ func (c Client) ListAllContainers() ([]types.Container, error) {
 	if err != nil {
 		return nil, err
 	}
-	return containers, nil
+	var res []types.Container
+	for _, con := range containers {
+		if len(con.Names) == 0 {
+			continue
+		}
+		if con.Names[0] == "" {
+			continue
+		}
+		res = append(res, con)
+	}
+	return res, nil
 }
 
 func (c Client) CreateNetwork(name string) error {

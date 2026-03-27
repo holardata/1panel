@@ -892,6 +892,19 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 	baseRemoteUrl := fmt.Sprintf("%s/%s/1panel", global.CONF.System.AppRepo, global.CONF.System.Mode)
 	appsMap := getApps(oldApps, list.Apps)
 
+	fetchWithFallback := func(originalUrl string) ([]byte, error) {
+		targetUrl := originalUrl
+		if strings.HasPrefix(originalUrl, "https://apps-assets.fit2cloud.com") {
+			targetUrl = strings.Replace(originalUrl, "https://apps-assets.fit2cloud.com", "https://docker.holardata.com", 1)
+		}
+		_, res, err := httpUtil.HandleGetWithTransport(targetUrl, http.MethodGet, transport, constant.TimeOut20s)
+		if err != nil && targetUrl != originalUrl {
+			global.LOG.Warnf("fetch %s failed: %v, fallback to %s", targetUrl, err, originalUrl)
+			_, res, err = httpUtil.HandleGetWithTransport(originalUrl, http.MethodGet, transport, constant.TimeOut20s)
+		}
+		return res, err
+	}
+
 	global.LOG.Infof("Starting synchronization of application details...")
 	for _, l := range list.Apps {
 		app := appsMap[l.AppProperty.Key]
@@ -902,9 +915,11 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 			continue
 		}
 
-		_, iconRes, err := httpUtil.HandleGetWithTransport(l.Icon, http.MethodGet, transport, constant.TimeOut20s)
+		iconRes, err := fetchWithFallback(l.Icon)
 		if err != nil {
-			return err
+			global.LOG.Warnf("Failed to fetch icon for %s (%s): %v, skipping...", l.AppProperty.Key, l.Icon, err)
+			delete(appsMap, l.AppProperty.Key)
+			continue
 		}
 		iconStr := ""
 		if !strings.Contains(string(iconRes), "<xml>") {
@@ -935,9 +950,11 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 			}
 			if _, ok := InitTypes[app.Type]; ok {
 				dockerComposeUrl := fmt.Sprintf("%s/%s", versionUrl, "docker-compose.yml")
-				_, composeRes, err := httpUtil.HandleGetWithTransport(dockerComposeUrl, http.MethodGet, transport, constant.TimeOut20s)
+				composeRes, err := fetchWithFallback(dockerComposeUrl)
 				if err != nil {
-					return err
+					global.LOG.Warnf("Failed to fetch docker-compose for %s version %s (%s): %v, skipping version...", app.Key, version, dockerComposeUrl, err)
+					delete(detailsMap, version)
+					continue
 				}
 				detail.DockerCompose = string(composeRes)
 			} else {
@@ -1012,8 +1029,16 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 		Translations: `{"en":"Official","ja":"公式","ms":"Rasmi","pt-br":"Oficial","ru":"Официальный","zh-hant":"官方","zh":"官方","ko":"공식"}`,
 		Sort:         1,
 	}
-	tags = append([]*model.Tag{officialTag}, tags...)
 	// zhuzhiwu add 20250702 end
+	// zhuzhiwu add 20260326 begin
+	modelTag := &model.Tag{
+		Key:          "Model",
+		Name:         "模型",
+		Translations: `{"en":"Model","ja":"モデル","ms":"Model","pt-br":"Modelo","ru":"Модель","zh-hant":"模型","zh":"模型","ko":"모델"}`,
+		Sort:         2,
+	}
+	tags = append([]*model.Tag{officialTag, modelTag}, tags...)
+	// zhuzhiwu add 20260326 end
 	if len(tags) > 0 {
 		if err = tagRepo.BatchCreate(ctx, tags); err != nil {
 			return

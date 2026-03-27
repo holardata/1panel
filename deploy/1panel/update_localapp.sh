@@ -3,7 +3,7 @@
 
 rm -rf /opt/1panel/resource/apps/appstore-localApps
 
-git clone -b master https://gitee.com/jezzhu/1PanelAppStore /opt/1panel/resource/apps/appstore-localApps \
+git clone --depth=1 -b master https://gitee.com/jezzhu/1PanelAppStore /opt/1panel/resource/apps/appstore-localApps \
   && rm -rf /opt/1panel/resource/apps/local/* \
   && cp -rf /opt/1panel/resource/apps/appstore-localApps/apps/* /opt/1panel/resource/apps/local/ \
   && rm -rf /opt/1panel/resource/apps/appstore-localApps \

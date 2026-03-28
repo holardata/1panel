@@ -691,7 +691,7 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 		return buserr.New(constant.ErrCmdIllegal)
 	}
 
-	//zhuzhiwu 20260326 额外输出 init.log 日志 1/5 begin
+	//zhuzhiwu 20260328 额外输出 init.log 日志 1/1 begin
 	customComposeFile := env.GetCustomComposeFilePath(container) // 获取自定义 compose 文件路径 zhuzhiwu 20260326
 	initLogFile := ""
 	if customComposeFile != "" {
@@ -703,56 +703,57 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 		}
 	}
 	global.LOG.Infof("compose file path: %s, init log file path: %s", customComposeFile, initLogFile)
-
-	// writeWsText 是一个辅助函数，用于将字节流转换为 UTF-8 文本并写入 WebSocket
-	writeWsText := func(payload []byte) error {
-		if len(payload) == 0 {
-			return nil
-		}
-		if !utf8.Valid(payload) {
-			payload = bytes.ToValidUTF8(payload, []byte("?"))
-		}
-		if err := wsConn.WriteMessage(websocket.TextMessage, payload); err != nil {
-			global.LOG.Errorf("send message to ws failed, err: %v", err)
-			return err
-		}
-		return nil
-	}
-
-	// sendInitLogOnce 用于读取并推送一次 init.log 的现有内容给前端
 	sendInitLogOnce := func() error {
 		if initLogFile == "" {
 			return nil
 		}
-		fi, err := os.Stat(initLogFile)
-		// 如果文件不存在、是目录或文件为空，则跳过推送
-		if err != nil || fi.IsDir() || fi.Size() == 0 {
-			return nil
-		}
-		f, err := os.Open(initLogFile)
-		if err != nil {
-			return nil
-		}
-		defer f.Close()
 
-		// 分块读取，每块 32KB，防止文件过大导致内存溢出
-		buf := make([]byte, 32*1024)
-		for {
-			n, rerr := f.Read(buf)
-			if n > 0 {
-				if werr := writeWsText(buf[:n]); werr != nil {
-					return werr
-				}
-			}
-			if rerr != nil {
-				if rerr == io.EOF {
-					return nil
-				}
-				return rerr
+		file, err := os.Open(initLogFile)
+		if err != nil {
+			// 文件不存在或无法读取时不报错，直接跳过
+			return nil
+		}
+		defer file.Close()
+
+		stat, err := file.Stat()
+		if err != nil || stat.Size() == 0 {
+			return nil
+		}
+
+		// 限制最多只读取文件末尾 1MB 的初始化日志，防止恶意大文件导致 OOM
+		maxReadSize := int64(1024 * 1024)
+		readSize := stat.Size()
+		if readSize > maxReadSize {
+			readSize = maxReadSize
+			// 将文件指针移动到距离末尾 1MB 的位置
+			if _, err := file.Seek(-maxReadSize, io.SeekEnd); err != nil {
+				return err
 			}
 		}
+
+		content := make([]byte, readSize)
+		n, err := file.Read(content)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		content = content[:n]
+
+		if len(content) == 0 {
+			return nil
+		}
+		if !utf8.Valid(content) {
+			content = bytes.ToValidUTF8(content, []byte("?"))
+		}
+		if err := wsConn.WriteMessage(websocket.TextMessage, content); err != nil {
+			global.LOG.Errorf("send init log to ws failed, err: %v", err)
+			return err
+		}
+		return nil
 	}
-	//zhuzhiwu 20260326 额外输出 init.log 日志 1/5 end
+	if err := sendInitLogOnce(); err != nil {
+		global.LOG.Errorf("send init log once failed: %v", err)
+	}
+	//zhuzhiwu 20260328 额外输出 init.log 日志 1/1 end
 
 	commandName := "docker"
 	commandArg := []string{"logs", container}
@@ -772,11 +773,6 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 		commandArg = append(commandArg, "-f")
 	}
 	if !follow {
-		//zhuzhiwu 20260326 额外输出 init.log 日志 2/5 begin
-		if err := sendInitLogOnce(); err != nil {
-			return err
-		}
-		//zhuzhiwu 20260326 额外输出 init.log 日志 2/5 end
 		cmd := exec.Command(commandName, commandArg...)
 		cmd.Stderr = cmd.Stdout
 		stdout, _ := cmd.CombinedOutput()
@@ -800,124 +796,24 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 		_ = cmd.Process.Signal(syscall.SIGTERM)
 		return err
 	}
-
 	exitCh := make(chan struct{})
-	//zhuzhiwu 20260326 额外输出 init.log 日志 3/5 begin
-	stopOnce := sync.Once{}
-	stop := func() {
-		stopOnce.Do(func() { close(exitCh) })
-	}
-
-	if err := sendInitLogOnce(); err != nil {
-		stop()
-		_ = cmd.Process.Signal(syscall.SIGTERM)
-		return err
-	}
-	if initLogFile != "" {
-		// 启动一个后台 goroutine 模拟 tail -f 监听 init.log 的新增内容
-		go func() {
-			var (
-				f      *os.File
-				offset int64 // 记录当前读取的位置
-			)
-			defer func() {
-				if f != nil {
-					_ = f.Close()
-				}
-			}()
-			buf := make([]byte, 32*1024)
-			for {
-				select {
-				case <-exitCh: // 收到退出信号，停止监听
-					return
-				default:
-				}
-				// 如果文件句柄为空（文件刚创建或被删除后重建），尝试打开文件
-				if f == nil {
-					fi, err := os.Stat(initLogFile)
-					if err != nil || fi.IsDir() {
-						time.Sleep(300 * time.Millisecond)
-						continue
-					}
-					f, err = os.Open(initLogFile)
-					if err != nil {
-						time.Sleep(300 * time.Millisecond)
-						continue
-					}
-					// 打开文件后，将游标移动到文件末尾（跳过已存在的内容，因为前面 sendInitLogOnce 已经推送过了）
-					offset = fi.Size()
-					if _, err := f.Seek(offset, io.SeekStart); err != nil {
-						_ = f.Close()
-						f = nil
-						time.Sleep(300 * time.Millisecond)
-						continue
-					}
-				}
-
-				// 检查文件状态，处理文件被截断（如日志轮转）的情况
-				fi, err := f.Stat()
-				if err != nil {
-					_ = f.Close()
-					f = nil
-					time.Sleep(300 * time.Millisecond)
-					continue
-				}
-				// 如果当前文件大小小于之前记录的偏移量，说明文件被截断（清空）了
-				if fi.Size() < offset {
-					offset = 0
-					if _, err := f.Seek(0, io.SeekStart); err != nil { // 游标归零，从头开始读
-						_ = f.Close()
-						f = nil
-						time.Sleep(300 * time.Millisecond)
-						continue
-					}
-				}
-
-				// 尝试读取新内容
-				n, rerr := f.Read(buf)
-				if n > 0 {
-					offset += int64(n)
-					if werr := writeWsText(buf[:n]); werr != nil {
-						stop() // 写入 WebSocket 失败，通知其他 goroutine 停止
-						return
-					}
-				}
-				if rerr != nil {
-					if rerr == io.EOF {
-						// 读到文件末尾，等待 300ms 后继续轮询（实现 tail -f 的等待效果）
-						time.Sleep(300 * time.Millisecond)
-						continue
-					}
-					// 发生其他读取错误，关闭文件句柄，下一轮循环重新打开
-					_ = f.Close()
-					f = nil
-					time.Sleep(300 * time.Millisecond)
-					continue
-				}
-			}
-		}()
-	}
-	//zhuzhiwu 20260326 额外输出 init.log 日志 3/5 end
-
 	go func() {
-		_, wsData, _ := wsConn.ReadMessage()
-		if string(wsData) == "close conn" {
-			_ = cmd.Process.Signal(syscall.SIGTERM)
-			//zhuzhiwu 20260326 额外输出 init.log 日志 4/5 begin
-			// exitCh <- struct{}{}
-			stop()
-			//zhuzhiwu 20260326 额外输出 init.log 日志 4/5 end
+		for {
+			_, wsData, err := wsConn.ReadMessage()
+			if err != nil || string(wsData) == "close conn" {
+				_ = cmd.Process.Signal(syscall.SIGTERM)
+				close(exitCh)
+				return
+			}
 		}
 	}()
 
 	go func() {
-		//zhuzhiwu 20260326 额外输出 init.log 日志 5/5 end
 		defer func() {
 			if stdout != nil {
-				stdout.Close()
+				_ = stdout.Close()
 			}
 		}()
-		//zhuzhiwu 20260326 额外输出 init.log 日志 5/5 end
 		buffer := make([]byte, 1024)
 		for {
 			select {
@@ -927,11 +823,9 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 				n, err := stdout.Read(buffer)
 				if err != nil {
 					if err == io.EOF {
-						stop()
 						return
 					}
 					global.LOG.Errorf("read bytes from log failed, err: %v", err)
-					stop()
 					return
 				}
 				if !utf8.Valid(buffer[:n]) {
@@ -939,14 +833,12 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 				}
 				if err = wsConn.WriteMessage(websocket.TextMessage, buffer[:n]); err != nil {
 					global.LOG.Errorf("send message with log to ws failed, err: %v", err)
-					stop()
 					return
 				}
 			}
 		}
 	}()
 	_ = cmd.Wait()
-	stop()
 	return nil
 }
 

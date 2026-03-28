@@ -694,7 +694,7 @@ func (u *ContainerService) ContainerLogs(wsConn *websocket.Conn, containerType, 
 	//zhuzhiwu 20260326 额外输出 init.log 日志 1/5 begin
 	customComposeFile := env.GetCustomComposeFilePath(container) // 获取自定义 compose 文件路径 zhuzhiwu 20260326
 	initLogFile := ""
-	if customComposeFile != "" && container != customComposeFile {
+	if customComposeFile != "" {
 		//尝试读取 customComposeFile 同级目录下的 init.log 文件中内容 推送给前端
 		initLogFile = filepath.Join(filepath.Dir(customComposeFile), "init.log")
 		// 如果文件不存在，则将 initLogFile 置为空，避免后续不必要的逻辑执行

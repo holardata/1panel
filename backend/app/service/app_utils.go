@@ -606,7 +606,7 @@ func upgradeInstall(req request.AppInstallUpgrade) error {
 			}
 			for _, image := range images {
 				global.LOG.Infof(i18n.GetMsgWithName("PullImageStart", image, nil))
-				if out, err := cmd.ExecWithTimeOut("docker pull "+image, 20*time.Minute); err != nil {
+				if out, err := cmd.ExecWithTimeOut("docker pull "+image, 120*time.Minute); err != nil {
 					if out != "" {
 						err = errors.New(out)
 					}

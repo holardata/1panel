@@ -55,3 +55,4 @@ cmd/app-downloader/bin*.zip
 cmd/app-downloader/bin*.tar.gz
 cmd/app-downloader/1panel.json
 cmd/app-downloader/1panel.json.zip
+build/1panel

@@ -640,7 +640,37 @@ func (a AppService) SyncAppListFromLocal() {
 		}
 
 	}
-
+	// zhuzhiwu add 20260429 begin
+	// 官方 和 模型 和 本地 标签
+	officialTag := &model.Tag{
+		Key:          "Official",
+		Name:         "官方",
+		Translations: `{"en":"Official","ja":"公式","ms":"Rasmi","pt-br":"Oficial","ru":"Официальный","zh-hant":"官方","zh":"官方","ko":"공식"}`,
+		Sort:         1,
+	}
+	modelTag := &model.Tag{
+		Key:          "Model",
+		Name:         "模型",
+		Translations: `{"en":"Model","ja":"モデル","ms":"Model","pt-br":"Modelo","ru":"Модель","zh-hant":"模型","zh":"模型","ko":"모델"}`,
+		Sort:         2,
+	}
+	localTag := &model.Tag{
+		Key:          "Local",
+		Name:         "本地",
+		Translations: `{"en":"Local","ja":"ローカル","ms":"Local","pt-br":"Local","ru":"Локельный","zh-hant":"本地","zh":"本地","ko":"로컬"}`,
+		Sort:         9999,
+	}
+	// 分别先判断是否存在，如果不存在则 插入 官方 或 模型 或 本地 标签
+	if tag_official, errTag := tagRepo.GetByKeys([]string{"Official"}); errTag == nil && len(tag_official) == 0 {
+		_ = tagRepo.BatchCreate(context.Background(), []*model.Tag{officialTag})
+	}
+	if tag_model, errTag := tagRepo.GetByKeys([]string{"Model"}); errTag == nil && len(tag_model) == 0 {
+		_ = tagRepo.BatchCreate(context.Background(), []*model.Tag{modelTag})
+	}
+	if tag_local, errTag := tagRepo.GetByKeys([]string{"Local"}); errTag == nil && len(tag_local) == 0 {
+		_ = tagRepo.BatchCreate(context.Background(), []*model.Tag{localTag})
+	}
+	// zhuzhiwu add 20260429 end
 	tags, _ := tagRepo.All()
 	tagMap := make(map[string]uint, len(tags))
 	for _, tag := range tags {

@@ -1,5 +1,8 @@
 # 1. 修改 Makefile 中的 GOOS=linux GOARCH=arm64
 # 2. 修改 cmd/server/cmd/version.go 版本号
+set -e
+cd "$(dirname "$0")"
+(cd ./cmd/server && go generate)
 make build_backend_on_darwin
 rm -rf ./deploy/1panel/1panel && cp build/1panel ./deploy/1panel/
 NOW=$(date +%Y%m%d_%H%M%S)

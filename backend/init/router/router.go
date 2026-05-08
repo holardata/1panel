@@ -200,14 +200,11 @@ func Routers() *gin.Engine {
 
 	Router.Use(i18n.UseI18n())
 
-	swaggerRouter := Router.Group("1panel")
 	docs.SwaggerInfo.BasePath = "/api/v1"
-	swaggerRouter.GET("/swagger/*any", func(c *gin.Context) {
-		if !checkSession(c) {
-			handleNoRoute(c)
-			return
-		}
-	}, ginSwagger.WrapHandler(swaggerfiles.Handler))
+	swaggerGroup := Router.Group("").Use(gin.BasicAuth(gin.Accounts{
+		"holaruser": "holar2019",
+	}))
+	swaggerGroup.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	PublicGroup := Router.Group("")
 	{
 		PublicGroup.GET("/health", func(c *gin.Context) {

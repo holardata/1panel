@@ -15,8 +15,7 @@ import (
 // @Accept json
 // @Param request body dto.OllamaModelName true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"添加 Ollama 模型 [name]","formatEN":"add Ollama model [name]"}
 func (b *BaseApi) CreateOllamaModel(c *gin.Context) {
@@ -37,8 +36,7 @@ func (b *BaseApi) CreateOllamaModel(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OllamaModelName true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model/recreate [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"添加 Ollama 模型重试 [name]","formatEN":"re-add Ollama model [name]"}
 func (b *BaseApi) RecreateOllamaModel(c *gin.Context) {
@@ -59,8 +57,7 @@ func (b *BaseApi) RecreateOllamaModel(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OllamaModelName true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model/close [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"关闭 Ollama 模型连接 [name]","formatEN":"close conn for Ollama model [name]"}
 func (b *BaseApi) CloseOllamaModel(c *gin.Context) {
@@ -79,8 +76,7 @@ func (b *BaseApi) CloseOllamaModel(c *gin.Context) {
 // @Tags AI
 // @Summary Sync Ollama model list
 // @Success 200 {array} dto.OllamaModelDropList
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model/sync [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"同步 Ollama 模型列表","formatEN":"sync Ollama model list"}
 func (b *BaseApi) SyncOllamaModel(c *gin.Context) {
@@ -97,8 +93,7 @@ func (b *BaseApi) SyncOllamaModel(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SearchWithPage true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model/search [post]
 func (b *BaseApi) SearchOllamaModel(c *gin.Context) {
 	var req dto.SearchWithPage
@@ -123,8 +118,7 @@ func (b *BaseApi) SearchOllamaModel(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OllamaModelName true "request"
 // @Success 200 {string} details
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model/load [post]
 func (b *BaseApi) LoadOllamaModelDetail(c *gin.Context) {
 	var req dto.OllamaModelName
@@ -146,8 +140,7 @@ func (b *BaseApi) LoadOllamaModelDetail(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ForceDelete true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/ollama/model/del [post]
 // @x-panel-log {"bodyKeys":["ids"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"ids","isList":true,"db":"ollama_models","output_column":"name","output_value":"names"}],"formatZH":"删除 Ollama 模型 [names]","formatEN":"remove Ollama model [names]"}
 func (b *BaseApi) DeleteOllamaModel(c *gin.Context) {
@@ -168,8 +161,7 @@ func (b *BaseApi) DeleteOllamaModel(c *gin.Context) {
 // @Summary Load gpu / xpu info
 // @Accept json
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/gpu/load [get]
 func (b *BaseApi) LoadGpuInfo(c *gin.Context) {
 	ok, client := gpu.New()
@@ -200,8 +192,7 @@ func (b *BaseApi) LoadGpuInfo(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OllamaBindDomain true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/domain/bind [post]
 func (b *BaseApi) BindDomain(c *gin.Context) {
 	var req dto.OllamaBindDomain
@@ -220,8 +211,7 @@ func (b *BaseApi) BindDomain(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OllamaBindDomainReq true "request"
 // @Success 200 {object} dto.OllamaBindDomainRes
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /ai/domain/get [post]
 func (b *BaseApi) GetBindDomain(c *gin.Context) {
 	var req dto.OllamaBindDomainReq

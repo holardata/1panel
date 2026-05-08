@@ -14,8 +14,7 @@ import (
 // @Accept json
 // @Param request body dto.OperationWithName true "request"
 // @Success 200 {object} dto.RedisStatus
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/status [post]
 func (b *BaseApi) LoadRedisStatus(c *gin.Context) {
 	var req dto.OperationWithName
@@ -36,8 +35,7 @@ func (b *BaseApi) LoadRedisStatus(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OperationWithName true "request"
 // @Success 200 {object} dto.RedisConf
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/conf [post]
 func (b *BaseApi) LoadRedisConf(c *gin.Context) {
 	var req dto.OperationWithName
@@ -58,8 +56,7 @@ func (b *BaseApi) LoadRedisConf(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OperationWithName true "request"
 // @Success 200 {object} dto.RedisPersistence
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/persistence/conf [post]
 func (b *BaseApi) LoadPersistenceConf(c *gin.Context) {
 	var req dto.OperationWithName
@@ -82,8 +79,7 @@ func (b *BaseApi) CheckHasCli(c *gin.Context) {
 // @Tags Database Redis
 // @Summary Install redis-cli
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/install/cli [post]
 func (b *BaseApi) InstallCli(c *gin.Context) {
 	if err := redisService.InstallCli(); err != nil {
@@ -99,8 +95,7 @@ func (b *BaseApi) InstallCli(c *gin.Context) {
 // @Accept json
 // @Param request body dto.RedisConfUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/conf/update [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新 redis 数据库配置信息","formatEN":"update the redis database configuration information"}
 func (b *BaseApi) UpdateRedisConf(c *gin.Context) {
@@ -121,8 +116,7 @@ func (b *BaseApi) UpdateRedisConf(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ChangeRedisPass true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/password [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"修改 redis 数据库密码","formatEN":"change the password of the redis database"}
 func (b *BaseApi) ChangeRedisPassword(c *gin.Context) {
@@ -152,8 +146,7 @@ func (b *BaseApi) ChangeRedisPassword(c *gin.Context) {
 // @Accept json
 // @Param request body dto.RedisConfPersistenceUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /databases/redis/persistence/update [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"redis 数据库持久化配置更新","formatEN":"redis database persistence configuration update"}
 func (b *BaseApi) UpdateRedisPersistenceConf(c *gin.Context) {

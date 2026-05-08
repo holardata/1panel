@@ -19,26 +19,13 @@ import (
 // @BasePath /api/v1
 // @schemes http https
 
-// @securityDefinitions.apikey ApiKeyAuth
-// @description Custom Token Format, Format: md5('1panel' + API-Key + UnixTimestamp).
-// @description ```
-// @description eg:
-// @description curl -X GET "http://localhost:4004/api/v1/dashboard/current" \
-// @description -H "1Panel-Token: <1panel_token>" \
-// @description -H "1Panel-Timestamp: <current_unix_timestamp>"
-// @description ```
-// @description - `1Panel-Token` is the key for the panel API Key.
+// @securityDefinitions.apikey BearerAuth
+// @description JWT Authorization header. Format: `Authorization: Bearer <token>`
 // @type apiKey
 // @in header
-// @name 1Panel-Token
+// @name Authorization
 
-// @securityDefinitions.apikey Timestamp
-// @type apiKey
-// @in header
-// @name 1Panel-Timestamp
-// @description - `1Panel-Timestamp` is the Unix timestamp of the current time in seconds.
-
-//go:generate swag init -o ./docs -g main.go -d ../../backend -g ../cmd/server/main.go
+//go:generate env GOFLAGS=-mod=mod go run github.com/swaggo/swag/cmd/swag init -o ./docs -g main.go -d ../../backend -g ../cmd/server/main.go
 func main() {
 	if err := cmd.RootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)

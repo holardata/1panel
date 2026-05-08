@@ -24,10 +24,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -59,10 +56,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -97,10 +91,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -121,10 +112,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -165,10 +153,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -209,10 +194,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -262,10 +244,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -300,10 +279,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -344,10 +320,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -382,10 +355,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -416,10 +386,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -440,10 +407,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -490,10 +454,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -526,10 +487,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -553,10 +511,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -600,10 +555,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -638,10 +590,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -676,10 +625,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -721,10 +667,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -760,10 +703,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -804,10 +744,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -834,10 +771,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -872,10 +806,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -942,10 +873,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -986,10 +914,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1022,10 +947,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1068,10 +990,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1106,10 +1025,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -1134,10 +1050,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1164,10 +1077,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1202,10 +1112,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1241,10 +1148,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -1269,10 +1173,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1406,10 +1307,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -1462,10 +1360,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1507,10 +1402,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1578,10 +1470,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1625,10 +1514,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1670,10 +1556,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1708,10 +1591,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -1755,10 +1635,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1802,10 +1679,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1846,10 +1720,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -1873,10 +1744,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -1900,10 +1768,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1945,10 +1810,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -1987,10 +1849,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2031,10 +1890,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -2058,10 +1914,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2093,10 +1946,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -2123,10 +1973,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -2153,10 +2000,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2200,10 +2044,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2244,10 +2085,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2301,10 +2139,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2359,10 +2194,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2403,10 +2235,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2449,10 +2278,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2490,10 +2316,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2544,10 +2367,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2582,10 +2402,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2620,10 +2437,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2662,10 +2476,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "summary": "Load container limits",
@@ -2683,10 +2494,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2716,10 +2524,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "summary": "Load container stats",
@@ -2740,10 +2545,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2778,10 +2580,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2820,10 +2619,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2851,10 +2647,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2895,10 +2688,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2939,10 +2729,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -2980,10 +2767,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3025,10 +2809,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3072,10 +2853,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3117,10 +2895,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -3145,10 +2920,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3192,10 +2964,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3248,10 +3017,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3289,10 +3055,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3327,10 +3090,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3383,10 +3143,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3424,10 +3181,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -3471,10 +3225,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -3504,10 +3255,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "produces": [
@@ -3532,10 +3280,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3576,10 +3321,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3629,10 +3371,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3670,10 +3409,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3723,10 +3459,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3768,10 +3501,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3813,10 +3543,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3844,10 +3571,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3888,10 +3612,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3932,10 +3653,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -3973,10 +3691,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4018,10 +3733,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4071,10 +3783,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4124,10 +3833,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4177,10 +3883,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4230,10 +3933,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4268,10 +3968,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4306,10 +4003,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4344,10 +4038,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4398,10 +4089,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4451,10 +4139,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4478,10 +4163,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4521,10 +4203,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4559,10 +4238,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4592,10 +4268,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4636,10 +4309,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4681,10 +4351,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4734,10 +4401,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4787,10 +4451,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4825,10 +4486,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4863,10 +4521,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4908,10 +4563,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -4953,10 +4605,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5001,10 +4650,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5054,10 +4700,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -5090,10 +4733,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -5126,10 +4766,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5164,10 +4801,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5208,10 +4842,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -5241,10 +4872,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5294,10 +4922,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5335,10 +4960,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5389,10 +5011,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5424,10 +5043,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5465,10 +5081,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5509,10 +5122,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5554,10 +5164,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5607,10 +5214,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5648,10 +5252,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5702,10 +5303,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5755,10 +5353,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5800,10 +5395,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5838,10 +5430,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5880,10 +5469,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5918,10 +5504,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -5960,10 +5543,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -5981,10 +5561,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6023,10 +5600,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6061,10 +5635,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6103,10 +5674,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6141,10 +5709,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6179,10 +5744,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6217,10 +5779,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6255,10 +5814,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6293,10 +5849,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6335,10 +5888,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6376,10 +5926,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6420,10 +5967,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6461,10 +6005,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6505,10 +6046,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6552,10 +6090,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6590,10 +6125,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6634,10 +6166,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6667,10 +6196,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6711,10 +6237,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6758,10 +6281,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6802,10 +6322,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6846,10 +6363,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6870,10 +6384,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6917,10 +6428,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -6970,10 +6478,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7008,10 +6513,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7053,10 +6555,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7098,10 +6597,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7144,10 +6640,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -7179,10 +6672,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7210,10 +6700,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7254,10 +6741,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7292,10 +6776,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7319,10 +6800,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7364,10 +6842,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7408,10 +6883,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7446,10 +6918,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7493,10 +6962,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7534,10 +7000,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7576,10 +7039,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7614,10 +7074,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7663,10 +7120,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7708,10 +7162,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7769,10 +7220,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7810,10 +7258,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7855,10 +7300,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7903,10 +7345,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -7925,10 +7364,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -7970,10 +7406,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8023,10 +7456,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -8048,10 +7478,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8093,10 +7520,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8146,10 +7570,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8184,10 +7605,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8222,10 +7640,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8252,10 +7667,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8296,10 +7708,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8338,10 +7747,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8391,10 +7797,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -8415,10 +7818,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8450,10 +7850,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8494,10 +7891,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8539,10 +7933,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8583,10 +7974,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8628,10 +8016,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8666,10 +8051,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8701,10 +8083,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8736,10 +8115,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8771,10 +8147,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -8799,10 +8172,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -8837,10 +8207,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8875,10 +8242,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -8899,10 +8263,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8941,10 +8302,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -8979,10 +8337,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9023,10 +8378,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -9047,10 +8399,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9085,10 +8434,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9130,10 +8476,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9166,10 +8509,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9204,10 +8544,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9242,10 +8579,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9289,10 +8623,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9333,10 +8664,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9371,10 +8699,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9416,10 +8741,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9441,10 +8763,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9485,10 +8804,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9532,10 +8848,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9573,10 +8886,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9618,10 +8928,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9672,10 +8979,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9716,10 +9020,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9754,10 +9055,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9792,10 +9090,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -9816,10 +9111,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -9839,14 +9131,262 @@ const docTemplate = `{
                 }
             }
         },
+        "/mcp/domain/bind": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Bind Domain for mcp server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpBindDomain"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/mcp/domain/get": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Get bin Domain for mcp server",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.McpBindDomainRes"
+                        }
+                    }
+                }
+            }
+        },
+        "/mcp/domain/update": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Update bind Domain for mcp server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpBindDomainUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/mcp/search": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "List mcp servers",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpServerSearch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.McpServersRes"
+                        }
+                    }
+                }
+            }
+        },
+        "/mcp/server": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Create mcp server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpServerCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/mcp/server/del": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Delete mcp server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpServerDelete"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/mcp/server/op": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Operate mcp server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpServerOperate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/mcp/server/update": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "McpServer"
+                ],
+                "summary": "Update mcp server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.McpServerUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/openresty": {
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -9867,10 +9407,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -9895,10 +9432,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9937,10 +9471,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -9978,10 +9509,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -10002,10 +9530,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10055,10 +9580,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -10096,10 +9618,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10143,10 +9662,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10187,10 +9703,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10228,10 +9741,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10263,10 +9773,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10304,10 +9811,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10348,10 +9852,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10383,10 +9884,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10418,10 +9916,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10456,10 +9951,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10491,10 +9983,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10529,10 +10018,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10553,10 +10039,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10597,10 +10080,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10633,10 +10113,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10667,10 +10144,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10711,10 +10185,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10755,10 +10226,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10801,10 +10269,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10854,10 +10319,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10881,10 +10343,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10934,10 +10393,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -10982,10 +10438,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11020,10 +10473,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11058,10 +10508,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11099,10 +10546,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11140,10 +10584,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11187,10 +10628,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11234,10 +10672,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -11255,10 +10690,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -11280,10 +10712,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11321,10 +10750,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11362,10 +10788,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11406,10 +10829,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -11430,10 +10850,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11475,10 +10892,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11517,10 +10931,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11547,10 +10958,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11589,10 +10997,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11627,10 +11032,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11669,10 +11071,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11711,10 +11110,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11755,10 +11151,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11800,10 +11193,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -11824,10 +11214,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -11845,10 +11232,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11890,10 +11274,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11943,10 +11324,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -11997,10 +11375,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12042,10 +11417,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12095,10 +11467,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12148,10 +11517,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12186,10 +11552,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12227,10 +11590,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12265,10 +11625,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -12286,10 +11643,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -12310,10 +11664,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12354,10 +11705,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12399,10 +11747,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12435,10 +11780,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12479,10 +11821,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12524,10 +11863,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12551,10 +11887,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12604,10 +11937,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12642,10 +11972,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12677,10 +12004,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12730,10 +12054,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12774,10 +12095,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12827,10 +12145,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12865,10 +12180,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12903,10 +12215,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12941,10 +12250,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -12995,10 +12301,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13040,10 +12343,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13085,10 +12385,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -13109,10 +12406,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13147,10 +12441,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13188,10 +12479,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13223,10 +12511,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13268,10 +12553,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -13299,10 +12581,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13334,10 +12613,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13379,10 +12655,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13409,10 +12682,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -13433,10 +12703,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13460,10 +12727,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13504,10 +12768,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13539,10 +12800,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13580,10 +12838,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13625,10 +12880,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13660,10 +12912,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13705,10 +12954,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -13729,10 +12975,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13782,10 +13025,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13820,10 +13060,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13864,10 +13101,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13902,10 +13136,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13944,10 +13175,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -13989,10 +13217,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -14020,10 +13245,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14064,10 +13286,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14111,10 +13330,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14164,10 +13380,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14202,10 +13415,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14240,10 +13450,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14275,10 +13482,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14322,10 +13526,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14375,10 +13576,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14428,10 +13626,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14481,10 +13676,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14534,10 +13726,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14572,10 +13761,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14608,10 +13794,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14649,10 +13832,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14687,10 +13867,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14740,10 +13917,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14784,10 +13958,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14820,10 +13991,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14874,10 +14042,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14927,10 +14092,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -14965,10 +14127,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15018,10 +14177,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15071,10 +14227,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15115,10 +14268,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15168,10 +14318,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15206,10 +14353,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15250,10 +14394,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15300,10 +14441,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15353,10 +14491,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15392,10 +14527,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15430,10 +14562,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15465,10 +14594,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -15492,10 +14618,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15549,10 +14672,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15602,10 +14722,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15656,10 +14773,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "tags": [
@@ -15683,10 +14797,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15736,10 +14847,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15772,10 +14880,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15825,10 +14930,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15878,10 +14980,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15919,10 +15018,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -15972,10 +15068,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16025,10 +15118,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16078,10 +15168,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16119,10 +15206,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16172,10 +15256,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16225,10 +15306,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16263,10 +15341,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16316,10 +15391,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16354,10 +15426,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16401,10 +15470,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16454,10 +15520,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16507,10 +15570,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16560,10 +15620,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16601,10 +15658,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16642,10 +15696,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16695,10 +15746,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16739,10 +15787,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16775,10 +15820,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16811,10 +15853,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16855,10 +15894,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16891,10 +15927,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16934,10 +15967,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -16968,10 +15998,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "Timestamp": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -18357,6 +17384,9 @@ const docTemplate = `{
                 "cleanData": {
                     "type": "boolean"
                 },
+                "cleanRemoteData": {
+                    "type": "boolean"
+                },
                 "ids": {
                     "type": "array",
                     "items": {
@@ -18372,6 +17402,9 @@ const docTemplate = `{
             ],
             "properties": {
                 "cleanData": {
+                    "type": "boolean"
+                },
+                "cleanRemoteData": {
                     "type": "boolean"
                 },
                 "cronjobID": {
@@ -23285,6 +22318,17 @@ const docTemplate = `{
                 }
             }
         },
+        "request.Environment": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "request.ExposedPort": {
             "type": "object",
             "properties": {
@@ -23565,6 +22609,9 @@ const docTemplate = `{
             "properties": {
                 "path": {
                     "type": "string"
+                },
+                "withInit": {
+                    "type": "boolean"
                 }
             }
         },
@@ -23773,6 +22820,177 @@ const docTemplate = `{
                     "enum": [
                         "supervisord"
                     ]
+                }
+            }
+        },
+        "request.McpBindDomain": {
+            "type": "object",
+            "required": [
+                "domain"
+            ],
+            "properties": {
+                "domain": {
+                    "type": "string"
+                },
+                "ipList": {
+                    "type": "string"
+                },
+                "sslID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "request.McpBindDomainUpdate": {
+            "type": "object",
+            "required": [
+                "websiteID"
+            ],
+            "properties": {
+                "ipList": {
+                    "type": "string"
+                },
+                "sslID": {
+                    "type": "integer"
+                },
+                "websiteID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "request.McpServerCreate": {
+            "type": "object",
+            "required": [
+                "command",
+                "name",
+                "port"
+            ],
+            "properties": {
+                "baseUrl": {
+                    "type": "string"
+                },
+                "command": {
+                    "type": "string"
+                },
+                "containerName": {
+                    "type": "string"
+                },
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Environment"
+                    }
+                },
+                "hostIP": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "ssePath": {
+                    "type": "string"
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Volume"
+                    }
+                }
+            }
+        },
+        "request.McpServerDelete": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "request.McpServerOperate": {
+            "type": "object",
+            "required": [
+                "id",
+                "operate"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "operate": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.McpServerSearch": {
+            "type": "object",
+            "required": [
+                "page",
+                "pageSize"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "type": "integer"
+                },
+                "sync": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "request.McpServerUpdate": {
+            "type": "object",
+            "required": [
+                "command",
+                "id",
+                "name",
+                "port"
+            ],
+            "properties": {
+                "baseUrl": {
+                    "type": "string"
+                },
+                "command": {
+                    "type": "string"
+                },
+                "containerName": {
+                    "type": "string"
+                },
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Environment"
+                    }
+                },
+                "hostIP": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "ssePath": {
+                    "type": "string"
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Volume"
+                    }
                 }
             }
         },
@@ -24418,6 +23636,17 @@ const docTemplate = `{
                         "clear",
                         "update"
                     ]
+                }
+            }
+        },
+        "request.Volume": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
                 }
             }
         },
@@ -25975,6 +25204,111 @@ const docTemplate = `{
                 }
             }
         },
+        "response.McpBindDomainRes": {
+            "type": "object",
+            "properties": {
+                "acmeAccountID": {
+                    "type": "integer"
+                },
+                "allowIPs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "connUrl": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "sslID": {
+                    "type": "integer"
+                },
+                "websiteID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.McpServerDTO": {
+            "type": "object",
+            "properties": {
+                "baseUrl": {
+                    "type": "string"
+                },
+                "command": {
+                    "type": "string"
+                },
+                "containerName": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "dir": {
+                    "type": "string"
+                },
+                "dockerCompose": {
+                    "type": "string"
+                },
+                "env": {
+                    "type": "string"
+                },
+                "environments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Environment"
+                    }
+                },
+                "hostIP": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "ssePath": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Volume"
+                    }
+                },
+                "websiteID": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.McpServersRes": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.McpServerDTO"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
         "response.NginxAntiLeechRes": {
             "type": "object",
             "properties": {
@@ -26729,16 +26063,10 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
-        "ApiKeyAuth": {
-            "description": "- ` + "`" + `1Panel-Token` + "`" + ` is the key for the panel API Key.",
+        "BearerAuth": {
+            "description": "JWT Authorization header. Format: ` + "`" + `Authorization: Bearer \u003ctoken\u003e` + "`" + `",
             "type": "apiKey",
-            "name": "1Panel-Token",
-            "in": "header"
-        },
-        "Timestamp": {
-            "description": "- ` + "`" + `1Panel-Timestamp` + "`" + ` is the Unix timestamp of the current time in seconds.",
-            "type": "apiKey",
-            "name": "1Panel-Timestamp",
+            "name": "Authorization",
             "in": "header"
         }
     }

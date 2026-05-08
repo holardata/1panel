@@ -12,8 +12,7 @@ import (
 // @Accept json
 // @Param request body dto.CommandOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command [post]
 // @x-panel-log {"bodyKeys":["name","command"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"创建快捷命令 [name][command]","formatEN":"create quick command [name][command]"}
 func (b *BaseApi) CreateCommand(c *gin.Context) {
@@ -34,8 +33,7 @@ func (b *BaseApi) CreateCommand(c *gin.Context) {
 // @Accept json
 // @Param request body dto.RedisCommand true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/redis [post]
 // @x-panel-log {"bodyKeys":["name","command"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"保存 redis 快捷命令 [name][command]","formatEN":"save quick command for redis [name][command]"}
 func (b *BaseApi) SaveRedisCommand(c *gin.Context) {
@@ -56,8 +54,7 @@ func (b *BaseApi) SaveRedisCommand(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SearchWithPage true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/search [post]
 func (b *BaseApi) SearchCommand(c *gin.Context) {
 	var req dto.SearchCommandWithPage
@@ -82,8 +79,7 @@ func (b *BaseApi) SearchCommand(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SearchWithPage true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/redis/search [post]
 func (b *BaseApi) SearchRedisCommand(c *gin.Context) {
 	var req dto.SearchWithPage
@@ -107,8 +103,7 @@ func (b *BaseApi) SearchRedisCommand(c *gin.Context) {
 // @Summary Tree commands
 // @Accept json
 // @Success 200 {array} dto.CommandTree
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/tree [get]
 func (b *BaseApi) SearchCommandTree(c *gin.Context) {
 	list, err := commandService.SearchForTree()
@@ -123,8 +118,7 @@ func (b *BaseApi) SearchCommandTree(c *gin.Context) {
 // @Tags Redis Command
 // @Summary List redis commands
 // @Success 200 {array} dto.RedisCommand
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/redis [get]
 func (b *BaseApi) ListRedisCommand(c *gin.Context) {
 	list, err := commandService.ListRedisCommand()
@@ -139,8 +133,7 @@ func (b *BaseApi) ListRedisCommand(c *gin.Context) {
 // @Tags Command
 // @Summary List commands
 // @Success 200 {object} dto.CommandInfo
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command [get]
 func (b *BaseApi) ListCommand(c *gin.Context) {
 	list, err := commandService.List()
@@ -157,8 +150,7 @@ func (b *BaseApi) ListCommand(c *gin.Context) {
 // @Accept json
 // @Param request body dto.BatchDeleteReq true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/del [post]
 // @x-panel-log {"bodyKeys":["ids"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"ids","isList":true,"db":"commands","output_column":"name","output_value":"names"}],"formatZH":"删除快捷命令 [names]","formatEN":"delete quick command [names]"}
 func (b *BaseApi) DeleteCommand(c *gin.Context) {
@@ -179,8 +171,7 @@ func (b *BaseApi) DeleteCommand(c *gin.Context) {
 // @Accept json
 // @Param request body dto.BatchDeleteReq true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/redis/del [post]
 // @x-panel-log {"bodyKeys":["ids"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"ids","isList":true,"db":"redis_commands","output_column":"name","output_value":"names"}],"formatZH":"删除 redis 快捷命令 [names]","formatEN":"delete quick command of redis [names]"}
 func (b *BaseApi) DeleteRedisCommand(c *gin.Context) {
@@ -201,8 +192,7 @@ func (b *BaseApi) DeleteRedisCommand(c *gin.Context) {
 // @Accept json
 // @Param request body dto.CommandOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/command/update [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新快捷命令 [name]","formatEN":"update quick command [name]"}
 func (b *BaseApi) UpdateCommand(c *gin.Context) {

@@ -16,8 +16,7 @@ import (
 // @Accept json
 // @Param request body request.WebsiteCASearch true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /websites/ca/search [post]
 func (b *BaseApi) PageWebsiteCA(c *gin.Context) {
 	var req request.WebsiteCASearch
@@ -40,8 +39,7 @@ func (b *BaseApi) PageWebsiteCA(c *gin.Context) {
 // @Accept json
 // @Param request body request.WebsiteCACreate true "request"
 // @Success 200 {object} request.WebsiteCACreate
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /websites/ca [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"创建网站 ca [name]","formatEN":"Create website ca [name]"}
 func (b *BaseApi) CreateWebsiteCA(c *gin.Context) {
@@ -62,8 +60,7 @@ func (b *BaseApi) CreateWebsiteCA(c *gin.Context) {
 // @Accept json
 // @Param id path int true "id"
 // @Success 200 {object} response.WebsiteCADTO
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /websites/ca/{id} [get]
 func (b *BaseApi) GetWebsiteCA(c *gin.Context) {
 	id, err := helper.GetParamID(c)
@@ -83,8 +80,7 @@ func (b *BaseApi) GetWebsiteCA(c *gin.Context) {
 // @Accept json
 // @Param request body request.WebsiteCommonReq true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /websites/ca/del [post]
 // @x-panel-log {"bodyKeys":["id"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"id","isList":false,"db":"website_cas","output_column":"name","output_value":"name"}],"formatZH":"删除网站 ca [name]","formatEN":"Delete website ca [name]"}
 func (b *BaseApi) DeleteWebsiteCA(c *gin.Context) {
@@ -104,8 +100,7 @@ func (b *BaseApi) DeleteWebsiteCA(c *gin.Context) {
 // @Accept json
 // @Param request body request.WebsiteCAObtain true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /websites/ca/obtain [post]
 // @x-panel-log {"bodyKeys":["id"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"id","isList":false,"db":"website_cas","output_column":"name","output_value":"name"}],"formatZH":"自签 SSL 证书 [name]","formatEN":"Obtain SSL [name]"}
 func (b *BaseApi) ObtainWebsiteCA(c *gin.Context) {
@@ -125,8 +120,7 @@ func (b *BaseApi) ObtainWebsiteCA(c *gin.Context) {
 // @Accept json
 // @Param request body request.WebsiteCAObtain true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /websites/ca/renew [post]
 // @x-panel-log {"bodyKeys":["id"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"id","isList":false,"db":"website_cas","output_column":"name","output_value":"name"}],"formatZH":"自签 SSL 证书 [name]","formatEN":"Obtain SSL [name]"}
 func (b *BaseApi) RenewWebsiteCA(c *gin.Context) {
@@ -151,8 +145,7 @@ func (b *BaseApi) RenewWebsiteCA(c *gin.Context) {
 // @Accept json
 // @Param request body request.WebsiteResourceReq true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router  /websites/ca/download [post]
 // @x-panel-log {"bodyKeys":["id"],"paramKeys":[],"BeforeFunctions":[{"input_column":"id","input_value":"id","isList":false,"db":"website_cas","output_column":"name","output_value":"name"}],"formatZH":"下载 CA 证书文件 [name]","formatEN":"download ca file [name]"}
 func (b *BaseApi) DownloadCAFile(c *gin.Context) {

@@ -10,8 +10,7 @@ import (
 // @Tags Firewall
 // @Summary Load firewall base info
 // @Success 200 {object} dto.FirewallBaseInfo
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/base [get]
 func (b *BaseApi) LoadFirewallBaseInfo(c *gin.Context) {
 	data, err := firewallService.LoadBaseInfo()
@@ -28,8 +27,7 @@ func (b *BaseApi) LoadFirewallBaseInfo(c *gin.Context) {
 // @Accept json
 // @Param request body dto.RuleSearch true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/search [post]
 func (b *BaseApi) SearchFirewallRule(c *gin.Context) {
 	var req dto.RuleSearch
@@ -54,8 +52,7 @@ func (b *BaseApi) SearchFirewallRule(c *gin.Context) {
 // @Accept json
 // @Param request body dto.FirewallOperation true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/operate [post]
 // @x-panel-log {"bodyKeys":["operation"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"[operation] 防火墙","formatEN":"[operation] firewall"}
 func (b *BaseApi) OperateFirewall(c *gin.Context) {
@@ -77,8 +74,7 @@ func (b *BaseApi) OperateFirewall(c *gin.Context) {
 // @Accept json
 // @Param request body dto.PortRuleOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/port [post]
 // @x-panel-log {"bodyKeys":["port","strategy"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"添加端口规则 [strategy] [port]","formatEN":"create port rules [strategy][port]"}
 func (b *BaseApi) OperatePortRule(c *gin.Context) {
@@ -100,8 +96,7 @@ func (b *BaseApi) OperatePortRule(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ForwardRuleOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/forward [post]
 // @x-panel-log {"bodyKeys":["source_port"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新端口转发规则 [source_port]","formatEN":"update port forward rules [source_port]"}
 func (b *BaseApi) OperateForwardRule(c *gin.Context) {
@@ -122,8 +117,7 @@ func (b *BaseApi) OperateForwardRule(c *gin.Context) {
 // @Accept json
 // @Param request body dto.AddrRuleOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/ip [post]
 // @x-panel-log {"bodyKeys":["strategy","address"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"添加 ip 规则 [strategy] [address]","formatEN":"create address rules [strategy][address]"}
 func (b *BaseApi) OperateIPRule(c *gin.Context) {
@@ -144,8 +138,7 @@ func (b *BaseApi) OperateIPRule(c *gin.Context) {
 // @Accept json
 // @Param request body dto.BatchRuleOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/batch [post]
 func (b *BaseApi) BatchOperateRule(c *gin.Context) {
 	var req dto.BatchRuleOperate
@@ -165,8 +158,7 @@ func (b *BaseApi) BatchOperateRule(c *gin.Context) {
 // @Accept json
 // @Param request body dto.UpdateFirewallDescription true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/update/description [post]
 func (b *BaseApi) UpdateFirewallDescription(c *gin.Context) {
 	var req dto.UpdateFirewallDescription
@@ -186,8 +178,7 @@ func (b *BaseApi) UpdateFirewallDescription(c *gin.Context) {
 // @Accept json
 // @Param request body dto.PortRuleUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/update/port [post]
 func (b *BaseApi) UpdatePortRule(c *gin.Context) {
 	var req dto.PortRuleUpdate
@@ -207,8 +198,7 @@ func (b *BaseApi) UpdatePortRule(c *gin.Context) {
 // @Accept json
 // @Param request body dto.AddrRuleUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/firewall/update/addr [post]
 func (b *BaseApi) UpdateAddrRule(c *gin.Context) {
 	var req dto.AddrRuleUpdate

@@ -14,8 +14,7 @@ import (
 // @Summary Load os info
 // @Accept json
 // @Success 200 {object} dto.OsInfo
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /dashboard/base/os [get]
 func (b *BaseApi) LoadDashboardOsInfo(c *gin.Context) {
 	data, err := dashboardService.LoadOsInfo()
@@ -32,8 +31,7 @@ func (b *BaseApi) LoadDashboardOsInfo(c *gin.Context) {
 // @Param ioOption path string true "request"
 // @Param netOption path string true "request"
 // @Success 200 {object} dto.DashboardBase
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /dashboard/base/{ioOption}/{netOption} [get]
 func (b *BaseApi) LoadDashboardBaseInfo(c *gin.Context) {
 	ioOption, ok := c.Params.Get("ioOption")
@@ -59,8 +57,7 @@ func (b *BaseApi) LoadDashboardBaseInfo(c *gin.Context) {
 // @Accept json
 // @Param request body dto.DashboardReq true "request"
 // @Success 200 {object} dto.DashboardCurrent
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /dashboard/current [post]
 func (b *BaseApi) LoadDashboardCurrentInfo(c *gin.Context) {
 	var req dto.DashboardReq
@@ -76,8 +73,7 @@ func (b *BaseApi) LoadDashboardCurrentInfo(c *gin.Context) {
 // @Accept json
 // @Param operation path string true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /dashboard/system/restart/{operation} [post]
 func (b *BaseApi) SystemRestart(c *gin.Context) {
 	operation, ok := c.Params.Get("operation")

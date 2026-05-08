@@ -12,8 +12,7 @@ import (
 // @Accept json
 // @Param request body request.McpServerSearch true "request"
 // @Success 200 {object} response.McpServersRes
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/search [post]
 func (b *BaseApi) PageMcpServers(c *gin.Context) {
 	var req request.McpServerSearch
@@ -29,8 +28,7 @@ func (b *BaseApi) PageMcpServers(c *gin.Context) {
 // @Accept json
 // @Param request body request.McpServerCreate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/server [post]
 func (b *BaseApi) CreateMcpServer(c *gin.Context) {
 	var req request.McpServerCreate
@@ -50,8 +48,7 @@ func (b *BaseApi) CreateMcpServer(c *gin.Context) {
 // @Accept json
 // @Param request body request.McpServerUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/server/update [post]
 func (b *BaseApi) UpdateMcpServer(c *gin.Context) {
 	var req request.McpServerUpdate
@@ -71,8 +68,7 @@ func (b *BaseApi) UpdateMcpServer(c *gin.Context) {
 // @Accept json
 // @Param request body request.McpServerDelete true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/server/del [post]
 func (b *BaseApi) DeleteMcpServer(c *gin.Context) {
 	var req request.McpServerDelete
@@ -92,8 +88,7 @@ func (b *BaseApi) DeleteMcpServer(c *gin.Context) {
 // @Accept json
 // @Param request body request.McpServerOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/server/op [post]
 func (b *BaseApi) OperateMcpServer(c *gin.Context) {
 	var req request.McpServerOperate
@@ -113,8 +108,7 @@ func (b *BaseApi) OperateMcpServer(c *gin.Context) {
 // @Accept json
 // @Param request body request.McpBindDomain true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/domain/bind [post]
 func (b *BaseApi) BindMcpDomain(c *gin.Context) {
 	var req request.McpBindDomain
@@ -134,8 +128,7 @@ func (b *BaseApi) BindMcpDomain(c *gin.Context) {
 // @Accept json
 // @Param request body request.McpBindDomainUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/domain/update [post]
 func (b *BaseApi) UpdateMcpBindDomain(c *gin.Context) {
 	var req request.McpBindDomainUpdate
@@ -154,8 +147,7 @@ func (b *BaseApi) UpdateMcpBindDomain(c *gin.Context) {
 // @Summary Get bin Domain for mcp server
 // @Accept json
 // @Success 200 {object} response.McpBindDomainRes
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /mcp/domain/get [get]
 func (b *BaseApi) GetMcpBindDomain(c *gin.Context) {
 	res, err := mcpServerService.GetBindDomain()

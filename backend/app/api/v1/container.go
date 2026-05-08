@@ -20,8 +20,7 @@ import (
 // @Param request body dto.PageContainer true "request"
 // @Produce json
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/search [post]
 func (b *BaseApi) SearchContainer(c *gin.Context) {
 	var req dto.PageContainer
@@ -45,8 +44,7 @@ func (b *BaseApi) SearchContainer(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {array} string
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/list [post]
 func (b *BaseApi) ListContainer(c *gin.Context) {
 	list, err := containerService.List()
@@ -62,8 +60,7 @@ func (b *BaseApi) ListContainer(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SearchWithPage true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/compose/search [post]
 func (b *BaseApi) SearchCompose(c *gin.Context) {
 	var req dto.SearchWithPage
@@ -87,8 +84,7 @@ func (b *BaseApi) SearchCompose(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ComposeCreate true "request"
 // @Success 200 {boolean} isOK
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/compose/test [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"检测 compose [name] 格式","formatEN":"check compose [name]"}
 func (b *BaseApi) TestCompose(c *gin.Context) {
@@ -110,8 +106,7 @@ func (b *BaseApi) TestCompose(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ComposeCreate true "request"
 // @Success 200 {string} log
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/compose [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"创建 compose [name]","formatEN":"create compose [name]"}
 func (b *BaseApi) CreateCompose(c *gin.Context) {
@@ -133,8 +128,7 @@ func (b *BaseApi) CreateCompose(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ComposeOperation true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/compose/operate [post]
 // @x-panel-log {"bodyKeys":["name","operation"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"compose [operation] [name]","formatEN":"compose [operation] [name]"}
 func (b *BaseApi) OperatorCompose(c *gin.Context) {
@@ -155,8 +149,7 @@ func (b *BaseApi) OperatorCompose(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ContainerOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/update [post]
 // @x-panel-log {"bodyKeys":["name","image"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新容器 [name][image]","formatEN":"update container [name][image]"}
 func (b *BaseApi) ContainerUpdate(c *gin.Context) {
@@ -177,8 +170,7 @@ func (b *BaseApi) ContainerUpdate(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OperationWithName true "request"
 // @Success 200 {object} dto.ContainerOperate
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/info [post]
 func (b *BaseApi) ContainerInfo(c *gin.Context) {
 	var req dto.OperationWithName
@@ -196,8 +188,7 @@ func (b *BaseApi) ContainerInfo(c *gin.Context) {
 
 // @Summary Load container limits
 // @Success 200 {object} dto.ResourceLimit
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/limit [get]
 func (b *BaseApi) LoadResourceLimit(c *gin.Context) {
 	data, err := containerService.LoadResourceLimit()
@@ -210,8 +201,7 @@ func (b *BaseApi) LoadResourceLimit(c *gin.Context) {
 
 // @Summary Load container stats
 // @Success 200 {array} dto.ContainerListStats
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/list/stats [get]
 func (b *BaseApi) ContainerListStats(c *gin.Context) {
 	data, err := containerService.ContainerListStats()
@@ -227,8 +217,7 @@ func (b *BaseApi) ContainerListStats(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ContainerOperate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers [post]
 // @x-panel-log {"bodyKeys":["name","image"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"创建容器 [name][image]","formatEN":"create container [name][image]"}
 func (b *BaseApi) ContainerCreate(c *gin.Context) {
@@ -249,8 +238,7 @@ func (b *BaseApi) ContainerCreate(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ContainerUpgrade true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/upgrade [post]
 // @x-panel-log {"bodyKeys":["name","image"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新容器镜像 [name][image]","formatEN":"upgrade container image [name][image]"}
 func (b *BaseApi) ContainerUpgrade(c *gin.Context) {
@@ -271,8 +259,7 @@ func (b *BaseApi) ContainerUpgrade(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ContainerPrune true "request"
 // @Success 200 {object} dto.ContainerPruneReport
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/prune [post]
 // @x-panel-log {"bodyKeys":["pruneType"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"清理容器 [pruneType]","formatEN":"clean container [pruneType]"}
 func (b *BaseApi) ContainerPrune(c *gin.Context) {
@@ -294,8 +281,7 @@ func (b *BaseApi) ContainerPrune(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OperationWithName true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/clean/log [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"清理容器 [name] 日志","formatEN":"clean container [name] logs"}
 func (b *BaseApi) CleanContainerLog(c *gin.Context) {
@@ -316,8 +302,7 @@ func (b *BaseApi) CleanContainerLog(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OperationWithNameAndType true "request"
 // @Success 200 {string} content
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/load/log [post]
 func (b *BaseApi) LoadContainerLog(c *gin.Context) {
 	var req dto.OperationWithNameAndType
@@ -334,8 +319,7 @@ func (b *BaseApi) LoadContainerLog(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ContainerRename true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/rename [post]
 // @x-panel-log {"bodyKeys":["name","newName"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"容器重命名 [name] => [newName]","formatEN":"rename container [name] => [newName]"}
 func (b *BaseApi) ContainerRename(c *gin.Context) {
@@ -377,8 +361,7 @@ var mustApps = []string{"mysql", "pg", "redis", "mongo", "minio", "one-api", "de
 // @Accept json
 // @Param request body dto.ContainerOperation true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/operate [post]
 // @x-panel-log {"bodyKeys":["names","operation"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"容器 [names] 执行 [operation]","formatEN":"container [operation] [names]"}
 func (b *BaseApi) ContainerOperation(c *gin.Context) {
@@ -415,8 +398,7 @@ func (b *BaseApi) ContainerOperation(c *gin.Context) {
 // @Summary Container stats
 // @Param id path string true "container id"
 // @Success 200 {object} dto.ContainerStats
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/stats/{id} [get]
 func (b *BaseApi) ContainerStats(c *gin.Context) {
 	containerID, ok := c.Params.Get("id")
@@ -438,8 +420,7 @@ func (b *BaseApi) ContainerStats(c *gin.Context) {
 // @Accept json
 // @Param request body dto.InspectReq true "request"
 // @Success 200 {string} result
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/inspect [post]
 func (b *BaseApi) Inspect(c *gin.Context) {
 	var req dto.InspectReq
@@ -462,8 +443,7 @@ func (b *BaseApi) Inspect(c *gin.Context) {
 // @Param follow query string false "follow"
 // @Param tail query string false "tail"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/search/log [post]
 func (b *BaseApi) ContainerLogs(c *gin.Context) {
 	wsConn, err := upGrader.Upgrade(c.Writer, c.Request, nil)
@@ -489,8 +469,7 @@ func (b *BaseApi) ContainerLogs(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ContainerLog true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/download/log [post]
 func (b *BaseApi) DownloadContainerLogs(c *gin.Context) {
 	var req dto.ContainerLog
@@ -509,8 +488,7 @@ func (b *BaseApi) DownloadContainerLogs(c *gin.Context) {
 // @Param request body dto.SearchWithPage true "request"
 // @Produce json
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/network/search [post]
 func (b *BaseApi) SearchNetwork(c *gin.Context) {
 	var req dto.SearchWithPage
@@ -534,8 +512,7 @@ func (b *BaseApi) SearchNetwork(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {array} dto.Options
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/network [get]
 func (b *BaseApi) ListNetwork(c *gin.Context) {
 	list, err := containerService.ListNetwork()
@@ -551,8 +528,7 @@ func (b *BaseApi) ListNetwork(c *gin.Context) {
 // @Accept json
 // @Param request body dto.BatchDelete true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/network/del [post]
 // @x-panel-log {"bodyKeys":["names"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"删除容器网络 [names]","formatEN":"delete container network [names]"}
 func (b *BaseApi) DeleteNetwork(c *gin.Context) {
@@ -573,8 +549,7 @@ func (b *BaseApi) DeleteNetwork(c *gin.Context) {
 // @Accept json
 // @Param request body dto.NetworkCreate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/network [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"创建容器网络 name","formatEN":"create container network [name]"}
 func (b *BaseApi) CreateNetwork(c *gin.Context) {
@@ -596,8 +571,7 @@ func (b *BaseApi) CreateNetwork(c *gin.Context) {
 // @Param request body dto.SearchWithPage true "request"
 // @Produce json
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/volume/search [post]
 func (b *BaseApi) SearchVolume(c *gin.Context) {
 	var req dto.SearchWithPage
@@ -621,8 +595,7 @@ func (b *BaseApi) SearchVolume(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Success 200 {array} dto.Options
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/volume [get]
 func (b *BaseApi) ListVolume(c *gin.Context) {
 	list, err := containerService.ListVolume()
@@ -638,8 +611,7 @@ func (b *BaseApi) ListVolume(c *gin.Context) {
 // @Accept json
 // @Param request body dto.BatchDelete true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/volume/del [post]
 // @x-panel-log {"bodyKeys":["names"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"删除容器存储卷 [names]","formatEN":"delete container volume [names]"}
 func (b *BaseApi) DeleteVolume(c *gin.Context) {
@@ -660,8 +632,7 @@ func (b *BaseApi) DeleteVolume(c *gin.Context) {
 // @Accept json
 // @Param request body dto.VolumeCreate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/volume [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"创建容器存储卷 [name]","formatEN":"create container volume [name]"}
 func (b *BaseApi) CreateVolume(c *gin.Context) {
@@ -682,8 +653,7 @@ func (b *BaseApi) CreateVolume(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ComposeUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/compose/update [post]
 // @x-panel-log {"bodyKeys":["name"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新 compose [name]","formatEN":"update compose information [name]"}
 func (b *BaseApi) ComposeUpdate(c *gin.Context) {
@@ -706,8 +676,7 @@ func (b *BaseApi) ComposeUpdate(c *gin.Context) {
 // @Param follow query string false "follow"
 // @Param tail query string false "tail"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /containers/compose/search/log [get]
 func (b *BaseApi) ComposeLogs(c *gin.Context) {
 	wsConn, err := upGrader.Upgrade(c.Writer, c.Request, nil)

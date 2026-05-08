@@ -12,8 +12,7 @@ import (
 // @Tags Fail2ban
 // @Summary Load fail2ban base info
 // @Success 200 {object} dto.Fail2BanBaseInfo
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/base [get]
 func (b *BaseApi) LoadFail2BanBaseInfo(c *gin.Context) {
 	data, err := fail2banService.LoadBaseInfo()
@@ -30,8 +29,7 @@ func (b *BaseApi) LoadFail2BanBaseInfo(c *gin.Context) {
 // @Accept json
 // @Param request body dto.Fail2BanSearch true "request"
 // @Success 200 {array} string
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/search [post]
 func (b *BaseApi) SearchFail2Ban(c *gin.Context) {
 	var req dto.Fail2BanSearch
@@ -53,8 +51,7 @@ func (b *BaseApi) SearchFail2Ban(c *gin.Context) {
 // @Accept json
 // @Param request body dto.Operate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/operate [post]
 // @x-panel-log {"bodyKeys":["operation"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"[operation] Fail2ban","formatEN":"[operation] Fail2ban"}
 func (b *BaseApi) OperateFail2Ban(c *gin.Context) {
@@ -76,8 +73,7 @@ func (b *BaseApi) OperateFail2Ban(c *gin.Context) {
 // @Accept json
 // @Param request body dto.Operate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/operate/sshd [post]
 func (b *BaseApi) OperateSSHD(c *gin.Context) {
 	var req dto.Fail2BanSet
@@ -98,8 +94,7 @@ func (b *BaseApi) OperateSSHD(c *gin.Context) {
 // @Accept json
 // @Param request body dto.Fail2BanUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/update [post]
 // @x-panel-log {"bodyKeys":["key","value"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"修改 Fail2ban 配置 [key] => [value]","formatEN":"update fail2ban conf [key] => [value]"}
 func (b *BaseApi) UpdateFail2BanConf(c *gin.Context) {
@@ -119,8 +114,7 @@ func (b *BaseApi) UpdateFail2BanConf(c *gin.Context) {
 // @Summary Load fail2ban conf
 // @Accept json
 // @Success 200 {string} file
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/load/conf [get]
 func (b *BaseApi) LoadFail2BanConf(c *gin.Context) {
 	path := "/etc/fail2ban/jail.local"
@@ -138,8 +132,7 @@ func (b *BaseApi) LoadFail2BanConf(c *gin.Context) {
 // @Accept json
 // @Param request body dto.UpdateByFile true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/fail2ban/update/byconf [post]
 func (b *BaseApi) UpdateFail2BanConfByFile(c *gin.Context) {
 	var req dto.UpdateByFile

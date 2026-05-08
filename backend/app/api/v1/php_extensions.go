@@ -13,8 +13,7 @@ import (
 // @Accept json
 // @Param request body request.PHPExtensionsSearch true "request"
 // @Success 200 {object} dto.PageResult
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /runtimes/php/extensions/search [post]
 func (b *BaseApi) PagePHPExtensions(c *gin.Context) {
 	var req request.PHPExtensionsSearch
@@ -50,8 +49,7 @@ func (b *BaseApi) PagePHPExtensions(c *gin.Context) {
 // @Accept json
 // @Param request body request.PHPExtensionsCreate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /runtimes/php/extensions [post]
 func (b *BaseApi) CreatePHPExtensions(c *gin.Context) {
 	var req request.PHPExtensionsCreate
@@ -70,8 +68,7 @@ func (b *BaseApi) CreatePHPExtensions(c *gin.Context) {
 // @Accept json
 // @Param request body request.PHPExtensionsUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /runtimes/php/extensions/update [post]
 func (b *BaseApi) UpdatePHPExtensions(c *gin.Context) {
 	var req request.PHPExtensionsUpdate
@@ -90,8 +87,7 @@ func (b *BaseApi) UpdatePHPExtensions(c *gin.Context) {
 // @Accept json
 // @Param request body request.PHPExtensionsDelete true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /runtimes/php/extensions/del [post]
 func (b *BaseApi) DeletePHPExtensions(c *gin.Context) {
 	var req request.PHPExtensionsDelete

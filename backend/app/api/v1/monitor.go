@@ -19,8 +19,7 @@ import (
 // @Summary Load monitor datas
 // @Param request body dto.MonitorSearch true "request"
 // @Success 200 {array} dto.MonitorData
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/monitor/search [post]
 func (b *BaseApi) LoadMonitor(c *gin.Context) {
 	var req dto.MonitorSearch
@@ -90,8 +89,7 @@ func (b *BaseApi) LoadMonitor(c *gin.Context) {
 // @Tags Monitor
 // @Summary Clean monitor datas
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /hosts/monitor/clean [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"清空监控数据","formatEN":"clean monitor datas"}
 func (b *BaseApi) CleanMonitor(c *gin.Context) {

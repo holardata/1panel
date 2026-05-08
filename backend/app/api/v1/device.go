@@ -12,8 +12,7 @@ import (
 // @Tags Device
 // @Summary Load device base info
 // @Success 200 {object} dto.DeviceBaseInfo
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/base [post]
 func (b *BaseApi) LoadDeviceBaseInfo(c *gin.Context) {
 	data, err := deviceService.LoadBaseInfo()
@@ -29,8 +28,7 @@ func (b *BaseApi) LoadDeviceBaseInfo(c *gin.Context) {
 // @Summary list time zone options
 // @Accept json
 // @Success 200 {array} string
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/zone/options [get]
 func (b *BaseApi) LoadTimeOption(c *gin.Context) {
 	list, err := deviceService.LoadTimeZone()
@@ -47,8 +45,7 @@ func (b *BaseApi) LoadTimeOption(c *gin.Context) {
 // @Accept json
 // @Param request body dto.OperationWithName true "request"
 // @Success 200 {array} string
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/conf [post]
 func (b *BaseApi) LoadDeviceConf(c *gin.Context) {
 	var req dto.OperationWithName
@@ -70,8 +67,7 @@ func (b *BaseApi) LoadDeviceConf(c *gin.Context) {
 // @Accept json
 // @Param request body dto.UpdateByNameAndFile true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/update/byconf [post]
 func (b *BaseApi) UpdateDeviceByFile(c *gin.Context) {
 	var req dto.UpdateByNameAndFile
@@ -91,8 +87,7 @@ func (b *BaseApi) UpdateDeviceByFile(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SettingUpdate true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/update/conf [post]
 // @x-panel-log {"bodyKeys":["key","value"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"修改主机参数 [key] => [value]","formatEN":"update device conf [key] => [value]"}
 func (b *BaseApi) UpdateDeviceConf(c *gin.Context) {
@@ -112,8 +107,7 @@ func (b *BaseApi) UpdateDeviceConf(c *gin.Context) {
 // @Tags Device
 // @Summary Update device hosts
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/update/host [post]
 // @x-panel-log {"bodyKeys":["key","value"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"修改主机 Host [key] => [value]","formatEN":"update device host [key] => [value]"}
 func (b *BaseApi) UpdateDeviceHost(c *gin.Context) {
@@ -135,8 +129,7 @@ func (b *BaseApi) UpdateDeviceHost(c *gin.Context) {
 // @Accept json
 // @Param request body dto.ChangePasswd true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/update/passwd [post]
 func (b *BaseApi) UpdateDevicePasswd(c *gin.Context) {
 	var req dto.ChangePasswd
@@ -164,8 +157,7 @@ func (b *BaseApi) UpdateDevicePasswd(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SwapHelper true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/update/swap [post]
 // @x-panel-log {"bodyKeys":["operate","path"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"[operate] 主机 swap [path]","formatEN":"[operate] device swap [path]"}
 func (b *BaseApi) UpdateDeviceSwap(c *gin.Context) {
@@ -186,8 +178,7 @@ func (b *BaseApi) UpdateDeviceSwap(c *gin.Context) {
 // @Accept json
 // @Param request body dto.SettingUpdate true "request"
 // @Success 200 {boolean} data
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/device/check/dns [post]
 func (b *BaseApi) CheckDNS(c *gin.Context) {
 	var req dto.SettingUpdate
@@ -207,8 +198,7 @@ func (b *BaseApi) CheckDNS(c *gin.Context) {
 // @Tags Device
 // @Summary Scan system
 // @Success 200 {object} dto.CleanData
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/scan [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"扫描系统垃圾文件","formatEN":"scan System Junk Files"}
 func (b *BaseApi) ScanSystem(c *gin.Context) {
@@ -220,8 +210,7 @@ func (b *BaseApi) ScanSystem(c *gin.Context) {
 // @Accept json
 // @Param request body []dto.Clean true "request"
 // @Success 200
-// @Security ApiKeyAuth
-// @Security Timestamp
+// @Security BearerAuth
 // @Router /toolbox/clean [post]
 // @x-panel-log {"bodyKeys":[],"paramKeys":[],"BeforeFunctions":[],"formatZH":"清理系统垃圾文件","formatEN":"Clean system junk files"}
 func (b *BaseApi) SystemClean(c *gin.Context) {

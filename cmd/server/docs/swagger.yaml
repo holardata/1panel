@@ -886,6 +886,8 @@ definitions:
     properties:
       cleanData:
         type: boolean
+      cleanRemoteData:
+        type: boolean
       ids:
         items:
           type: integer
@@ -896,6 +898,8 @@ definitions:
   dto.CronjobClean:
     properties:
       cleanData:
+        type: boolean
+      cleanRemoteData:
         type: boolean
       cronjobID:
         type: integer
@@ -4203,6 +4207,13 @@ definitions:
     required:
     - path
     type: object
+  request.Environment:
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+    type: object
   request.ExposedPort:
     properties:
       containerPort:
@@ -4387,6 +4398,8 @@ definitions:
     properties:
       path:
         type: string
+      withInit:
+        type: boolean
     required:
     - path
     type: object
@@ -4529,6 +4542,120 @@ definitions:
         type: string
     required:
     - type
+    type: object
+  request.McpBindDomain:
+    properties:
+      domain:
+        type: string
+      ipList:
+        type: string
+      sslID:
+        type: integer
+    required:
+    - domain
+    type: object
+  request.McpBindDomainUpdate:
+    properties:
+      ipList:
+        type: string
+      sslID:
+        type: integer
+      websiteID:
+        type: integer
+    required:
+    - websiteID
+    type: object
+  request.McpServerCreate:
+    properties:
+      baseUrl:
+        type: string
+      command:
+        type: string
+      containerName:
+        type: string
+      environments:
+        items:
+          $ref: '#/definitions/request.Environment'
+        type: array
+      hostIP:
+        type: string
+      name:
+        type: string
+      port:
+        type: integer
+      ssePath:
+        type: string
+      volumes:
+        items:
+          $ref: '#/definitions/request.Volume'
+        type: array
+    required:
+    - command
+    - name
+    - port
+    type: object
+  request.McpServerDelete:
+    properties:
+      id:
+        type: integer
+    required:
+    - id
+    type: object
+  request.McpServerOperate:
+    properties:
+      id:
+        type: integer
+      operate:
+        type: string
+    required:
+    - id
+    - operate
+    type: object
+  request.McpServerSearch:
+    properties:
+      name:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      sync:
+        type: boolean
+    required:
+    - page
+    - pageSize
+    type: object
+  request.McpServerUpdate:
+    properties:
+      baseUrl:
+        type: string
+      command:
+        type: string
+      containerName:
+        type: string
+      environments:
+        items:
+          $ref: '#/definitions/request.Environment'
+        type: array
+      hostIP:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      port:
+        type: integer
+      ssePath:
+        type: string
+      volumes:
+        items:
+          $ref: '#/definitions/request.Volume'
+        type: array
+    required:
+    - command
+    - id
+    - name
+    - port
     type: object
   request.NewAppInstall:
     properties:
@@ -4960,6 +5087,13 @@ definitions:
     - file
     - name
     - operate
+    type: object
+  request.Volume:
+    properties:
+      source:
+        type: string
+      target:
+        type: string
     type: object
   request.WebsiteAcmeAccountCreate:
     properties:
@@ -6006,6 +6140,75 @@ definitions:
       version:
         type: string
     type: object
+  response.McpBindDomainRes:
+    properties:
+      acmeAccountID:
+        type: integer
+      allowIPs:
+        items:
+          type: string
+        type: array
+      connUrl:
+        type: string
+      domain:
+        type: string
+      sslID:
+        type: integer
+      websiteID:
+        type: integer
+    type: object
+  response.McpServerDTO:
+    properties:
+      baseUrl:
+        type: string
+      command:
+        type: string
+      containerName:
+        type: string
+      createdAt:
+        type: string
+      dir:
+        type: string
+      dockerCompose:
+        type: string
+      env:
+        type: string
+      environments:
+        items:
+          $ref: '#/definitions/request.Environment'
+        type: array
+      hostIP:
+        type: string
+      id:
+        type: integer
+      message:
+        type: string
+      name:
+        type: string
+      port:
+        type: integer
+      ssePath:
+        type: string
+      status:
+        type: string
+      updatedAt:
+        type: string
+      volumes:
+        items:
+          $ref: '#/definitions/request.Volume'
+        type: array
+      websiteID:
+        type: integer
+    type: object
+  response.McpServersRes:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/response.McpServerDTO'
+        type: array
+      total:
+        type: integer
+    type: object
   response.NginxAntiLeechRes:
     properties:
       blocked:
@@ -6524,8 +6727,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Bind domain
       tags:
       - AI
@@ -6546,8 +6748,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.OllamaBindDomainRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get bind domain
       tags:
       - AI
@@ -6559,8 +6760,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load gpu / xpu info
       tags:
       - AI
@@ -6579,8 +6779,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create Ollama model
       tags:
       - AI
@@ -6606,8 +6805,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Close Ollama model conn
       tags:
       - AI
@@ -6633,8 +6831,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete Ollama model
       tags:
       - AI
@@ -6668,8 +6865,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page Ollama models
       tags:
       - AI
@@ -6688,8 +6884,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Rereate Ollama model
       tags:
       - AI
@@ -6717,8 +6912,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page Ollama models
       tags:
       - AI
@@ -6732,8 +6926,7 @@ paths:
               $ref: '#/definitions/dto.OllamaModelDropList'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Sync Ollama model list
       tags:
       - AI
@@ -6759,8 +6952,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search app by key
       tags:
       - App
@@ -6772,8 +6964,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppUpdateRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get app list update
       tags:
       - App
@@ -6803,8 +6994,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppDetailDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search app detail by appid
       tags:
       - App
@@ -6824,8 +7014,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppDetailDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get app detail by id
       tags:
       - App
@@ -6839,8 +7028,7 @@ paths:
           schema:
             $ref: '#/definitions/response.IgnoredApp'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get Ignore App
       tags:
       - App
@@ -6861,8 +7049,7 @@ paths:
           schema:
             $ref: '#/definitions/model.AppInstall'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Install app
       tags:
       - App
@@ -6890,8 +7077,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppInstalledCheck'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check app installed
       tags:
       - App
@@ -6912,8 +7098,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search default config by key
       tags:
       - App
@@ -6939,8 +7124,7 @@ paths:
           schema:
             $ref: '#/definitions/response.DatabaseConn'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search app password by key
       tags:
       - App
@@ -6962,8 +7146,7 @@ paths:
               $ref: '#/definitions/dto.AppResource'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check before delete
       tags:
       - App
@@ -6982,8 +7165,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: ignore App Update
       tags:
       - App
@@ -7006,8 +7188,7 @@ paths:
               $ref: '#/definitions/dto.AppInstallInfo'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List app installed
       tags:
       - App
@@ -7028,8 +7209,7 @@ paths:
           schema:
             type: integer
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search app port by key
       tags:
       - App
@@ -7048,8 +7228,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate installed app
       tags:
       - App
@@ -7095,8 +7274,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppConfig'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search params by appInstallId
       tags:
       - App
@@ -7115,8 +7293,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change app params
       tags:
       - App
@@ -7142,8 +7319,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change app port
       tags:
       - App
@@ -7173,8 +7349,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page app installed
       tags:
       - App
@@ -7184,8 +7359,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Sync app installed
       tags:
       - App
@@ -7207,8 +7381,7 @@ paths:
               $ref: '#/definitions/dto.AppVersion'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search app update version by install id
       tags:
       - App
@@ -7229,8 +7402,7 @@ paths:
           schema:
             $ref: '#/definitions/response.AppRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List apps
       tags:
       - App
@@ -7252,8 +7424,7 @@ paths:
               $ref: '#/definitions/response.AppService'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search app service by key
       tags:
       - App
@@ -7263,8 +7434,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Sync app list
       tags:
       - App
@@ -7344,8 +7514,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: User logout
       tags:
       - Auth
@@ -7386,8 +7555,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create container
       tags:
       - Container
@@ -7414,8 +7582,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean container log
       tags:
       - Container
@@ -7460,8 +7627,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create compose
       tags:
       - Container Compose
@@ -7487,8 +7653,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate compose
       tags:
       - Container Compose
@@ -7517,8 +7682,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page composes
       tags:
       - Container Compose
@@ -7545,8 +7709,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Container Compose logs
       tags:
       - Container Compose
@@ -7567,8 +7730,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Test compose
       tags:
       - Container Compose
@@ -7594,8 +7756,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update Container Compose
       tags:
       - Container Compose
@@ -7616,8 +7777,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.DaemonJsonConf'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load docker daemon.json
       tags:
       - Container Docker
@@ -7631,8 +7791,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load docker daemon.json
       tags:
       - Container Docker
@@ -7651,8 +7810,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update docker daemon.json
       tags:
       - Container Docker
@@ -7679,8 +7837,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update docker daemon.json by upload file
       tags:
       - Container Docker
@@ -7705,8 +7862,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate docker
       tags:
       - Container Docker
@@ -7727,8 +7883,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load docker status
       tags:
       - Container Docker
@@ -7747,8 +7902,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download Container logs
       tags:
       - Container
@@ -7764,8 +7918,7 @@ paths:
               $ref: '#/definitions/dto.Options'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: load images options
       tags:
       - Container Image
@@ -7781,8 +7934,7 @@ paths:
               $ref: '#/definitions/dto.ImageInfo'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List all images
       tags:
       - Container Image
@@ -7803,8 +7955,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Build image
       tags:
       - Container Image
@@ -7830,8 +7981,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load image
       tags:
       - Container Image
@@ -7859,8 +8009,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Pull image
       tags:
       - Container Image
@@ -7895,8 +8044,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Push image
       tags:
       - Container Image
@@ -7930,8 +8078,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete image
       tags:
       - Container Image
@@ -7957,8 +8104,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Save image
       tags:
       - Container Image
@@ -7990,8 +8136,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page images
       tags:
       - Container Image
@@ -8010,8 +8155,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Tag image
       tags:
       - Container Image
@@ -8046,8 +8190,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.ContainerOperate'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load container info
       tags:
       - Container
@@ -8068,8 +8211,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Container inspect
       tags:
       - Container
@@ -8088,8 +8230,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update docker daemon.json ipv6 option
       tags:
       - Container Docker
@@ -8107,8 +8248,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.ResourceLimit'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load container limits
   /containers/list:
     post:
@@ -8124,8 +8264,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List containers
       tags:
       - Container
@@ -8139,8 +8278,7 @@ paths:
               $ref: '#/definitions/dto.ContainerListStats'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load container stats
   /containers/load/log:
     post:
@@ -8159,8 +8297,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load container log
       tags:
       - Container
@@ -8179,8 +8316,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update docker daemon.json log option
       tags:
       - Container Docker
@@ -8204,8 +8340,7 @@ paths:
               $ref: '#/definitions/dto.Options'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List networks
       tags:
       - Container Network
@@ -8223,8 +8358,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create network
       tags:
       - Container Network
@@ -8250,8 +8384,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete network
       tags:
       - Container Network
@@ -8281,8 +8414,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page networks
       tags:
       - Container Network
@@ -8301,8 +8433,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate Container
       tags:
       - Container
@@ -8331,8 +8462,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.ContainerPruneReport'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean container
       tags:
       - Container
@@ -8358,8 +8488,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Rename Container
       tags:
       - Container
@@ -8383,8 +8512,7 @@ paths:
               $ref: '#/definitions/dto.ImageRepoOption'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List image repos
       tags:
       - Container Image-repo
@@ -8404,8 +8532,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create image repo
       tags:
       - Container Image-repo
@@ -8433,8 +8560,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete image repo
       tags:
       - Container Image-repo
@@ -8470,8 +8596,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page image repos
       tags:
       - Container Image-repo
@@ -8492,8 +8617,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load repo status
       tags:
       - Container Image-repo
@@ -8514,8 +8638,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update image repo
       tags:
       - Container Image-repo
@@ -8551,8 +8674,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page containers
       tags:
       - Container
@@ -8579,8 +8701,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Container logs
       tags:
       - Container
@@ -8598,8 +8719,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.ContainerStats'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Container stats
       tags:
       - Container
@@ -8615,8 +8735,7 @@ paths:
               $ref: '#/definitions/dto.ComposeTemplateInfo'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List compose templates
       tags:
       - Container Compose-template
@@ -8634,8 +8753,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create compose template
       tags:
       - Container Compose-template
@@ -8661,8 +8779,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete compose template
       tags:
       - Container Compose-template
@@ -8698,8 +8815,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page compose templates
       tags:
       - Container Compose-template
@@ -8718,8 +8834,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update compose template
       tags:
       - Container Compose-template
@@ -8751,8 +8866,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update container
       tags:
       - Container
@@ -8779,8 +8893,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Upgrade container
       tags:
       - Container
@@ -8806,8 +8919,7 @@ paths:
               $ref: '#/definitions/dto.Options'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List Container Volumes
       tags:
       - Container Volume
@@ -8825,8 +8937,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create Container Volume
       tags:
       - Container Volume
@@ -8852,8 +8963,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete Container Volume
       tags:
       - Container Volume
@@ -8883,8 +8993,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page Container Volumes
       tags:
       - Container Volume
@@ -8903,8 +9012,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create cronjob
       tags:
       - Cronjob
@@ -8931,8 +9039,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete cronjob
       tags:
       - Cronjob
@@ -8964,8 +9071,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download cronjob records
       tags:
       - Cronjob
@@ -8997,8 +9103,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Handle cronjob once
       tags:
       - Cronjob
@@ -9030,8 +9135,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean job records
       tags:
       - Cronjob
@@ -9065,8 +9169,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load Cronjob record log
       tags:
       - Cronjob
@@ -9087,8 +9190,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page cronjobs
       tags:
       - Cronjob
@@ -9109,8 +9211,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page job records
       tags:
       - Cronjob
@@ -9129,8 +9230,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update cronjob status
       tags:
       - Cronjob
@@ -9163,8 +9263,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update cronjob
       tags:
       - Cronjob
@@ -9202,8 +9301,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.DashboardBase'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load dashboard base info
       tags:
       - Dashboard
@@ -9217,8 +9315,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.OsInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load os info
       tags:
       - Dashboard
@@ -9239,8 +9336,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.DashboardCurrent'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load dashboard current info
       tags:
       - Dashboard
@@ -9258,8 +9354,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: System restart panel
       tags:
       - Dashboard
@@ -9278,8 +9373,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create mysql database
       tags:
       - Database Mysql
@@ -9305,8 +9399,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Bind user of mysql database
       tags:
       - Database Mysql
@@ -9333,8 +9426,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change mysql access
       tags:
       - Database Mysql
@@ -9366,8 +9458,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change mysql password
       tags:
       - Database Mysql
@@ -9401,8 +9492,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.DBBaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load base info
       tags:
       - Database Common
@@ -9423,8 +9513,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load Database conf
       tags:
       - Database Common
@@ -9443,8 +9532,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update conf by upload file
       tags:
       - Database Common
@@ -9471,8 +9559,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create database
       tags:
       - Database
@@ -9498,8 +9585,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.DatabaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get databases
       tags:
       - Database
@@ -9520,8 +9606,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check database
       tags:
       - Database
@@ -9548,8 +9633,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete database
       tags:
       - Database
@@ -9582,8 +9666,7 @@ paths:
               $ref: '#/definitions/dto.DatabaseItem'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Retrieve database list based on type
       tags:
       - Database
@@ -9603,8 +9686,7 @@ paths:
               $ref: '#/definitions/dto.DatabaseOption'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List databases
       tags:
       - Database
@@ -9625,8 +9707,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page databases
       tags:
       - Database
@@ -9645,8 +9726,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update database
       tags:
       - Database
@@ -9672,8 +9752,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete mysql database
       tags:
       - Database Mysql
@@ -9709,8 +9788,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check before delete mysql database
       tags:
       - Database Mysql
@@ -9729,8 +9807,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update mysql database description
       tags:
       - Database Mysql
@@ -9763,8 +9840,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load mysql database from remote
       tags:
       - Database Mysql
@@ -9787,8 +9863,7 @@ paths:
               $ref: '#/definitions/dto.MysqlOption'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List mysql database names
       tags:
       - Database Mysql
@@ -9807,8 +9882,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create postgresql database
       tags:
       - Database Postgresql
@@ -9839,8 +9913,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load postgresql database from remote
       tags:
       - Database Postgresql
@@ -9859,8 +9932,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Bind postgresql user
       tags:
       - Database Postgresql
@@ -9887,8 +9959,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete postgresql database
       tags:
       - Database Postgresql
@@ -9924,8 +9995,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check before delete postgresql database
       tags:
       - Database Postgresql
@@ -9944,8 +10014,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update postgresql database description
       tags:
       - Database Postgresql
@@ -9979,8 +10048,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change postgresql password
       tags:
       - Database Postgresql
@@ -10012,8 +10080,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change postgresql privileges
       tags:
       - Database Postgresql
@@ -10042,8 +10109,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page postgresql databases
       tags:
       - Database Postgresql
@@ -10064,8 +10130,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.RedisConf'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load redis conf
       tags:
       - Database Redis
@@ -10084,8 +10149,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update redis conf
       tags:
       - Database Redis
@@ -10101,8 +10165,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Install redis-cli
       tags:
       - Database Redis
@@ -10121,8 +10184,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change redis password
       tags:
       - Database Redis
@@ -10149,8 +10211,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.RedisPersistence'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load redis persistence conf
       tags:
       - Database Redis
@@ -10169,8 +10230,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update redis persistence conf
       tags:
       - Database Redis
@@ -10197,8 +10257,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.RedisStatus'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load redis status info
       tags:
       - Database Redis
@@ -10219,8 +10278,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load mysql remote access
       tags:
       - Database Mysql
@@ -10241,8 +10299,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page mysql databases
       tags:
       - Database Mysql
@@ -10263,8 +10320,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.MysqlStatus'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load mysql status info
       tags:
       - Database Mysql
@@ -10285,8 +10341,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.MysqlVariables'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load mysql variables info
       tags:
       - Database Mysql
@@ -10305,8 +10360,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update mysql variables
       tags:
       - Database Mysql
@@ -10335,8 +10389,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check before delete remote database
       tags:
       - Database
@@ -10355,8 +10408,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create file
       tags:
       - File
@@ -10386,8 +10438,7 @@ paths:
               $ref: '#/definitions/response.ExistFileInfo'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Batch check file exist
       tags:
       - File
@@ -10406,8 +10457,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Batch delete file
       tags:
       - File
@@ -10433,8 +10483,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Batch change file mode and owner
       tags:
       - File
@@ -10465,8 +10514,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check file exist
       tags:
       - File
@@ -10485,8 +10533,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Chunk Download file
       tags:
       - File
@@ -10511,8 +10558,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Chunk upload file
       tags:
       - File
@@ -10531,8 +10577,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Compress file
       tags:
       - File
@@ -10560,8 +10605,7 @@ paths:
           schema:
             $ref: '#/definitions/response.FileInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load file content
       tags:
       - File
@@ -10587,8 +10631,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Decompress file
       tags:
       - File
@@ -10614,8 +10657,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete file
       tags:
       - File
@@ -10634,8 +10676,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download file
       tags:
       - File
@@ -10656,8 +10697,7 @@ paths:
           schema:
             $ref: '#/definitions/model.Favorite'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create favorite
       tags:
       - File
@@ -10683,8 +10723,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete favorite
       tags:
       - File
@@ -10718,8 +10757,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List favorites
       tags:
       - File
@@ -10738,8 +10776,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change file mode
       tags:
       - File
@@ -10766,8 +10803,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Move file
       tags:
       - File
@@ -10794,8 +10830,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change file owner
       tags:
       - File
@@ -10823,8 +10858,7 @@ paths:
           schema:
             $ref: '#/definitions/response.FileLineContent'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Read file by Line
       tags:
       - File
@@ -10836,8 +10870,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clear Recycle Bin files
       tags:
       - File
@@ -10862,8 +10895,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Reduce Recycle Bin files
       tags:
       - File
@@ -10891,8 +10923,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List Recycle Bin files
       tags:
       - File
@@ -10906,8 +10937,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get Recycle Bin status
       tags:
       - File
@@ -10926,8 +10956,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change file name
       tags:
       - File
@@ -10954,8 +10983,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update file content
       tags:
       - File
@@ -10983,8 +11011,7 @@ paths:
           schema:
             $ref: '#/definitions/response.FileInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List files
       tags:
       - File
@@ -11005,8 +11032,7 @@ paths:
           schema:
             $ref: '#/definitions/response.DirSizeRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load file size
       tags:
       - File
@@ -11036,8 +11062,7 @@ paths:
               $ref: '#/definitions/response.FileTree'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load files tree
       tags:
       - File
@@ -11055,8 +11080,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Upload file
       tags:
       - File
@@ -11084,8 +11108,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page file
       tags:
       - File
@@ -11106,8 +11129,7 @@ paths:
           schema:
             $ref: '#/definitions/response.FileWgetRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Wget file
       tags:
       - File
@@ -11135,8 +11157,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create system group
       tags:
       - System Group
@@ -11163,8 +11184,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete system group
       tags:
       - System Group
@@ -11206,8 +11226,7 @@ paths:
               $ref: '#/definitions/dto.GroupInfo'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List system groups
       tags:
       - System Group
@@ -11226,8 +11245,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system group
       tags:
       - System Group
@@ -11256,8 +11274,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.HostInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create host
       tags:
       - Host
@@ -11277,8 +11294,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.CommandInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List commands
       tags:
       - Command
@@ -11296,8 +11312,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create command
       tags:
       - Command
@@ -11324,8 +11339,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete command
       tags:
       - Command
@@ -11352,8 +11366,7 @@ paths:
               $ref: '#/definitions/dto.RedisCommand'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List redis commands
       tags:
       - Redis Command
@@ -11371,8 +11384,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Save redis command
       tags:
       - Redis Command
@@ -11399,8 +11411,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete redis command
       tags:
       - Redis Command
@@ -11434,8 +11445,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page redis commands
       tags:
       - Redis Command
@@ -11456,8 +11466,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page commands
       tags:
       - Command
@@ -11473,8 +11482,7 @@ paths:
               $ref: '#/definitions/dto.CommandTree'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Tree commands
       tags:
       - Command
@@ -11493,8 +11501,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update command
       tags:
       - Command
@@ -11520,8 +11527,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update host SSH setting by file
       tags:
       - SSH
@@ -11546,8 +11552,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete host
       tags:
       - Host
@@ -11572,8 +11577,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.FirewallBaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load firewall base info
       tags:
       - Firewall
@@ -11592,8 +11596,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Batch create group
       tags:
       - Firewall
@@ -11612,8 +11615,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update firewall port group
       tags:
       - Firewall
@@ -11639,8 +11641,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create firewall group
       tags:
       - Firewall
@@ -11667,8 +11668,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page firewall status
       tags:
       - Firewall
@@ -11694,8 +11694,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create firewall port group
       tags:
       - Firewall
@@ -11724,8 +11723,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page firewall rules
       tags:
       - Firewall
@@ -11744,8 +11742,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update address group
       tags:
       - Firewall
@@ -11764,8 +11761,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update rule description
       tags:
       - Firewall
@@ -11784,8 +11780,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update firewall group
       tags:
       - Firewall
@@ -11795,8 +11790,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean monitor datas
       tags:
       - Monitor
@@ -11823,8 +11817,7 @@ paths:
               $ref: '#/definitions/dto.MonitorData'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load monitor datas
       tags:
       - Monitor
@@ -11845,8 +11838,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page host
       tags:
       - Host
@@ -11858,8 +11850,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load host SSH conf
       tags:
       - SSH
@@ -11878,8 +11869,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Generate host SSH secret
       tags:
       - SSH
@@ -11906,8 +11896,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.SSHLog'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load host SSH logs
       tags:
       - SSH
@@ -11926,8 +11915,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate SSH
       tags:
       - SSH
@@ -11946,8 +11934,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.SSHInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load host SSH setting info
       tags:
       - SSH
@@ -11968,8 +11955,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load host SSH secret
       tags:
       - SSH
@@ -11988,8 +11974,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update host SSH setting
       tags:
       - SSH
@@ -12017,8 +12002,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Test host conn by host id
       tags:
       - Host
@@ -12039,8 +12023,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Test host conn by info
       tags:
       - Host
@@ -12061,8 +12044,7 @@ paths:
           schema:
             $ref: '#/definitions/response.HostToolRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get tool status
       tags:
       - Host tool
@@ -12083,8 +12065,7 @@ paths:
           schema:
             $ref: '#/definitions/response.HostToolConfig'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get tool config
       tags:
       - Host tool
@@ -12110,8 +12091,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create Host tool Config
       tags:
       - Host tool
@@ -12139,8 +12119,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get tool logs
       tags:
       - Host tool
@@ -12159,8 +12138,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate tool
       tags:
       - Host tool
@@ -12182,8 +12160,7 @@ paths:
           schema:
             $ref: '#/definitions/response.SupervisorProcessConfig'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get Supervisor process config
       tags:
       - Host tool
@@ -12201,8 +12178,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create Supervisor process
       tags:
       - Host tool
@@ -12230,8 +12206,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get Supervisor process config
       tags:
       - Host tool
@@ -12261,8 +12236,7 @@ paths:
               $ref: '#/definitions/dto.HostTree'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load host tree
       tags:
       - Host
@@ -12281,8 +12255,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update host
       tags:
       - Host
@@ -12309,8 +12282,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update host group
       tags:
       - Host
@@ -12343,8 +12315,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean operation logs
       tags:
       - Logs
@@ -12372,8 +12343,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page login logs
       tags:
       - Logs
@@ -12394,8 +12364,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page operation logs
       tags:
       - Logs
@@ -12407,8 +12376,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system logs
       tags:
       - Logs
@@ -12422,11 +12390,159 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system log files
       tags:
       - Logs
+  /mcp/domain/bind:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpBindDomain'
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Bind Domain for mcp server
+      tags:
+      - McpServer
+  /mcp/domain/get:
+    get:
+      consumes:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.McpBindDomainRes'
+      security:
+      - BearerAuth: []
+      summary: Get bin Domain for mcp server
+      tags:
+      - McpServer
+  /mcp/domain/update:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpBindDomainUpdate'
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Update bind Domain for mcp server
+      tags:
+      - McpServer
+  /mcp/search:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpServerSearch'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.McpServersRes'
+      security:
+      - BearerAuth: []
+      summary: List mcp servers
+      tags:
+      - McpServer
+  /mcp/server:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpServerCreate'
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Create mcp server
+      tags:
+      - McpServer
+  /mcp/server/del:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpServerDelete'
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Delete mcp server
+      tags:
+      - McpServer
+  /mcp/server/op:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpServerOperate'
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Operate mcp server
+      tags:
+      - McpServer
+  /mcp/server/update:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.McpServerUpdate'
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Update mcp server
+      tags:
+      - McpServer
   /openresty:
     get:
       responses:
@@ -12435,8 +12551,7 @@ paths:
           schema:
             $ref: '#/definitions/response.NginxFile'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load OpenResty conf
       tags:
       - OpenResty
@@ -12446,8 +12561,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clear OpenResty proxy cache
       tags:
       - OpenResty
@@ -12472,8 +12586,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update OpenResty conf by upload file
       tags:
       - OpenResty
@@ -12502,8 +12615,7 @@ paths:
               $ref: '#/definitions/response.NginxParam'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load partial OpenResty conf
       tags:
       - OpenResty
@@ -12515,8 +12627,7 @@ paths:
           schema:
             $ref: '#/definitions/response.NginxStatus'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load OpenResty status info
       tags:
       - OpenResty
@@ -12535,8 +12646,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update OpenResty conf
       tags:
       - OpenResty
@@ -12566,8 +12676,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Stop Process
       tags:
       - Process
@@ -12595,8 +12704,7 @@ paths:
           schema:
             $ref: '#/definitions/model.Runtime'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create runtime
       tags:
       - Runtime
@@ -12623,8 +12731,7 @@ paths:
           schema:
             $ref: '#/definitions/response.RuntimeDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get runtime
       tags:
       - Runtime
@@ -12643,8 +12750,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete runtime
       tags:
       - Website
@@ -12674,8 +12780,7 @@ paths:
               $ref: '#/definitions/response.NodeModule'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get Node modules
       tags:
       - Runtime
@@ -12694,8 +12799,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate Node modules
       tags:
       - Runtime
@@ -12718,8 +12822,7 @@ paths:
               $ref: '#/definitions/response.PackageScripts'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get Node package scripts
       tags:
       - Runtime
@@ -12738,8 +12841,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate runtime
       tags:
       - Runtime
@@ -12765,8 +12867,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create Extensions
       tags:
       - PHP Extensions
@@ -12785,8 +12886,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete Extensions
       tags:
       - PHP Extensions
@@ -12807,8 +12907,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page Extensions
       tags:
       - PHP Extensions
@@ -12827,8 +12926,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update Extensions
       tags:
       - PHP Extensions
@@ -12849,8 +12947,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List runtimes
       tags:
       - Runtime
@@ -12862,8 +12959,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Sync runtime status
       tags:
       - Runtime
@@ -12882,8 +12978,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update runtime
       tags:
       - Runtime
@@ -12904,8 +12999,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Generate api key
       tags:
       - System Setting
@@ -12930,8 +13024,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update api config
       tags:
       - System Setting
@@ -12957,8 +13050,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create backup account
       tags:
       - Backup Account
@@ -12984,8 +13076,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Backup system data
       tags:
       - Backup Account
@@ -13013,8 +13104,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete backup account
       tags:
       - Backup Account
@@ -13041,8 +13131,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.OneDriveInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load OneDrive info
       tags:
       - Backup Account
@@ -13061,8 +13150,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete backup record
       tags:
       - Backup Account
@@ -13096,8 +13184,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download backup record
       tags:
       - Backup Account
@@ -13126,8 +13213,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page backup records
       tags:
       - Backup Account
@@ -13148,8 +13234,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page backup records by cronjob
       tags:
       - Backup Account
@@ -13172,8 +13257,7 @@ paths:
               $ref: '#/definitions/dto.BackupFile'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load backup records size
       tags:
       - Backup Account
@@ -13196,8 +13280,7 @@ paths:
               $ref: '#/definitions/dto.BackupFile'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load backup records size for cronjob
       tags:
       - Backup Account
@@ -13216,8 +13299,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Recover system data
       tags:
       - Backup Account
@@ -13246,8 +13328,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Recover system data by upload
       tags:
       - Backup Account
@@ -13267,8 +13348,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Refresh OneDrive token
       tags:
       - Backup Account
@@ -13282,8 +13362,7 @@ paths:
               $ref: '#/definitions/dto.BackupInfo'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List backup accounts
       tags:
       - Backup Account
@@ -13305,8 +13384,7 @@ paths:
               type: object
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List buckets
       tags:
       - Backup Account
@@ -13329,8 +13407,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List files from backup accounts
       tags:
       - Backup Account
@@ -13349,8 +13426,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update backup account
       tags:
       - Backup Account
@@ -13369,8 +13445,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load local base dir
       tags:
       - System Setting
@@ -13389,8 +13464,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system bind info
       tags:
       - System Setting
@@ -13417,8 +13491,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Reset system password expired
       tags:
       - System Setting
@@ -13440,8 +13513,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system address
       tags:
       - System Setting
@@ -13460,8 +13532,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system setting
       tags:
       - System Setting
@@ -13488,8 +13559,7 @@ paths:
           schema:
             $ref: '#/definitions/mfa.Otp'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load mfa info
       tags:
       - System Setting
@@ -13508,8 +13578,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Bind mfa
       tags:
       - System Setting
@@ -13534,8 +13603,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system password
       tags:
       - System Setting
@@ -13560,8 +13628,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system port
       tags:
       - System Setting
@@ -13587,8 +13654,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update proxy setting
       tags:
       - System Setting
@@ -13608,8 +13674,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.SettingInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system setting info
       tags:
       - System Setting
@@ -13619,8 +13684,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system available status
       tags:
       - System Setting
@@ -13639,8 +13703,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create system snapshot
       tags:
       - System Setting
@@ -13667,8 +13730,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete system backup
       tags:
       - System Setting
@@ -13700,8 +13762,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update snapshot description
       tags:
       - System Setting
@@ -13734,8 +13795,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Import system snapshot
       tags:
       - System Setting
@@ -13762,8 +13822,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Recover system backup
       tags:
       - System Setting
@@ -13795,8 +13854,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Rollback system backup
       tags:
       - System Setting
@@ -13830,8 +13888,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page system snapshot
       tags:
       - System Setting
@@ -13854,8 +13911,7 @@ paths:
               $ref: '#/definitions/dto.SnapshotFile'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system snapshot size
       tags:
       - System Setting
@@ -13876,8 +13932,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.SnapshotStatus'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load Snapshot status
       tags:
       - System Setting
@@ -13887,8 +13942,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download system cert
       tags:
       - System Setting
@@ -13900,8 +13954,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.SSLInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load system cert info
       tags:
       - System Setting
@@ -13920,8 +13973,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system ssl
       tags:
       - System Setting
@@ -13947,8 +13999,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update system setting
       tags:
       - System Setting
@@ -13977,8 +14028,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load release notes by version
       tags:
       - System Setting
@@ -13996,8 +14046,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Upgrade
       tags:
       - System Setting
@@ -14023,8 +14072,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create clam
       tags:
       - Clam
@@ -14046,8 +14094,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.ClamBaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load clam base info
       tags:
       - Clam
@@ -14066,8 +14113,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete clam
       tags:
       - Clam
@@ -14101,8 +14147,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load clam file
       tags:
       - Clam
@@ -14121,8 +14166,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update clam file
       tags:
       - Clam
@@ -14141,8 +14185,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Handle clam scan
       tags:
       - Clam
@@ -14174,8 +14217,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate Clam
       tags:
       - Clam
@@ -14201,8 +14243,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean clam record
       tags:
       - Clam
@@ -14236,8 +14277,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load clam record detail
       tags:
       - Clam
@@ -14258,8 +14298,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page clam record
       tags:
       - Clam
@@ -14280,8 +14319,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page clam
       tags:
       - Clam
@@ -14300,8 +14338,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update clam status
       tags:
       - Clam
@@ -14334,8 +14371,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update clam
       tags:
       - Clam
@@ -14364,8 +14400,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Clean system
       tags:
       - Device
@@ -14383,8 +14418,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.DeviceBaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load device base info
       tags:
       - Device
@@ -14405,8 +14439,7 @@ paths:
           schema:
             type: boolean
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check device DNS conf
       tags:
       - Device
@@ -14429,8 +14462,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: load conf
       tags:
       - Device
@@ -14449,8 +14481,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update device conf by file
       tags:
       - Device
@@ -14469,8 +14500,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update device
       tags:
       - Device
@@ -14488,8 +14518,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update device hosts
       tags:
       - Device
@@ -14516,8 +14545,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update device passwd
       tags:
       - Device
@@ -14536,8 +14564,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update device swap
       tags:
       - Device
@@ -14561,8 +14588,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: list time zone options
       tags:
       - Device
@@ -14574,8 +14600,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.Fail2BanBaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load fail2ban base info
       tags:
       - Fail2ban
@@ -14589,8 +14614,7 @@ paths:
           schema:
             type: string
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load fail2ban conf
       tags:
       - Fail2ban
@@ -14609,8 +14633,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate fail2ban
       tags:
       - Fail2ban
@@ -14636,8 +14659,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate sshd of fail2ban
       tags:
       - Fail2ban
@@ -14660,8 +14682,7 @@ paths:
               type: string
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page fail2ban ip list
       tags:
       - Fail2ban
@@ -14680,8 +14701,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update fail2ban conf
       tags:
       - Fail2ban
@@ -14708,8 +14728,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update fail2ban conf by file
       tags:
       - Fail2ban
@@ -14728,8 +14747,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create FTP user
       tags:
       - FTP
@@ -14749,8 +14767,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.FtpBaseInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load FTP base info
       tags:
       - FTP
@@ -14769,8 +14786,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete FTP user
       tags:
       - FTP
@@ -14804,8 +14820,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load FTP operation log
       tags:
       - FTP
@@ -14824,8 +14839,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate FTP
       tags:
       - FTP
@@ -14853,8 +14867,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page FTP user
       tags:
       - FTP
@@ -14873,8 +14886,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Sync FTP user
       tags:
       - FTP
@@ -14899,8 +14911,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update FTP user
       tags:
       - FTP
@@ -14920,8 +14931,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.CleanData'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Scan system
       tags:
       - Device
@@ -14946,8 +14956,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create website
       tags:
       - Website
@@ -14974,8 +14983,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search website by id
       tags:
       - Website
@@ -15000,8 +15008,7 @@ paths:
           schema:
             $ref: '#/definitions/response.FileInfo'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search website nginx by id
       tags:
       - Website Nginx
@@ -15021,8 +15028,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteHTTPS'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load https conf
       tags:
       - Website HTTPS
@@ -15047,8 +15053,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteHTTPS'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update https conf
       tags:
       - Website HTTPS
@@ -15082,8 +15087,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteAcmeAccountDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create website acme account
       tags:
       - Website Acme
@@ -15109,8 +15113,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete website acme account
       tags:
       - Website Acme
@@ -15144,8 +15147,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page website acme accounts
       tags:
       - Website Acme
@@ -15166,8 +15168,7 @@ paths:
           schema:
             $ref: '#/definitions/response.NginxAuthRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get AuthBasic conf
       tags:
       - Website
@@ -15186,8 +15187,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get AuthBasic conf
       tags:
       - Website
@@ -15208,8 +15208,7 @@ paths:
           schema:
             $ref: '#/definitions/request.WebsiteCACreate'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create website ca
       tags:
       - Website CA
@@ -15236,8 +15235,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteCADTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get website ca
       tags:
       - Website CA
@@ -15256,8 +15254,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete website ca
       tags:
       - Website CA
@@ -15289,8 +15286,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download CA file
       tags:
       - Website CA
@@ -15322,8 +15318,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Obtain SSL
       tags:
       - Website CA
@@ -15355,8 +15350,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Renew Obtain SSL
       tags:
       - Website CA
@@ -15390,8 +15384,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page website ca
       tags:
       - Website CA
@@ -15414,8 +15407,7 @@ paths:
               $ref: '#/definitions/response.WebsitePreInstallCheck'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Check before create website
       tags:
       - Website
@@ -15436,8 +15428,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteNginxConfig'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load nginx conf
       tags:
       - Website Nginx
@@ -15456,8 +15447,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update nginx conf
       tags:
       - Website Nginx
@@ -15490,8 +15480,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteHtmlRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get default html
       tags:
       - Website
@@ -15510,8 +15499,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update default html
       tags:
       - Website
@@ -15537,8 +15525,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Change default server
       tags:
       - Website
@@ -15571,8 +15558,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete website
       tags:
       - Website
@@ -15606,8 +15592,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteDirConfig'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get website dir
       tags:
       - Website
@@ -15626,8 +15611,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update Site Dir permission
       tags:
       - Website
@@ -15659,8 +15643,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update Site Dir
       tags:
       - Website
@@ -15692,8 +15675,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create website dns account
       tags:
       - Website DNS
@@ -15719,8 +15701,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete website dns account
       tags:
       - Website DNS
@@ -15754,8 +15735,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page website dns accounts
       tags:
       - Website DNS
@@ -15774,8 +15754,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update website dns account
       tags:
       - Website DNS
@@ -15805,8 +15784,7 @@ paths:
               $ref: '#/definitions/model.WebsiteDomain'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create website domain
       tags:
       - Website Domain
@@ -15835,8 +15813,7 @@ paths:
               $ref: '#/definitions/model.WebsiteDomain'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search website domains by websiteId
       tags:
       - Website Domain
@@ -15855,8 +15832,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete website domain
       tags:
       - Website Domain
@@ -15890,8 +15866,7 @@ paths:
           schema:
             $ref: '#/definitions/response.NginxAntiLeechRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get AntiLeech conf
       tags:
       - Website
@@ -15910,8 +15885,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update AntiLeech conf
       tags:
       - Website
@@ -15925,8 +15899,7 @@ paths:
               $ref: '#/definitions/response.WebsiteDTO'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List websites
       tags:
       - Website
@@ -15947,8 +15920,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteLog'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate website log
       tags:
       - Website
@@ -15981,8 +15953,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update website nginx conf
       tags:
       - Website Nginx
@@ -16014,8 +15985,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Operate website
       tags:
       - Website
@@ -16043,8 +16013,7 @@ paths:
               $ref: '#/definitions/response.WebsiteOption'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: List website names
       tags:
       - Website
@@ -16063,8 +16032,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update website php conf
       tags:
       - Website PHP
@@ -16097,8 +16065,7 @@ paths:
           schema:
             $ref: '#/definitions/response.PHPConfig'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Load website php conf
       tags:
       - Website
@@ -16117,8 +16084,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update php conf
       tags:
       - Website PHP
@@ -16150,8 +16116,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update php version
       tags:
       - Website PHP
@@ -16187,8 +16152,7 @@ paths:
               $ref: '#/definitions/request.WebsiteProxyConfig'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get proxy conf
       tags:
       - Website
@@ -16207,8 +16171,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete proxy conf
       tags:
       - Website
@@ -16240,8 +16203,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update proxy conf
       tags:
       - Website
@@ -16273,8 +16235,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update proxy file
       tags:
       - Website
@@ -16310,8 +16271,7 @@ paths:
               $ref: '#/definitions/response.NginxRedirectConfig'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get redirect conf
       tags:
       - Website
@@ -16330,8 +16290,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update redirect file
       tags:
       - Website
@@ -16363,8 +16322,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update redirect conf
       tags:
       - Website
@@ -16398,8 +16356,7 @@ paths:
           schema:
             $ref: '#/definitions/response.NginxRewriteRes'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Get rewrite conf
       tags:
       - Website
@@ -16418,8 +16375,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update rewrite conf
       tags:
       - Website
@@ -16453,8 +16409,7 @@ paths:
           schema:
             $ref: '#/definitions/dto.PageResult'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page websites
       tags:
       - Website
@@ -16475,8 +16430,7 @@ paths:
           schema:
             $ref: '#/definitions/request.WebsiteSSLCreate'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Create website ssl
       tags:
       - Website SSL
@@ -16503,8 +16457,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteSSLDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search website ssl by id
       tags:
       - Website SSL
@@ -16523,8 +16476,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Delete website ssl
       tags:
       - Website SSL
@@ -16556,8 +16508,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Download SSL file
       tags:
       - Website SSL
@@ -16589,8 +16540,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Apply  ssl
       tags:
       - Website SSL
@@ -16626,8 +16576,7 @@ paths:
               $ref: '#/definitions/response.WebsiteDNSRes'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Resolve website ssl
       tags:
       - Website SSL
@@ -16650,8 +16599,7 @@ paths:
               $ref: '#/definitions/response.WebsiteSSLDTO'
             type: array
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Page website ssl
       tags:
       - Website SSL
@@ -16670,8 +16618,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update Website ssl
       tags:
       - Website SSL
@@ -16703,8 +16650,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Upload Website ssl
       tags:
       - Website SSL
@@ -16731,8 +16677,7 @@ paths:
           schema:
             $ref: '#/definitions/response.WebsiteSSLDTO'
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Search website ssl by website id
       tags:
       - Website SSL
@@ -16751,8 +16696,7 @@ paths:
         "200":
           description: OK
       security:
-      - ApiKeyAuth: []
-      - Timestamp: []
+      - BearerAuth: []
       summary: Update website
       tags:
       - Website
@@ -16767,15 +16711,9 @@ schemes:
 - http
 - https
 securityDefinitions:
-  ApiKeyAuth:
-    description: '- `1Panel-Token` is the key for the panel API Key.'
+  BearerAuth:
+    description: 'JWT Authorization header. Format: `Authorization: Bearer <token>`'
     in: header
-    name: 1Panel-Token
-    type: apiKey
-  Timestamp:
-    description: '- `1Panel-Timestamp` is the Unix timestamp of the current time in
-      seconds.'
-    in: header
-    name: 1Panel-Timestamp
+    name: Authorization
     type: apiKey
 swagger: "2.0"

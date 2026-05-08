@@ -3,13 +3,14 @@ package router
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/1Panel-dev/1Panel/backend/app/service"
-	"github.com/1Panel-dev/1Panel/backend/constant"
-	"github.com/1Panel-dev/1Panel/cmd/server/res"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/1Panel-dev/1Panel/backend/app/service"
+	"github.com/1Panel-dev/1Panel/backend/constant"
+	"github.com/1Panel-dev/1Panel/cmd/server/res"
 
 	"github.com/1Panel-dev/1Panel/backend/global"
 	"github.com/1Panel-dev/1Panel/backend/i18n"
@@ -161,6 +162,20 @@ func setWebStatic(rootRouter *gin.RouterGroup) {
 
 func Routers() *gin.Engine {
 	Router = gin.Default()
+	Router.Use(func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS")
+		c.Header(
+			"Access-Control-Allow-Headers",
+			"Authorization,Content-Type,Accept,Accept-Language,EntranceCode,Origin,X-Requested-With",
+		)
+		c.Header("Access-Control-Max-Age", "86400")
+		if c.Request.Method == http.MethodOptions {
+			c.AbortWithStatus(http.StatusNoContent)
+			return
+		}
+		c.Next()
+	})
 	Router.Use(middleware.OperationLog())
 	// Router.Use(middleware.CSRF())
 	// Router.Use(middleware.LoadCsrfToken())
@@ -169,7 +184,7 @@ func Routers() *gin.Engine {
 	}
 
 	Router.Use(middleware.WhiteAllow())
-	Router.Use(middleware.BindDomain())
+	//Router.Use(middleware.BindDomain())
 
 	Router.NoRoute(func(c *gin.Context) {
 		if checkFrontendPath(c) {

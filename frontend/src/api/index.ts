@@ -30,6 +30,10 @@ class RequestHttp {
                     let entrance = Base64.encode(globalStore.entrance);
                     config.headers.EntranceCode = entrance;
                 }
+                const token = localStorage.getItem('1panel-token');
+                if (token) {
+                    config.headers.Authorization = `Bearer ${token}`;
+                }
                 return {
                     ...config,
                 } as InternalAxiosRequestConfig<any>;
@@ -44,6 +48,7 @@ class RequestHttp {
                 globalStore.errStatus = '';
                 const { data } = response;
                 if (data.code == ResultEnum.OVERDUE || data.code == ResultEnum.FORBIDDEN) {
+                    localStorage.removeItem('1panel-token');
                     globalStore.setLogStatus(false);
                     router.push({
                         name: 'entrance',

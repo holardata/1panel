@@ -125,6 +125,7 @@ const submitChangePassword = async (formEl: FormInstance | undefined) => {
                 await logOutApi();
                 router.push({ name: 'entrance', params: { code: globalStore.entrance } });
                 globalStore.setLogStatus(false);
+                localStorage.removeItem('1panel-token');
             })
             .catch(() => {
                 loading.value = false;

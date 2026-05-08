@@ -5,6 +5,7 @@ import (
 	"github.com/1Panel-dev/1Panel/backend/app/api/v1/helper"
 	"github.com/1Panel-dev/1Panel/backend/app/dto"
 	"github.com/1Panel-dev/1Panel/backend/app/model"
+	"github.com/1Panel-dev/1Panel/backend/app/repo"
 	"github.com/1Panel-dev/1Panel/backend/constant"
 	"github.com/1Panel-dev/1Panel/backend/global"
 	"github.com/1Panel-dev/1Panel/backend/utils/captcha"
@@ -106,6 +107,17 @@ func (b *BaseApi) Captcha(c *gin.Context) {
 		return
 	}
 	helper.SuccessWithData(c, captcha)
+}
+
+func (b *BaseApi) PasswordPublicKey(c *gin.Context) {
+	settingRepo := repo.NewISettingRepo()
+	key, err := settingRepo.Get(settingRepo.WithByKey("PASSWORD_PUBLIC_KEY"))
+	if err != nil {
+		helper.ErrorWithDetail(c, constant.CodeErrInternalServer, constant.ErrTypeInternalServer, err)
+		return
+	}
+	base64Key := base64.StdEncoding.EncodeToString([]byte(key.Value))
+	helper.SuccessWithData(c, gin.H{"key": base64Key})
 }
 
 func (b *BaseApi) GetResponsePage(c *gin.Context) {

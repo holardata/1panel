@@ -170,7 +170,6 @@ func Routers() *gin.Engine {
 
 	Router.Use(middleware.WhiteAllow())
 	Router.Use(middleware.BindDomain())
-	Router.Use(middleware.SetPasswordPublicKey())
 
 	Router.NoRoute(func(c *gin.Context) {
 		if checkFrontendPath(c) {

@@ -5,8 +5,9 @@ const (
 	SessionName       = "psession"
 
 	AuthMethodJWT = "jwt"
-	JWTHeaderName = "PanelAuthorization"
-	JWTBufferTime = 3600
+	JWTHeaderName = "Authorization"
+	JWTLegacyHeaderName = "PanelAuthorization"
+	JWTBufferTime = 259200
 	JWTIssuer     = "1Panel"
 
 	PasswordExpiredName = "expired"

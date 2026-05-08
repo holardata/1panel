@@ -85,6 +85,7 @@ const onSaveUserName = async (formEl: FormInstance | undefined) => {
                     MsgSuccess(i18n.global.t('commons.msg.operationSuccess'));
                     router.push({ name: 'entrance', params: { code: globalStore.entrance } });
                     globalStore.setLogStatus(false);
+                    localStorage.removeItem('1panel-token');
                     return;
                 })
                 .catch(() => {

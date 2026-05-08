@@ -3,15 +3,15 @@ package middleware
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"net"
+	"strconv"
+	"time"
+
 	"github.com/1Panel-dev/1Panel/backend/app/api/v1/helper"
-	"github.com/1Panel-dev/1Panel/backend/app/repo"
 	"github.com/1Panel-dev/1Panel/backend/constant"
 	"github.com/1Panel-dev/1Panel/backend/global"
 	"github.com/1Panel-dev/1Panel/backend/utils/common"
 	"github.com/gin-gonic/gin"
-	"net"
-	"strconv"
-	"time"
 )
 
 func SessionAuth() gin.HandlerFunc {
@@ -20,51 +20,7 @@ func SessionAuth() gin.HandlerFunc {
 			c.Next()
 			return
 		}
-		panelToken := c.GetHeader("1Panel-Token")
-		panelTimestamp := c.GetHeader("1Panel-Timestamp")
-		if panelToken != "" || panelTimestamp != "" {
-			if global.CONF.System.ApiInterfaceStatus == "enable" {
-				clientIP := c.ClientIP()
-				if !isValid1PanelTimestamp(panelTimestamp) {
-					helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrApiConfigKeyTimeInvalid, nil)
-					return
-				}
-
-				if !isValid1PanelToken(panelToken, panelTimestamp) {
-					helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrApiConfigKeyInvalid, nil)
-					return
-				}
-
-				if !isIPInWhiteList(clientIP) {
-					helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrApiConfigIPInvalid, nil)
-					return
-				}
-				c.Next()
-				return
-			} else {
-				helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrApiConfigStatusInvalid, nil)
-				return
-			}
-		}
-
-		sId, err := c.Cookie(constant.SessionName)
-		if err != nil {
-			helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrTypeNotLogin, nil)
-			return
-		}
-		psession, err := global.SESSION.Get(sId)
-		if err != nil {
-			helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrTypeNotLogin, nil)
-			return
-		}
-		settingRepo := repo.NewISettingRepo()
-		setting, err := settingRepo.Get(settingRepo.WithByKey("SessionTimeout"))
-		if err != nil {
-			global.LOG.Errorf("create operation record failed, err: %v", err)
-		}
-		lifeTime, _ := strconv.Atoi(setting.Value)
-		_ = global.SESSION.Set(sId, psession, lifeTime)
-		c.Next()
+		helper.ErrorWithDetail(c, constant.CodeErrUnauthorized, constant.ErrTypeNotLogin, nil)
 	}
 }
 

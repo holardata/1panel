@@ -100,6 +100,7 @@ const logout = () => {
             systemLogOut();
             router.push({ name: 'entrance', params: { code: globalStore.entrance } });
             globalStore.setLogStatus(false);
+            localStorage.removeItem('1panel-token');
             MsgSuccess(i18n.global.t('commons.msg.operationSuccess'));
         })
         .catch(() => {});

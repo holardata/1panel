@@ -618,12 +618,6 @@ export const escapeProxyURL = (url: string): string => {
     return url.replace(/[\/:?#[\]@!$&'()*+,;=%~]/g, (match) => encodeMap[match] || match);
 };
 
-function getCookie(name: string) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
 function rsaEncrypt(data: string, publicKey: string) {
     if (!data) {
         return data;
@@ -644,10 +638,6 @@ function aesEncrypt(data: string, key: string) {
     return iv.toString(CryptoJS.enc.Base64) + ':' + encrypted.toString();
 }
 
-function urlDecode(value: string): string {
-    return decodeURIComponent(value.replace(/\+/g, ' '));
-}
-
 function generateAESKey(): string {
     const keyLength = 16;
     const randomBytes = new Uint8Array(keyLength);
@@ -657,20 +647,43 @@ function generateAESKey(): string {
         .join('');
 }
 
-export const encryptPassword = (password: string) => {
+let rsaPublicKeyBase64Cache: string | null = null;
+
+const getRsaPublicKeyBase64 = async (): Promise<string | null> => {
+    if (rsaPublicKeyBase64Cache) {
+        return rsaPublicKeyBase64Cache;
+    }
+    const stored = localStorage.getItem('1panel-password-public-key');
+    if (stored) {
+        rsaPublicKeyBase64Cache = stored;
+        return stored;
+    }
+    try {
+        const url = `${import.meta.env.VITE_API_URL as string}/auth/password/public-key`;
+        const response = await fetch(url, { method: 'GET', credentials: 'include' });
+        const result = await response.json();
+        const key = result?.data?.key;
+        if (typeof key === 'string' && key.length > 0) {
+            rsaPublicKeyBase64Cache = key;
+            localStorage.setItem('1panel-password-public-key', key);
+            return key;
+        }
+    } catch (e) {}
+    return null;
+};
+
+export const encryptPassword = async (password: string): Promise<string> => {
     if (!password) {
         return '';
     }
-    let rsaPublicKeyText = getCookie('panel_public_key');
-    if (!rsaPublicKeyText) {
-        console.log('RSA public key not found');
+    let rsaPublicKeyBase64 = await getRsaPublicKeyBase64();
+    if (!rsaPublicKeyBase64) {
         return password;
     }
-    rsaPublicKeyText = urlDecode(rsaPublicKeyText);
 
     const aesKey = generateAESKey();
-    rsaPublicKeyText = rsaPublicKeyText.replaceAll('"', '');
-    const rsaPublicKey = atob(rsaPublicKeyText);
+    rsaPublicKeyBase64 = rsaPublicKeyBase64.replaceAll('"', '');
+    const rsaPublicKey = atob(rsaPublicKeyBase64);
     const keyCipher = rsaEncrypt(aesKey, rsaPublicKey);
     const passwordCipher = aesEncrypt(password, aesKey);
     return `${keyCipher}:${passwordCipher}`;

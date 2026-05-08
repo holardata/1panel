@@ -216,7 +216,7 @@ const loginForm = reactive({
     language: 'zh',
 });
 
-const loginRules = reactive({
+const loginRules = reactive<Record<string, any>>({
     name: [{ required: true, validator: checkUsername, trigger: 'blur' }],
     password: [{ required: true, validator: checkPassword, trigger: 'blur' }],
     agreeLicense: [Rules.requiredSelect, { type: 'array', validator: checkAgreeLicense, trigger: 'blur' }],
@@ -315,13 +315,14 @@ const login = (formEl: FormInstance | undefined) => {
             }
             return;
         }
+        const encryptedPassword = await encryptPassword(loginForm.password);
         let requestLoginForm = {
             name: loginForm.name,
-            password: encryptPassword(loginForm.password),
+            password: encryptedPassword,
             ignoreCaptcha: globalStore.ignoreCaptcha,
             captcha: loginForm.captcha,
             captchaID: captcha.captchaID,
-            authMethod: 'session',
+            authMethod: 'jwt',
             language: loginForm.language,
         };
         if (!globalStore.ignoreCaptcha && requestLoginForm.captcha == '') {
@@ -352,6 +353,9 @@ const login = (formEl: FormInstance | undefined) => {
                 errMfaInfo.value = false;
                 return;
             }
+            if (res.data?.token) {
+                localStorage.setItem('1panel-token', res.data.token);
+            }
             globalStore.setLogStatus(true);
             globalStore.setAgreeLicense(true);
             menuStore.setMenuList([]);
@@ -373,12 +377,16 @@ const mfaLogin = async (auto: boolean) => {
     if ((!auto && mfaLoginForm.code) || (auto && mfaLoginForm.code.length === 6)) {
         isLoggingIn = true;
         mfaLoginForm.name = loginForm.name;
-        mfaLoginForm.password = encryptPassword(loginForm.password);
+        mfaLoginForm.password = await encryptPassword(loginForm.password);
+        mfaLoginForm.authMethod = 'jwt';
         const res = await mfaLoginApi(mfaLoginForm);
         if (res.code === 406) {
             errMfaInfo.value = true;
             isLoggingIn = false;
             return;
+        }
+        if (res.data?.token) {
+            localStorage.setItem('1panel-token', res.data.token);
         }
         globalStore.setLogStatus(true);
         menuStore.setMenuList([]);

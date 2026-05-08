@@ -96,7 +96,9 @@ const initProcess = () => {
     let href = window.location.href;
     let protocol = href.split('//')[0] === 'http:' ? 'ws' : 'wss';
     let ipLocal = href.split('//')[1].split('/')[0];
-    processSocket = new WebSocket(`${protocol}://${ipLocal}/api/v1/files/ws`);
+    const token = localStorage.getItem('1panel-token');
+    const tokenParam = token ? `?token=${encodeURIComponent(token)}` : '';
+    processSocket = new WebSocket(`${protocol}://${ipLocal}/api/v1/files/ws${tokenParam}`);
     processSocket.onopen = onOpenProcess;
     processSocket.onmessage = onMessage;
     processSocket.onerror = onerror;

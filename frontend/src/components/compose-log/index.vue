@@ -140,8 +140,10 @@ const searchLogs = async () => {
     const href = window.location.href;
     const protocol = href.split('//')[0] === 'http:' ? 'ws' : 'wss';
     const host = href.split('//')[1].split('/')[0];
+    const token = localStorage.getItem('1panel-token');
+    const tokenParam = token ? `&token=${encodeURIComponent(token)}` : '';
     terminalSocket.value = new WebSocket(
-        `${protocol}://${host}/api/v1/containers/compose/search/log?compose=${logSearch.compose}&since=${logSearch.mode}&tail=${logSearch.tail}&follow=${logSearch.isWatch}`,
+        `${protocol}://${host}/api/v1/containers/compose/search/log?compose=${logSearch.compose}&since=${logSearch.mode}&tail=${logSearch.tail}&follow=${logSearch.isWatch}${tokenParam}`,
     );
     terminalSocket.value.onmessage = (event) => {
         logInfo.value += event.data;

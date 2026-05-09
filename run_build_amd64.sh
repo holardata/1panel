@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 (cd ./cmd/server && go generate)
-make build_backend_on_darwin
+make build_on_amd64
 rm -rf ./deploy/1panel/1panel && cp build/1panel ./deploy/1panel/
 NOW=$(date +%Y%m%d_%H%M%S)
 

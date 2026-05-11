@@ -13,7 +13,8 @@ deploy/*.tar.gz
 */.DS_Store
 
 # VS Code
-.vscode
+.vscode/*
+!.vscode/launch.json
 *.project
 *.factorypath
 
@@ -56,3 +57,4 @@ cmd/app-downloader/bin*.tar.gz
 cmd/app-downloader/1panel.json
 cmd/app-downloader/1panel.json.zip
 build/1panel
+cmd/server/__debug_*

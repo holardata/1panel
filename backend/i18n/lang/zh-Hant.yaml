@@ -41,6 +41,7 @@ ErrDockerComposeNotValid: "docker-compose 檔案格式錯誤"
 ErrUpdateBuWebsite: '應用更新成功，但是網站配置文件修改失敗，請檢查配置！'
 Err1PanelNetworkFailed: '預設容器網路建立失敗！{{ .detail }}'
 ErrFileParse: '應用 docker-compose 檔案解析失敗!'
+ErrFileParseService: '應用 docker-compose 檔案解析失敗：未找到服務 [{{ .name }}]'
 ErrInstallDirNotFound: '安裝目錄不存在'
 AppStoreIsUpToDate: '應用商店已經是最新版本'
 LocalAppVersionNull: '{{ .name }} 應用未同步到版本！無法新增到應用列表'

@@ -39,6 +39,7 @@ ErrDockerComposeNotValid: "Docker-Composeファイル形式のエラー！"
 ErrUpdateBuWebsite: 'アプリケーションは正常に更新されましたが、Webサイト構成ファイルの変更に失敗しました。構成を確認してください！'
 Err1PanelNetworkFailed: 'デフォルトのコンテナネットワークの作成に失敗しました！{{ 。詳細 }}'
 ErrFileParse: 'アプリケーションDocker-Composeファイルの解析は失敗しました！'
+ErrFileParseService: 'アプリケーションdocker-composeファイル解析失敗：サービス [{{ .name }}] が見つかりません'
 ErrInstallDirNotFound: 'インストールディレクトリは存在しません'
 AppStoreIsUpToDate: '最新の'
 LocalAppVersionNull: '{{.name}}アプリはバージョンに同期されません！アプリケーションリストに追加できませんでした'

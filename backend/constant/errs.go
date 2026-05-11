@@ -68,6 +68,7 @@ var (
 	Err1PanelNetworkFailed = "Err1PanelNetworkFailed"
 	ErrCmdTimeout          = "ErrCmdTimeout"
 	ErrFileParse           = "ErrFileParse"
+	ErrFileParseService    = "ErrFileParseService"
 	ErrInstallDirNotFound  = "ErrInstallDirNotFound"
 	ErrContainerName       = "ErrContainerName"
 	ErrAppNameExist        = "ErrAppNameExist"

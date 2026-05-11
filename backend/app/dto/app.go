@@ -75,22 +75,22 @@ type ExtraProperties struct {
 }
 
 type AppProperty struct {
-	Name               string   `json:"name"`
-	Type               string   `json:"type"`
-	Tags               []string `json:"tags"`
+	Name               string   `json:"name" yaml:"name"`
+	Type               string   `json:"type" yaml:"type"`
+	Tags               []string `json:"tags" yaml:"tags"`
 	ShortDescZh        string   `json:"shortDescZh" yaml:"shortDescZh"`
 	ShortDescEn        string   `json:"shortDescEn" yaml:"shortDescEn"`
-	Description        Locale   `json:"description"`
-	Key                string   `json:"key"`
-	Required           []string `json:"Required"`
-	CrossVersionUpdate bool     `json:"crossVersionUpdate"`
-	Limit              int      `json:"limit"`
-	Recommend          int      `json:"recommend"`
-	Website            string   `json:"website"`
-	Github             string   `json:"github"`
-	Document           string   `json:"document"`
-	Version            float64  `json:"version"`
-	GpuSupport         bool     `json:"gpuSupport"`
+	Description        Locale   `json:"description" yaml:"description"`
+	Key                string   `json:"key" yaml:"key"`
+	Required           []string `json:"Required" yaml:"required"`
+	CrossVersionUpdate bool     `json:"crossVersionUpdate" yaml:"crossVersionUpdate"`
+	Limit              int      `json:"limit" yaml:"limit"`
+	Recommend          int      `json:"recommend" yaml:"recommend"`
+	Website            string   `json:"website" yaml:"website"`
+	Github             string   `json:"github" yaml:"github"`
+	Document           string   `json:"document" yaml:"document"`
+	Version            float64  `json:"version" yaml:"version"`
+	GpuSupport         bool     `json:"gpuSupport" yaml:"gpuSupport"`
 }
 
 type AppConfigVersion struct {

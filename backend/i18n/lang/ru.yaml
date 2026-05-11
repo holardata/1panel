@@ -40,6 +40,7 @@ ErrDockerComposeNotValid: "Ошибка формата файла docker-compose
 ErrUpdateBuWebsite: "Приложение успешно обновлено, но изменение конфигурационного файла веб-сайта не удалось, пожалуйста, проверьте конфигурацию!"
 Err1PanelNetworkFailed: "Не удалось создать сеть контейнера по умолчанию! {{ .detail }}"
 ErrFileParse: "Не удалось разобрать файл docker-compose приложения!"
+ErrFileParseService: "Не удалось разобрать файл docker-compose: служба [{{ .name }}] не найдена"
 ErrInstallDirNotFound: "Директория установки не существует"
 AppStoreIsUpToDate: "Обновлено"
 LocalAppVersionNull: "Приложение {{.name}} не синхронизировано с версией! Невозможно добавить в список приложений"

@@ -1488,11 +1488,21 @@ func updateToolApp(installed *model.AppInstall) {
 func addDockerComposeCommonParam(composeMap map[string]interface{}, serviceName string, req request.AppContainerConfig, params map[string]interface{}) error {
 	services, serviceValid := composeMap["services"].(map[string]interface{})
 	if !serviceValid {
+		topKeys := make([]string, 0, len(composeMap))
+		for k := range composeMap {
+			topKeys = append(topKeys, k)
+		}
+		global.LOG.Errorf("parse docker-compose failed: `services` node is missing or invalid, serviceName=%q, composeKeys=%v", serviceName, topKeys)
 		return buserr.New(constant.ErrFileParse)
 	}
 	service, serviceExist := services[serviceName]
 	if !serviceExist {
-		return buserr.New(constant.ErrFileParse)
+		available := make([]string, 0, len(services))
+		for k := range services {
+			available = append(available, k)
+		}
+		global.LOG.Errorf("parse docker-compose failed: service %q not found under `services`, available services=%v", serviceName, available)
+		return buserr.WithName(constant.ErrFileParseService, serviceName)
 	}
 	serviceValue := service.(map[string]interface{})
 

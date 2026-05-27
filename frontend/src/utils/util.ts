@@ -649,15 +649,12 @@ function generateAESKey(): string {
 
 let rsaPublicKeyBase64Cache: string | null = null;
 
-const getRsaPublicKeyBase64 = async (): Promise<string | null> => {
-    if (rsaPublicKeyBase64Cache) {
-        return rsaPublicKeyBase64Cache;
-    }
-    const stored = localStorage.getItem('1panel-password-public-key');
-    if (stored) {
-        rsaPublicKeyBase64Cache = stored;
-        return stored;
-    }
+export const resetPasswordPublicKeyCache = () => {
+    rsaPublicKeyBase64Cache = null;
+    localStorage.removeItem('1panel-password-public-key');
+};
+
+const fetchRsaPublicKeyBase64 = async (): Promise<string | null> => {
     try {
         const url = `${import.meta.env.VITE_API_URL as string}/auth/password/public-key`;
         const response = await fetch(url, { method: 'GET', credentials: 'include' });
@@ -670,6 +667,23 @@ const getRsaPublicKeyBase64 = async (): Promise<string | null> => {
         }
     } catch (e) {}
     return null;
+};
+
+export const refreshPasswordPublicKeyCache = async (): Promise<string | null> => {
+    resetPasswordPublicKeyCache();
+    return await fetchRsaPublicKeyBase64();
+};
+
+const getRsaPublicKeyBase64 = async (): Promise<string | null> => {
+    if (rsaPublicKeyBase64Cache) {
+        return rsaPublicKeyBase64Cache;
+    }
+    const stored = localStorage.getItem('1panel-password-public-key');
+    if (stored) {
+        rsaPublicKeyBase64Cache = stored;
+        return stored;
+    }
+    return await fetchRsaPublicKeyBase64();
 };
 
 export const encryptPassword = async (password: string): Promise<string> => {

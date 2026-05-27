@@ -182,7 +182,7 @@ import { MsgSuccess } from '@/utils/message';
 import { useI18n } from 'vue-i18n';
 import { getSettingInfo, updateSetting } from '@/api/modules/setting';
 import { Rules } from '@/global/form-rules';
-import { encryptPassword } from '@/utils/util';
+import { encryptPassword, refreshPasswordPublicKeyCache } from '@/utils/util';
 
 const i18n = useI18n();
 const themeConfig = computed(() => globalStore.themeConfig);
@@ -315,16 +315,19 @@ const login = (formEl: FormInstance | undefined) => {
             }
             return;
         }
-        const encryptedPassword = await encryptPassword(loginForm.password);
-        let requestLoginForm = {
-            name: loginForm.name,
-            password: encryptedPassword,
-            ignoreCaptcha: globalStore.ignoreCaptcha,
-            captcha: loginForm.captcha,
-            captchaID: captcha.captchaID,
-            authMethod: 'jwt',
-            language: loginForm.language,
+        const buildLoginRequest = async () => {
+            const encryptedPassword = await encryptPassword(loginForm.password);
+            return {
+                name: loginForm.name,
+                password: encryptedPassword,
+                ignoreCaptcha: globalStore.ignoreCaptcha,
+                captcha: loginForm.captcha,
+                captchaID: captcha.captchaID,
+                authMethod: 'jwt',
+                language: loginForm.language,
+            };
         };
+        let requestLoginForm = await buildLoginRequest();
         if (!globalStore.ignoreCaptcha && requestLoginForm.captcha == '') {
             errCaptcha.value = true;
             return;
@@ -364,6 +367,50 @@ const login = (formEl: FormInstance | undefined) => {
             loadDataFromDB();
             router.push({ name: 'home' });
         } catch (error) {
+            const rawMessage =
+                (error as any)?.message ||
+                (error as any)?.msg ||
+                (error as any)?.response?.data?.message ||
+                (error as any)?.data?.message ||
+                '';
+            if (typeof rawMessage === 'string' && rawMessage.includes('failed to decode AES Key')) {
+                try {
+                    await refreshPasswordPublicKeyCache();
+                    requestLoginForm = await buildLoginRequest();
+                    const res = await loginApi(requestLoginForm);
+                    if (res.code === 406) {
+                        if (res.message === 'ErrCaptchaCode') {
+                            loginForm.captcha = '';
+                            errCaptcha.value = true;
+                            errAuthInfo.value = false;
+                        }
+                        if (res.message === 'ErrAuth') {
+                            globalStore.ignoreCaptcha = false;
+                            errCaptcha.value = false;
+                            errAuthInfo.value = true;
+                        }
+                        loginVerify();
+                        return;
+                    }
+                    globalStore.ignoreCaptcha = true;
+                    if (res.data.mfaStatus === 'enable') {
+                        mfaShow.value = true;
+                        errMfaInfo.value = false;
+                        return;
+                    }
+                    if (res.data?.token) {
+                        localStorage.setItem('1panel-token', res.data.token);
+                    }
+                    globalStore.setLogStatus(true);
+                    globalStore.setAgreeLicense(true);
+                    menuStore.setMenuList([]);
+                    tabsStore.removeAllTabs();
+                    MsgSuccess(i18n.t('commons.msg.loginSuccess'));
+                    loadDataFromDB();
+                    router.push({ name: 'home' });
+                    return;
+                } catch (_) {}
+            }
             loginVerify();
         } finally {
             isLoggingIn = false;
@@ -377,9 +424,34 @@ const mfaLogin = async (auto: boolean) => {
     if ((!auto && mfaLoginForm.code) || (auto && mfaLoginForm.code.length === 6)) {
         isLoggingIn = true;
         mfaLoginForm.name = loginForm.name;
-        mfaLoginForm.password = await encryptPassword(loginForm.password);
-        mfaLoginForm.authMethod = 'jwt';
-        const res = await mfaLoginApi(mfaLoginForm);
+        const buildMfaRequest = async () => {
+            return {
+                name: loginForm.name,
+                password: await encryptPassword(loginForm.password),
+                secret: mfaLoginForm.secret,
+                code: mfaLoginForm.code,
+                authMethod: 'jwt',
+            };
+        };
+        let req = await buildMfaRequest();
+        let res: any;
+        try {
+            res = await mfaLoginApi(req);
+        } catch (error) {
+            const rawMessage =
+                (error as any)?.message ||
+                (error as any)?.msg ||
+                (error as any)?.response?.data?.message ||
+                (error as any)?.data?.message ||
+                '';
+            if (typeof rawMessage === 'string' && rawMessage.includes('failed to decode AES Key')) {
+                await refreshPasswordPublicKeyCache();
+                req = await buildMfaRequest();
+                res = await mfaLoginApi(req);
+            } else {
+                throw error;
+            }
+        }
         if (res.code === 406) {
             errMfaInfo.value = true;
             isLoggingIn = false;
@@ -434,6 +506,7 @@ const loadDataFromDB = async () => {
 
 onMounted(() => {
     globalStore.isOnRestart = false;
+    refreshPasswordPublicKeyCache();
     checkIsSystemIntl();
     loginVerify();
     loadLanguage();

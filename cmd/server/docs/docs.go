@@ -22166,6 +22166,9 @@ const docTemplate = `{
                 "deleteDB": {
                     "type": "boolean"
                 },
+                "deleteModel": {
+                    "type": "boolean"
+                },
                 "detailId": {
                     "type": "integer"
                 },

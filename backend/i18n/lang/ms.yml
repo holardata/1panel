@@ -42,6 +42,7 @@ Err1PanelNetworkFailed: "Penciptaan rangkaian kontena lalai gagal! {{ .detail }}
 ErrFileParse: "Analisis fail docker-compose aplikasi gagal!"
 ErrFileParseService: "Analisis fail docker-compose aplikasi gagal: perkhidmatan [{{ .name }}] tidak ditemui"
 ErrInstallDirNotFound: "Direktori pemasangan tidak wujud"
+ErrModelDelScriptNotFound: "Versi ini belum menyokong pemadaman model. Nyahpilih pilihan ini dan nyahpasang dahulu"
 AppStoreIsUpToDate: "Terkini"
 LocalAppVersionNull: "Aplikasi {{.name}} tidak diselaraskan ke versi! Tidak dapat menambah ke senarai aplikasi"
 LocalAppVersionErr: "{{.name}} gagal diselaraskan ke versi {{.version}}! {{.err}}"

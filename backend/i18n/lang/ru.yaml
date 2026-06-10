@@ -42,6 +42,7 @@ Err1PanelNetworkFailed: "Не удалось создать сеть конте�
 ErrFileParse: "Не удалось разобрать файл docker-compose приложения!"
 ErrFileParseService: "Не удалось разобрать файл docker-compose: служба [{{ .name }}] не найдена"
 ErrInstallDirNotFound: "Директория установки не существует"
+ErrModelDelScriptNotFound: "Эта версия не поддерживает удаление моделей. Снимите флажок и сначала удалите приложение"
 AppStoreIsUpToDate: "Обновлено"
 LocalAppVersionNull: "Приложение {{.name}} не синхронизировано с версией! Невозможно добавить в список приложений"
 LocalAppVersionErr: "{{.name}} не удалось синхронизировать версию {{.version}}! {{.err}}"

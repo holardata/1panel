@@ -236,6 +236,10 @@ func (a *AppInstallService) Operate(req request.AppInstalledOperate) error {
 	if !req.ForceDelete && !files.NewFileOp().Stat(install.GetPath()) {
 		return buserr.New(constant.ErrInstallDirNotFound)
 	}
+	// Older installs may not contain the model deletion script.
+	if req.DeleteModel && !files.NewFileOp().Stat(path.Join(install.GetPath(), "scripts", "model_del.sh")) {
+		return buserr.New(constant.ErrModelDelScriptNotFound)
+	}
 	dockerComposePath := install.GetComposePath()
 	switch req.Operate {
 	case constant.Rebuild:
@@ -259,7 +263,7 @@ func (a *AppInstallService) Operate(req request.AppInstalledOperate) error {
 		}
 		return syncAppInstallStatus(&install, false)
 	case constant.Delete:
-		if err := deleteAppInstall(install, req.DeleteBackup, req.ForceDelete, req.DeleteDB); err != nil && !req.ForceDelete {
+		if err := deleteAppInstall(install, req.DeleteBackup, req.ForceDelete, req.DeleteDB, req.DeleteModel); err != nil && !req.ForceDelete {
 			return err
 		}
 		return nil

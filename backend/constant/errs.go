@@ -70,6 +70,7 @@ var (
 	ErrFileParse           = "ErrFileParse"
 	ErrFileParseService    = "ErrFileParseService"
 	ErrInstallDirNotFound  = "ErrInstallDirNotFound"
+	ErrModelDelScriptNotFound = "ErrModelDelScriptNotFound"
 	ErrContainerName       = "ErrContainerName"
 	ErrAppNameExist        = "ErrAppNameExist"
 	ErrFileNotFound        = "ErrFileNotFound"

@@ -1896,6 +1896,8 @@ const message = {
         deleteBackupHelper: 'また、アプリケーションのバックアップを削除します',
         deleteDB: 'データベースを削除します',
         deleteDBHelper: 'データベースも削除します',
+        deleteModel: 'モデルファイルを削除',
+        deleteModelHelper: 'アプリケーションに関連付けられたモデルファイルも削除します',
         noService: 'いいえ{0}',
         toInstall: 'インストールに移動します',
         param: 'パラメーター',

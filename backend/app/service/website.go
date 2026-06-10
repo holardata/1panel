@@ -9,7 +9,6 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
-	"github.com/1Panel-dev/1Panel/backend/utils/docker"
 	"os"
 	"path"
 	"reflect"
@@ -18,6 +17,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/1Panel-dev/1Panel/backend/utils/docker"
 
 	"github.com/1Panel-dev/1Panel/backend/utils/common"
 	"github.com/jinzhu/copier"
@@ -480,7 +481,7 @@ func (w WebsiteService) DeleteWebsite(req request.WebsiteDelete) error {
 	if checkIsLinkApp(website) && req.DeleteApp {
 		appInstall, _ := appInstallRepo.GetFirst(commonRepo.WithByID(website.AppInstallID))
 		if appInstall.ID > 0 {
-			if err = deleteAppInstall(appInstall, true, req.ForceDelete, true); err != nil && !req.ForceDelete {
+			if err = deleteAppInstall(appInstall, true, req.ForceDelete, true, false); err != nil && !req.ForceDelete {
 				return err
 			}
 		}

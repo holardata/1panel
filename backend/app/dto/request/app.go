@@ -69,6 +69,7 @@ type AppInstalledOperate struct {
 	ForceDelete   bool                `json:"forceDelete"`
 	DeleteBackup  bool                `json:"deleteBackup"`
 	DeleteDB      bool                `json:"deleteDB"`
+	DeleteModel   bool                `json:"deleteModel"`
 	Backup        bool                `json:"backup"`
 	PullImage     bool                `json:"pullImage"`
 	DockerCompose string              `json:"dockerCompose"`

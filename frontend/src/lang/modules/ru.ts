@@ -1939,6 +1939,8 @@ const message = {
         deleteBackupHelper: 'Также удалить резервную копию приложения',
         deleteDB: 'Удалить базу данных',
         deleteDBHelper: 'Также удалить базу данных',
+        deleteModel: 'Удалить файлы модели',
+        deleteModelHelper: 'Также удалить файлы модели, связанные с приложением',
         noService: 'Нет {0}',
         toInstall: 'Перейти к установке',
         param: 'Параметры',

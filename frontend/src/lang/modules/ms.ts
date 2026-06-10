@@ -1952,6 +1952,8 @@ const message = {
         deleteBackupHelper: 'Juga padam sandaran aplikasi',
         deleteDB: 'Padam pangkalan data',
         deleteDBHelper: 'Juga padam pangkalan data',
+        deleteModel: 'Padam fail model',
+        deleteModelHelper: 'Juga padam fail model yang berkaitan dengan aplikasi',
         noService: 'Tiada {0}',
         toInstall: 'Pergi ke pasang',
         param: 'Parameter',

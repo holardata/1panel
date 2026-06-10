@@ -1801,6 +1801,8 @@ const message = {
         deleteBackupHelper: '同时删除应用备份',
         deleteDB: '删除数据库',
         deleteDBHelper: '同时删除与应用关联的数据库',
+        deleteModel: '删除模型文件',
+        deleteModelHelper: '同时删除与应用关联的模型文件',
         noService: '无{0}',
         toInstall: '去安装',
         param: '参数配置',

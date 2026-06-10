@@ -1863,6 +1863,8 @@ const message = {
         deleteBackupHelper: '애플리케이션 백업도 삭제됩니다.',
         deleteDB: '데이터베이스 삭제',
         deleteDBHelper: '데이터베이스도 삭제됩니다.',
+        deleteModel: '모델 파일 삭제',
+        deleteModelHelper: '애플리케이션과 연결된 모델 파일도 삭제합니다.',
         noService: '{0} 없음',
         toInstall: '설치하러 가기',
         param: '파라미터',

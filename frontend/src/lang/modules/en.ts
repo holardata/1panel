@@ -1924,6 +1924,8 @@ const message = {
         deleteBackupHelper: 'Also delete the application backup',
         deleteDB: 'Delete database',
         deleteDBHelper: 'Also delete the database',
+        deleteModel: 'Delete model files',
+        deleteModelHelper: 'Also delete the model files associated with the application',
         noService: 'No {0}',
         toInstall: 'Go to install',
         param: 'Parameters',

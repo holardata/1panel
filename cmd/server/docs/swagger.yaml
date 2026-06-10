@@ -4103,6 +4103,8 @@ definitions:
         type: boolean
       deleteDB:
         type: boolean
+      deleteModel:
+        type: boolean
       detailId:
         type: integer
       dockerCompose:

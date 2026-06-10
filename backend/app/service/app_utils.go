@@ -325,7 +325,7 @@ func handleAppInstallErr(ctx context.Context, install *model.AppInstall) error {
 	return nil
 }
 
-func deleteAppInstall(install model.AppInstall, deleteBackup bool, forceDelete bool, deleteDB bool) error {
+func deleteAppInstall(install model.AppInstall, deleteBackup bool, forceDelete bool, deleteDB bool, deleteModel bool) error {
 	op := files.NewFileOp()
 	appDir := install.GetPath()
 	dir, _ := os.Stat(appDir)
@@ -337,6 +337,13 @@ func deleteAppInstall(install model.AppInstall, deleteBackup bool, forceDelete b
 		if err = runScript(&install, "uninstall"); err != nil {
 			_, _ = compose.Up(install.GetComposePath())
 			return err
+		}
+		// 删除模型
+		if deleteModel {
+			if err = runScript(&install, "model_del"); err != nil {
+				_, _ = compose.Up(install.GetComposePath())
+				return err
+			}
 		}
 	}
 	tx, ctx := helper.GetTxAndContext()
@@ -878,8 +885,9 @@ func runScript(appInstall *model.AppInstall, operate string) error {
 		scriptPath = path.Join(workDir, "scripts", "upgrade.sh")
 	case "uninstall":
 		scriptPath = path.Join(workDir, "scripts", "uninstall.sh")
-	}
-	if !files.NewFileOp().Stat(scriptPath) {
+	case "model_del":
+		scriptPath = path.Join(workDir, "scripts", "model_del.sh")
+	default:
 		global.LOG.Warnf("script %s not exist", scriptPath)
 		return nil
 	}

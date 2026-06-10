@@ -1940,6 +1940,8 @@ const message = {
         deleteBackupHelper: 'Excluir também o backup do aplicativo',
         deleteDB: 'Excluir banco de dados',
         deleteDBHelper: 'Excluir também o banco de dados',
+        deleteModel: 'Excluir arquivos do modelo',
+        deleteModelHelper: 'Excluir também os arquivos de modelo associados ao aplicativo',
         noService: 'Sem {0}',
         toInstall: 'Ir para instalar',
         param: 'Parâmetros',

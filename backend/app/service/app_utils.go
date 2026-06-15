@@ -887,7 +887,8 @@ func runScript(appInstall *model.AppInstall, operate string) error {
 		scriptPath = path.Join(workDir, "scripts", "uninstall.sh")
 	case "model_del":
 		scriptPath = path.Join(workDir, "scripts", "model_del.sh")
-	default:
+	}
+	if !files.NewFileOp().Stat(scriptPath) {
 		global.LOG.Warnf("script %s not exist", scriptPath)
 		return nil
 	}

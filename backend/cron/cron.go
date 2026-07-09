@@ -82,6 +82,15 @@ func Run() {
 }
 
 func syncBeforeStart() {
+	const (
+		startupDelay      = 60 * time.Second
+		baseRetryInterval = 1 * time.Minute
+		maxRetryInterval  = 30 * time.Minute
+		maxRetries        = 5
+	)
+
+	time.Sleep(startupDelay)
+
 	var ntpSite model.Setting
 	if err := global.DB.Where("key = ?", "NtpSite").Find(&ntpSite).Error; err != nil {
 		global.LOG.Errorf("load ntp serve from db failed, err: %v", err)
@@ -89,14 +98,40 @@ func syncBeforeStart() {
 	if len(ntpSite.Value) == 0 {
 		ntpSite.Value = "pool.ntp.org"
 	}
-	ntime, err := ntp.GetRemoteTime(ntpSite.Value)
-	if err != nil {
-		global.LOG.Errorf("load remote time with [%s] failed, err: %v", ntpSite.Value, err)
+
+	for attempt := 1; attempt <= maxRetries; attempt++ {
+		shift := attempt - 1
+		if shift > 10 {
+			shift = 10
+		}
+		retryAfter := baseRetryInterval * time.Duration(1<<shift)
+		if retryAfter > maxRetryInterval {
+			retryAfter = maxRetryInterval
+		}
+
+		ntime, err := ntp.GetRemoteTime(ntpSite.Value)
+		if err != nil {
+			if attempt == maxRetries {
+				global.LOG.Errorf("load remote time with [%s] failed after %d attempts, err: %v", ntpSite.Value, attempt, err)
+				return
+			}
+			global.LOG.Warnf("load remote time with [%s] failed on attempt %d/%d, err: %v, retry after %s", ntpSite.Value, attempt, maxRetries, err, retryAfter)
+			time.Sleep(retryAfter)
+			continue
+		}
+
+		ts := ntime.Format(constant.DateTimeLayout)
+		if err := ntp.UpdateSystemTime(ts); err != nil {
+			if attempt == maxRetries {
+				global.LOG.Errorf("failed to synchronize system time with [%s] after %d attempts, err: %v", ntpSite.Value, attempt, err)
+				return
+			}
+			global.LOG.Warnf("failed to synchronize system time with [%s] on attempt %d/%d, err: %v, retry after %s", ntpSite.Value, attempt, maxRetries, err, retryAfter)
+			time.Sleep(retryAfter)
+			continue
+		}
+
+		global.LOG.Infof("Ok, synchronize system time with [%s] successful, synced time: [%s], attempt %d/%d, startup delay %s, Done.", ntpSite.Value, ts, attempt, maxRetries, startupDelay)
 		return
 	}
-	ts := ntime.Format(constant.DateTimeLayout)
-	if err := ntp.UpdateSystemTime(ts); err != nil {
-		global.LOG.Errorf("failed to synchronize system time with [%s], err: %v", ntpSite.Value, err)
-	}
-	global.LOG.Debugf("synchronize system time with [%s] successful!", ntpSite.Value)
 }

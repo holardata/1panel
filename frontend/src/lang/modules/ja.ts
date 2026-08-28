@@ -1875,6 +1875,7 @@ const message = {
         backupdate: 'バックアップ時間',
         update: 'アップデート',
         versionSelect: 'バージョンを選択してください',
+        changeLog: '変更履歴',
         operatorHelper: '操作{0}は、選択したアプリケーションで実行されます。続けたいですか？',
         startOperatorHelper: 'アプリケーションが開始されます。続けたいですか？',
         stopOperatorHelper: 'アプリケーションは停止します。続けたいですか？',

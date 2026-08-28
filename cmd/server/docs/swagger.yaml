@@ -142,6 +142,8 @@ definitions:
     type: object
   dto.AppVersion:
     properties:
+      changeLog:
+        type: string
       detailId:
         type: integer
       dockerCompose:
@@ -5854,6 +5856,8 @@ definitions:
     properties:
       appId:
         type: integer
+      changeLog:
+        type: string
       createdAt:
         type: string
       dockerCompose:

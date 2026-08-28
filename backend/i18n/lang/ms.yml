@@ -44,6 +44,7 @@ ErrFileParseService: "Analisis fail docker-compose aplikasi gagal: perkhidmatan 
 ErrInstallDirNotFound: "Direktori pemasangan tidak wujud"
 ErrModelDelScriptNotFound: "Versi ini belum menyokong pemadaman model. Nyahpilih pilihan ini dan nyahpasang dahulu"
 AppStoreIsUpToDate: "Terkini"
+AppStoreSyncFailed: "Gagal menyambung ke Gedung Aplikasi, aplikasi tempatan telah diselaraskan"
 LocalAppVersionNull: "Aplikasi {{.name}} tidak diselaraskan ke versi! Tidak dapat menambah ke senarai aplikasi"
 LocalAppVersionErr: "{{.name}} gagal diselaraskan ke versi {{.version}}! {{.err}}"
 ErrFileNotFound: "Fail {{.name}} tidak wujud"

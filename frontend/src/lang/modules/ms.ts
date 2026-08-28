@@ -1931,6 +1931,7 @@ const message = {
         backupdate: 'Masa Sandaran',
         update: 'Kemaskini',
         versionSelect: 'Sila pilih versi',
+        changeLog: 'Log Perubahan',
         operatorHelper: 'Operasi {0} akan dilaksanakan pada aplikasi yang dipilih. Adakah anda mahu meneruskan?',
         startOperatorHelper: 'Aplikasi akan dimulakan. Adakah anda mahu meneruskan?',
         stopOperatorHelper: 'Aplikasi akan dihentikan. Adakah anda mahu meneruskan?',

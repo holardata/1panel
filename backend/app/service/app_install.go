@@ -549,6 +549,7 @@ func (a *AppInstallService) GetUpdateVersions(req request.AppUpdateVersion) ([]d
 				Version:       detail.Version,
 				DetailId:      detail.ID,
 				DockerCompose: newCompose,
+				ChangeLog:     detail.ChangeLog,
 			})
 		}
 	}

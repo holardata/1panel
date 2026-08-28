@@ -43,6 +43,7 @@ ErrFileParseService: "Falha ao analisar o arquivo docker-compose do aplicativo: 
 ErrInstallDirNotFound: "O diretório de instalação não existe"
 ErrModelDelScriptNotFound: "Esta versao ainda nao suporta excluir modelos. Desmarque a opcao e desinstale primeiro"
 AppStoreIsUpToDate: "Atualizado"
+AppStoreSyncFailed: "Falha ao conectar à loja de aplicativos, aplicativos locais foram sincronizados"
 LocalAppVersionNull: "O aplicativo {{.name}} não está sincronizado com a versão! Não foi possível adicionar à lista de aplicativos"
 LocalAppVersionErr: "Falha ao sincronizar a versão {{.version}} do {{.name}}! {{.err}}"
 ErrFileNotFound: "O arquivo {{.name}} não existe"

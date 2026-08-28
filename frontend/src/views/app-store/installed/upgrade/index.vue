@@ -51,6 +51,15 @@
                             ></el-option>
                         </el-select>
                     </el-form-item>
+                    <div v-if="changeLog !== ''" class="change-log">
+                        <el-divider content-position="left">{{ $t('app.changeLog') }}</el-divider>
+                        <MdEditor
+                            previewOnly
+                            v-model="changeLog"
+                            :theme="isDarkTheme ? 'dark' : 'light'"
+                            style="--md-editor-height: 300px"
+                        />
+                    </div>
                     <el-form-item prop="backup" v-if="operateReq.operate === 'upgrade'">
                         <el-checkbox v-model="operateReq.backup" :label="$t('app.backupApp')" />
                         <span class="input-help">
@@ -111,6 +120,9 @@ import { MsgSuccess } from '@/utils/message';
 import { Rules } from '@/global/form-rules';
 import Diff from './diff/index.vue';
 import bus from '../../bus';
+import MdEditor from 'md-editor-v3';
+import { GlobalStore } from '@/store';
+import { storeToRefs } from 'pinia';
 import { Codemirror } from 'vue-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
@@ -120,6 +132,9 @@ const composeDiffRef = ref();
 const updateRef = ref<FormInstance>();
 const open = ref(false);
 const loading = ref(false);
+const globalStore = GlobalStore();
+const { isDarkTheme } = storeToRefs(globalStore);
+const changeLog = ref('');
 const versions = ref<App.VersionDetail[]>();
 const operateReq = reactive({
     detailId: 0,
@@ -208,6 +223,7 @@ const getVersions = async (version: string) => {
             newContent.value = item.dockerCompose;
             newCompose.value = item.dockerCompose;
             useNewCompose.value = false;
+            changeLog.value = item.changeLog || '';
         }
     } catch (error) {}
 };

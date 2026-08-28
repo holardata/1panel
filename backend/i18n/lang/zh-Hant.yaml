@@ -45,6 +45,7 @@ ErrFileParseService: '應用 docker-compose 檔案解析失敗：未找到服務
 ErrInstallDirNotFound: '安裝目錄不存在'
 ErrModelDelScriptNotFound: '當前版本暫不支援刪除模型，請先取消勾選並完成卸載'
 AppStoreIsUpToDate: '應用商店已經是最新版本'
+AppStoreSyncFailed: '應用商店連接失敗，本地應用已同步'
 LocalAppVersionNull: '{{ .name }} 應用未同步到版本！無法新增到應用列表'
 LocalAppVersionErr: '{{ .name }} 同步版本 {{ .version }} 失敗！{{ .err }}'
 ErrFileNotFound: '{{ .name }} 檔案不存在'

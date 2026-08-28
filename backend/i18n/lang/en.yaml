@@ -44,6 +44,7 @@ ErrFileParseService: 'Application docker-compose file parsing failed: service [{
 ErrInstallDirNotFound: 'installation directory does not exist'
 ErrModelDelScriptNotFound: 'This version does not support deleting model files. Clear the option and uninstall first'
 AppStoreIsUpToDate: 'Up to date'
+AppStoreSyncFailed: 'App Store connection failed, local apps have been synced'
 LocalAppVersionNull: 'The {{.name}} app is not synced to version! Could not add to application list'
 LocalAppVersionErr: '{{.name}} failed to sync version {{.version}}! {{.err}}'
 ErrFileNotFound: '{{.name}} file does not exist'

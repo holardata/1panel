@@ -43,6 +43,7 @@ ErrFileParseService: 'アプリケーションdocker-composeファイル解析�
 ErrInstallDirNotFound: 'インストールディレクトリは存在しません'
 ErrModelDelScriptNotFound: 'このバージョンではモデル削除に対応していません。チェックを外して先にアンインストールしてください'
 AppStoreIsUpToDate: '最新の'
+AppStoreSyncFailed: 'App Storeに接続できませんでした。ローカルアプリは同期済みです'
 LocalAppVersionNull: '{{.name}}アプリはバージョンに同期されません！アプリケーションリストに追加できませんでした'
 LocalAppVersionErr: '{{.name}}}バージョン{{.version}}の同期に失敗しました！{{.err}}'
 ErrFileNotFound: '{{.name}}ファイルは存在しません'

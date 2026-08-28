@@ -1780,6 +1780,7 @@ const message = {
         backupdate: '备份时间',
         update: '更新',
         versionSelect: '请选择版本',
+        changeLog: '变更记录',
         operatorHelper: '将对选中应用进行 {0} 操作，是否继续？',
         startOperatorHelper: '将对选中应用进行 启动 操作，是否继续？',
         stopOperatorHelper: '将对选中应用进行 停止 操作，是否继续？',

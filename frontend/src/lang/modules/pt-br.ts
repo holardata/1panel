@@ -1919,6 +1919,7 @@ const message = {
         backupdate: 'Hora do Backup',
         update: 'Atualizar',
         versionSelect: 'Por favor, selecione uma versão',
+        changeLog: 'Log de alterações',
         operatorHelper: 'A operação {0} será realizada no aplicativo selecionado. Deseja continuar?',
         startOperatorHelper: 'O aplicativo será iniciado. Deseja continuar?',
         stopOperatorHelper: 'O aplicativo será parado. Deseja continuar?',

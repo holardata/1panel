@@ -39,10 +39,14 @@ func (b *BaseApi) SyncApp(c *gin.Context) {
 	if err := appService.GitPullLocalApps(); err != nil {
 		global.LOG.Errorf("Git pull local apps failed: %v", err)
 	}
-	go appService.SyncAppListFromLocal()
+	// 同步执行本地应用同步：接口返回时本地应用列表已就绪，避免前端刷新后读到旧数据
+	// （GitPullLocalApps 的 git clone 已同步阻塞，本地同步本身耗时短，可直接同步执行）
+	appService.SyncAppListFromLocal()
 	res, err := appService.GetAppUpdate()
 	if err != nil {
-		helper.ErrorWithDetail(c, constant.CodeErrInternalServer, constant.ErrTypeInternalServer, err)
+		// 应用商店不可达（如断网）：本地应用已同步，远程应用列表保持不变，返回友好提示而非错误
+		global.LOG.Errorf("Get app update failed: %v", err)
+		helper.SuccessWithMsg(c, i18n.GetMsgByKey("AppStoreSyncFailed"))
 		return
 	}
 

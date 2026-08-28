@@ -1842,6 +1842,7 @@ const message = {
         backupdate: '백업 시간',
         update: '업데이트',
         versionSelect: '버전을 선택하세요',
+        changeLog: '변경 기록',
         operatorHelper: '선택한 애플리케이션에 대해 {0} 작업이 수행됩니다. 계속 하시겠습니까?',
         startOperatorHelper: '애플리케이션이 시작됩니다. 계속 하시겠습니까?',
         stopOperatorHelper: '애플리케이션이 중지됩니다. 계속 하시겠습니까?',

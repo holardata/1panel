@@ -440,6 +440,16 @@ var UpdateAppDetail = &gormigrate.Migration{
 	},
 }
 
+var AddAppDetailChangeLog = &gormigrate.Migration{
+	ID: "20260827-add-app-detail-change-log",
+	Migrate: func(tx *gorm.DB) error {
+		if err := tx.AutoMigrate(&model.AppDetail{}); err != nil {
+			return err
+		}
+		return nil
+	},
+}
+
 var EncryptHostPassword = &gormigrate.Migration{
 	ID: "20230703-encrypt-host-password",
 	Migrate: func(tx *gorm.DB) error {

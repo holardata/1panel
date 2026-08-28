@@ -39,6 +39,10 @@ type AppService struct {
 
 var updateLocalAppsLock sync.Mutex
 
+// syncAppLock 用于串行化本地/远程应用商店同步，
+// 避免两个协程并发执行导致标签重复创建、app_tags 关联错乱（按 tag 查询不到数据）。
+var syncAppLock sync.Mutex
+
 type IAppService interface {
 	PageApp(ctx *gin.Context, req request.AppSearch) (interface{}, error)
 	GetAppTags(ctx *gin.Context) ([]response.TagDTO, error)
@@ -514,6 +518,9 @@ func (a AppService) GitPullLocalApps() error {
 }
 
 func (a AppService) SyncAppListFromLocal() {
+	syncAppLock.Lock()
+	defer syncAppLock.Unlock()
+
 	fileOp := files.NewFileOp()
 	localAppDir := constant.LocalAppResourceDir
 	if !fileOp.Stat(localAppDir) {
@@ -860,6 +867,9 @@ var InitTypes = map[string]struct{}{
 }
 
 func (a AppService) SyncAppListFromRemote() (err error) {
+	syncAppLock.Lock()
+	defer syncAppLock.Unlock()
+
 	global.LOG.Infof("Starting synchronization with App Store...")
 	updateRes, err := a.GetAppUpdate()
 	if err != nil {
@@ -1013,7 +1023,7 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 		updateAppArray []model.App
 		deleteAppArray []model.App
 		deleteIds      []uint
-		tagMap         = make(map[string]uint, len(tags))
+		tagMap         map[string]uint
 	)
 
 	for _, v := range appsMap {
@@ -1048,9 +1058,19 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 			return
 		}
 	}
-	if err = tagRepo.DeleteAll(ctx); err != nil {
+	// zhuzhiwu fix 20260819 begin
+	// 修复：不再 DeleteAll 重建标签。DeleteAll 会使标签 ID 整体后移，
+	// 而本地应用的 app_tags 只在本地同步时才重建，导致远程同步后本地应用按标签过滤结果为空。
+	// 改为复用已有标签 ID，仅创建不存在的标签，保证标签 ID 稳定。
+	existingTags, err := tagRepo.All()
+	if err != nil {
 		return
 	}
+	tagMap = make(map[string]uint, len(existingTags)+len(tags))
+	for _, t := range existingTags {
+		tagMap[t.Key] = t.ID
+	}
+	// zhuzhiwu fix 20260819 end
 	// zhuzhiwu add 20250702 begin
 	// 先插入自定义官方标签
 	officialTag := &model.Tag{
@@ -1069,11 +1089,17 @@ func (a AppService) SyncAppListFromRemote() (err error) {
 	}
 	tags = append([]*model.Tag{officialTag, modelTag}, tags...)
 	// zhuzhiwu add 20260326 end
-	if len(tags) > 0 {
-		if err = tagRepo.BatchCreate(ctx, tags); err != nil {
+	var createTags []*model.Tag
+	for _, t := range tags {
+		if _, ok := tagMap[t.Key]; !ok {
+			createTags = append(createTags, t)
+		}
+	}
+	if len(createTags) > 0 {
+		if err = tagRepo.BatchCreate(ctx, createTags); err != nil {
 			return
 		}
-		for _, t := range tags {
+		for _, t := range createTags {
 			tagMap[t.Key] = t.ID
 		}
 	}

@@ -44,6 +44,7 @@ ErrFileParseService: "Не удалось разобрать файл docker-com
 ErrInstallDirNotFound: "Директория установки не существует"
 ErrModelDelScriptNotFound: "Эта версия не поддерживает удаление моделей. Снимите флажок и сначала удалите приложение"
 AppStoreIsUpToDate: "Обновлено"
+AppStoreSyncFailed: "Не удалось подключиться к магазину приложений, локальные приложения синхронизированы"
 LocalAppVersionNull: "Приложение {{.name}} не синхронизировано с версией! Невозможно добавить в список приложений"
 LocalAppVersionErr: "{{.name}} не удалось синхронизировать версию {{.version}}! {{.err}}"
 ErrFileNotFound: "Файл {{.name}} не существует"

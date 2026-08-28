@@ -13,4 +13,5 @@ type AppDetail struct {
 	DownloadCallBackUrl string `json:"downloadCallBackUrl" gorm:"type:longtext;"`
 	Update              bool   `json:"update"`
 	IgnoreUpgrade       bool   `json:"ignoreUpgrade"`
+	ChangeLog           string `json:"changeLog" gorm:"type:longtext;default:''"`
 }

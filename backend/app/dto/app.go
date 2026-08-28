@@ -36,6 +36,7 @@ type AppVersion struct {
 	Version       string `json:"version"`
 	DetailId      uint   `json:"detailId"`
 	DockerCompose string `json:"dockerCompose"`
+	ChangeLog     string `json:"changeLog"`
 }
 
 type AppList struct {

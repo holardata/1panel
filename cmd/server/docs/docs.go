@@ -16271,6 +16271,9 @@ const docTemplate = `{
         "dto.AppVersion": {
             "type": "object",
             "properties": {
+                "changeLog": {
+                    "type": "string"
+                },
                 "detailId": {
                     "type": "integer"
                 },
@@ -24768,6 +24771,9 @@ const docTemplate = `{
             "properties": {
                 "appId": {
                     "type": "integer"
+                },
+                "changeLog": {
+                    "type": "string"
                 },
                 "createdAt": {
                     "type": "string"

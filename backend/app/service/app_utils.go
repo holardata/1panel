@@ -1097,6 +1097,15 @@ func handleLocalAppDetail(versionDir string, appDetail *model.AppDetail) error {
 		return buserr.WithName(constant.ErrFileParseApp, "docker-compose.yml")
 	}
 	appDetail.DockerCompose = string(dockerComposeByte)
+
+	// ChangeLog.md 与 docker-compose.yml 同级，存在时读取写入变更记录，不存在则忽略 20260827-add-app-detail-change-log
+	changeLogPath := path.Join(versionDir, "ChangeLog.md")
+	if fileOp.Stat(changeLogPath) {
+		if changeLogByte, _ := fileOp.GetContent(changeLogPath); changeLogByte != nil {
+			appDetail.ChangeLog = string(changeLogByte)
+		}
+	}
+
 	paramPath := path.Join(versionDir, "data.yml")
 	if !fileOp.Stat(paramPath) {
 		return buserr.WithName(constant.ErrFileNotFound, "data.yml")

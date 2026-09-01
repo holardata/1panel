@@ -1,0 +1,20 @@
+system:
+  db_file: 1Panel.db
+  base_dir: /opt
+  mode: stable
+  repo_url: https://resource.1panel.pro
+  app_repo: https://apps-assets.fit2cloud.com
+  # https://apps-assets.fit2cloud.com/stable/1panel.json.zip
+  # https://apps-assets.fit2cloud.com/stable/1panel.json.version.txt
+  is_demo: false
+  is_intl: true
+  port: 9999
+  username: admin
+  password: admin
+
+log:
+  level: debug
+  time_zone: Asia/Shanghai
+  log_name: 1Panel
+  log_suffix: .log
+  max_backup: 10

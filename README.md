@@ -1,3 +1,15 @@
+
+---
+
+## 🙏 致谢
+
+> 本项目是在 [1Panel](https://github.com/1Panel-dev/1Panel) 原项目分支 v1.10.30-lts 基础上进行扩充和修改的。
+> 如果您需要一个原版最新的服务器运维管理面板，欢迎使用 [1Panel](https://github.com/1Panel-dev/1Panel) ， [1Panel-dev](https://github.com/1Panel-dev) 的原分支。
+
+版权归[原作者]所有，特此鸣谢。
+
+---
+
 <p align="center"><a href="https://1panel.pro"><img src="https://resource.1panel.pro/img/1panel-logo.png" alt="1Panel" width="300" /></a></p>
 <p align="center"><b>Top-Rated Web-based Linux Server Management Tool</b><br>Best VPS control panel<br>新一代的 Linux 服务器运维管理面板 v1.10.30-lts </p>
 <p align="center">

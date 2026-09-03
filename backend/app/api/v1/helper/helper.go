@@ -1,11 +1,14 @@
+// 此文件在GPL-3.0协议下开源
+// 修改者：bobwu 2026-09-01
 package helper
 
 import (
 	"context"
 	"fmt"
-	"github.com/1Panel-dev/1Panel/cmd/server/res"
 	"net/http"
 	"strconv"
+
+	"github.com/1Panel-dev/1Panel/cmd/server/res"
 
 	"github.com/1Panel-dev/1Panel/backend/global"
 	"gorm.io/gorm"

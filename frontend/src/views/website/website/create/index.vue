@@ -1,3 +1,5 @@
+<!--此文件在GPL-3.0协议下开源-->
+<!--修改者：jackzhang 2026-09-01-->
 <template>
     <el-drawer :close-on-click-modal="false" :close-on-press-escape="false" v-model="open" size="50%">
         <template #header>

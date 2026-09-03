@@ -1,7 +1,10 @@
+// 此文件在GPL-3.0协议下开源
+// 修改者：bobwu 2026-09-01
 package v1
 
 import (
 	"encoding/base64"
+
 	"github.com/1Panel-dev/1Panel/backend/app/api/v1/helper"
 	"github.com/1Panel-dev/1Panel/backend/app/dto"
 	"github.com/1Panel-dev/1Panel/backend/app/model"

@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 import { AcmeAccountTypes, DNSTypes, KeyTypes } from '@/global/mimetype';
 import i18n from '@/lang';
 import useClipboard from 'vue-clipboard3';

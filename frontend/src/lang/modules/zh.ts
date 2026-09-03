@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 import fit2cloudZhLocale from 'fit2cloud-ui-plus/src/locale/lang/zh-cn';
 let xpackZhLocale = {};
 const xpackModules = import.meta.glob('../../xpack/lang/zh.ts', { eager: true });

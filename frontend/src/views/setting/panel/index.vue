@@ -1,3 +1,5 @@
+<!--此文件在GPL-3.0协议下开源-->
+<!--修改者：jackzhang 2026-09-01-->
 <template>
     <div v-loading="loading">
         <LayoutContent :title="$t('setting.panel')" :divider="true">

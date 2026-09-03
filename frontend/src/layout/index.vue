@@ -1,3 +1,5 @@
+<!--此文件在GPL-3.0协议下开源-->
+<!--修改者：jackzhang 2026-09-01-->
 <template>
     <div :class="classObj" class="app-wrapper" v-loading="loading" :element-loading-text="loadingText" fullscreen>
         <div v-if="classObj.mobile && classObj.openSidebar" class="drawer-bg" @click="handleClickOutside" />

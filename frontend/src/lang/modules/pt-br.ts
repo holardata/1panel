@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 import fit2cloudPtBrLocale from 'fit2cloud-ui-plus/src/locale/lang/pt-br';
 
 let xpackPtBrLocale = {};

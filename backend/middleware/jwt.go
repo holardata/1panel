@@ -1,3 +1,5 @@
+// 此文件在GPL-3.0协议下开源
+// 修改者：bobwu 2026-09-01
 package middleware
 
 import (
@@ -5,8 +7,9 @@ import (
 	"github.com/1Panel-dev/1Panel/backend/constant"
 	jwtUtils "github.com/1Panel-dev/1Panel/backend/utils/jwt"
 
-	"github.com/gin-gonic/gin"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 func JwtAuth() gin.HandlerFunc {

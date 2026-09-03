@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 import { defineConfig, loadEnv, ConfigEnv, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';

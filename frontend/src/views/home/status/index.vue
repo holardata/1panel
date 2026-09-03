@@ -1,3 +1,5 @@
+<!--此文件在GPL-3.0协议下开源-->
+<!--修改者：jackzhang 2026-09-01-->
 <template>
     <el-row :gutter="10">
         <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6" align="center">

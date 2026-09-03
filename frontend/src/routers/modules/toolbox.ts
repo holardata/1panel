@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 /*
  * @Author: liwenjie lwj@holardata.com
  * @Date: 2025-06-16 18:19:16

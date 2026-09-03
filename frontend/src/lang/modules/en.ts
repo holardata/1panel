@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 import fit2cloudEnLocale from 'fit2cloud-ui-plus/src/locale/lang/en';
 
 let xpackEnLocale = {};

@@ -1,3 +1,5 @@
+// 此文件在GPL-3.0协议下开源
+// 修改者：bobwu 2026-09-01
 package constant
 
 import (
@@ -58,24 +60,24 @@ var (
 
 // app
 var (
-	ErrPortInUsed          = "ErrPortInUsed"
-	ErrAppLimit            = "ErrAppLimit"
-	ErrFileCanNotRead      = "ErrFileCanNotRead"
-	ErrNotInstall          = "ErrNotInstall"
-	ErrPortInOtherApp      = "ErrPortInOtherApp"
-	ErrDbUserNotValid      = "ErrDbUserNotValid"
-	ErrUpdateBuWebsite     = "ErrUpdateBuWebsite"
-	Err1PanelNetworkFailed = "Err1PanelNetworkFailed"
-	ErrCmdTimeout          = "ErrCmdTimeout"
-	ErrFileParse           = "ErrFileParse"
-	ErrFileParseService    = "ErrFileParseService"
-	ErrInstallDirNotFound  = "ErrInstallDirNotFound"
+	ErrPortInUsed             = "ErrPortInUsed"
+	ErrAppLimit               = "ErrAppLimit"
+	ErrFileCanNotRead         = "ErrFileCanNotRead"
+	ErrNotInstall             = "ErrNotInstall"
+	ErrPortInOtherApp         = "ErrPortInOtherApp"
+	ErrDbUserNotValid         = "ErrDbUserNotValid"
+	ErrUpdateBuWebsite        = "ErrUpdateBuWebsite"
+	Err1PanelNetworkFailed    = "Err1PanelNetworkFailed"
+	ErrCmdTimeout             = "ErrCmdTimeout"
+	ErrFileParse              = "ErrFileParse"
+	ErrFileParseService       = "ErrFileParseService"
+	ErrInstallDirNotFound     = "ErrInstallDirNotFound"
 	ErrModelDelScriptNotFound = "ErrModelDelScriptNotFound"
-	ErrContainerName       = "ErrContainerName"
-	ErrAppNameExist        = "ErrAppNameExist"
-	ErrFileNotFound        = "ErrFileNotFound"
-	ErrFileParseApp        = "ErrFileParseApp"
-	ErrAppParamKey         = "ErrAppParamKey"
+	ErrContainerName          = "ErrContainerName"
+	ErrAppNameExist           = "ErrAppNameExist"
+	ErrFileNotFound           = "ErrFileNotFound"
+	ErrFileParseApp           = "ErrFileParseApp"
+	ErrAppParamKey            = "ErrAppParamKey"
 )
 
 // website

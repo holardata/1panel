@@ -1,3 +1,5 @@
+//此文件在GPL-3.0协议下开源
+//修改者：jackzhang 2026-09-01
 import fit2cloudJaLocale from 'fit2cloud-ui-plus/src/locale/lang/ja';
 let xpackJaLocale = {};
 const xpackModules = import.meta.glob('../../xpack/lang/ja.ts', { eager: true });

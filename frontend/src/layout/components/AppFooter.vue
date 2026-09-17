@@ -12,11 +12,8 @@
     <div class="footer" :style="{ height: mobile ? '108px' : '48px' }">
         <div class="flex w-full flex-col gap-4 md:justify-between md:flex-row">
             <div class="flex flex-wrap gap-4">
-                <a v-if="!globalStore.isIntl" href="https://fit2cloud.com/" target="_blank">
-                    Copyright © 2019-{{ year }} 海纳数聚
-                </a>
-                <a v-if="globalStore.isIntl" href="https://1panel.pro/" target="_blank">
-                    Copyright © {{ year }} 海纳数聚
+                <a href="https://fit2cloud.com/" target="_blank">
+                    Copyright © 2014-{{ year }} {{ $t('commons.fit2cloud') }}
                 </a>
             </div>
             <div class="flex flex-row gap-2 md:flex-col lg:flex-row">

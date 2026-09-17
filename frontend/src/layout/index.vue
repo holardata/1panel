@@ -9,14 +9,14 @@
             <mobile-header v-if="classObj.mobile" />
             <Tabs v-if="classObj.openMenuTabs" />
             <app-main :keep-alive="classObj.openMenuTabs ? tabsStore.cachedTabs : null" class="app-main" />
-            <!-- <Footer class="app-footer" v-if="!globalStore.isFullScreen" /> -->
+            <Footer class="app-footer" v-if="!globalStore.isFullScreen" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, computed, ref, watch, onBeforeUnmount } from 'vue';
-import { Sidebar, AppMain, MobileHeader, Tabs } from './components';
+import { Sidebar, Footer, AppMain, MobileHeader, Tabs } from './components';
 import useResize from './hooks/useResize';
 import { GlobalStore, MenuStore, TabsStore } from '@/store';
 import { DeviceType } from '@/enums/app';
